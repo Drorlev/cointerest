@@ -7,7 +7,14 @@ import { StyleSheet, View, Button, Image,Text ,TouchableOpacity} from 'react-nat
 
 
 
-const StartPage = () => {
+
+const StartPage = ({navigation} ) => {
+
+    const navigate_to_login=()=>{
+        navigation.navigate('LoginPage')
+    }
+
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -23,6 +30,7 @@ const StartPage = () => {
                 <Text style={styles.buttonTxt}>Sign Up</Text>
             </TouchableOpacity>
             <TouchableOpacity
+                onPress={navigate_to_login}
                 style={styles.login}>
                 <Text style={styles.buttonTxt}>Login</Text>
             </TouchableOpacity>

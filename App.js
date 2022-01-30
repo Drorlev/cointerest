@@ -1,6 +1,7 @@
 
 import { StyleSheet, View } from 'react-native';
 import StartPage from './Components/StartPage';
+import LoginPage from './Components/LoginPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -15,6 +16,7 @@ export default function App() {
         }} 
       >
         <Stack.Screen name="StartPage" component={StartPage} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
