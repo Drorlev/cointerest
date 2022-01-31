@@ -9,7 +9,7 @@ import { StyleSheet, View, TextInput, Image,Text ,TouchableOpacity,KeyboardAvoid
 
 
 
-const LoginPage = ({navigation}) => {
+const Login = ({navigation}) => {
     /*
     const [keyboardVisible,setKeyboardVisible]=useState(false);
 
@@ -27,7 +27,7 @@ const LoginPage = ({navigation}) => {
     //this method get the data from the TextInputs
     //and fetch(get) from the server true/false
     //if true navigate_to_homePage() invoked
-    const userAuthentication =()=>{
+    const userAuth =()=>{
 
        //this fetch will return just true/false
        //or
@@ -42,6 +42,7 @@ const LoginPage = ({navigation}) => {
     //this function is used after userAuthentication 
     const navigate_to_homePage=()=>{
         //navigation.navigate('HomePage')
+        navigation.navigate('Portfolio')
     }
 
 
@@ -71,6 +72,7 @@ const LoginPage = ({navigation}) => {
                     />
                 </View> 
             <TouchableOpacity
+                onPress={navigate_to_homePage}
                 style={styles.login}>
                 <Text style={styles.buttonTxt}>Login</Text>
             </TouchableOpacity>
@@ -140,4 +142,4 @@ const styles = StyleSheet.create({
       
 
 })
-export default LoginPage
+export default Login

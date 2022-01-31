@@ -1,22 +1,25 @@
 
 import { StyleSheet, View } from 'react-native';
-import StartPage from './Components/StartPage';
-import LoginPage from './Components/LoginPage';
+import Start from './Components/StartPage';
+import Login from './Components/LoginPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Portfolio from './Components/PortfolioPage';
+import BottomTabNavigator from './Components/Navigation/BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
-
+//Protfolio
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StartPage" 
+      <Stack.Navigator initialRouteName="Start" 
         screenOptions={{
             headerShown: false
         }} 
       >
-        <Stack.Screen name="StartPage" component={StartPage} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="Start" component={Start} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Portfolio" component={BottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

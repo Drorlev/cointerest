@@ -8,10 +8,10 @@ import { StyleSheet, View, Button, Image,Text ,TouchableOpacity} from 'react-nat
 
 //Test
 
-const StartPage = ({navigation} ) => {
+const Start = ({navigation} ) => {
 
     const navigate_to_login=()=>{
-        navigation.navigate('LoginPage')
+        navigation.navigate('Login')
     }
 
     
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
       
 
 })
-export default StartPage
+export default Start
