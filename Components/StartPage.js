@@ -6,7 +6,7 @@ import React from 'react'
 import { StyleSheet, View, Button, Image,Text ,TouchableOpacity} from 'react-native'
 
 
-
+//Test
 
 const StartPage = ({navigation} ) => {
 
