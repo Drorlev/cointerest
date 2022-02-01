@@ -18,14 +18,14 @@ export default function App() {
   return (
     <>
     {loaded && <NavigationContainer style={{fontFamily:'Montserrat',fontSize:30,color:"white"}}>
-      <Stack.Navigator  initialRouteName="SignUp" 
+      <Stack.Navigator  initialRouteName="StartPage" 
         screenOptions={{
             headerShown: false
         }} 
       >
         <Stack.Screen name="StartPage" component={StartPage} />
         <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUpPage" component={SignUp} />
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,5 +1,4 @@
-import { StyleSheet, Dimensions,View, TextInput, Image,Text ,TouchableOpacity,Keyboard,TouchableWithoutFeedback, ScrollView,ImageBackground  } from 'react-native';
-import { white } from 'react-native-material-ui/src/styles/colors';
+import { StyleSheet, Dimensions,View, TextInput, Image,Text ,TouchableOpacity,Keyboard,TouchableWithoutFeedback,ImageBackground  } from 'react-native';
 import Sign_Up from  '../assets/Sign_Up.png'
 
 
