@@ -5,7 +5,7 @@ import Balance from './Comps/Balance';
 import Transactions from './Comps/Transactions';
 //import Tabs from './Navigation/Tab';
 
-const Portfolio = (props,{navigation}) => {
+const Portfolio = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     */
   },
   container2:{
-    marginTop:20,
+    marginTop:30,
     backgroundColor: '#1A1A1A',
     flex: 1,
     //alignItems: 'center',
