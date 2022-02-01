@@ -16,7 +16,7 @@ const SignUp = ({navigation}) => {
             </Text>
 
             <TouchableOpacity style={styles.roundButton1}>
-              <Text>+</Text>
+            <MaterialCommunityIcons name="camera-plus-outline" color={"white"} size={30} />
             </TouchableOpacity>
           
         </View>
