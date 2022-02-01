@@ -14,8 +14,8 @@ const Stack = createNativeStackNavigator();
 //Protfolio
 export default function App() {
   const [loaded] = useFonts({
-    Montserrat: require('./assets/fonts/MontserratAlternates-Medium.otf'),
-  
+    Montserrat: require('./assets/fonts/Montserrat-ThinItalic.otf'),
+    MontserratMed: require('./assets/fonts/MontserratAlternates-Medium.otf'),
   });
   
   return (
