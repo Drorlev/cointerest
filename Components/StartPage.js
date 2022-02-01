@@ -14,6 +14,10 @@ const Start = ({navigation} ) => {
         navigation.navigate('Login')
     }
 
+    const navigate_to_signUp=()=>{
+        navigation.navigate('SignUpPage')
+    }
+
     
     return (
         <View style={styles.container}>
@@ -26,6 +30,7 @@ const Start = ({navigation} ) => {
                 <Image source={pic} style={styles.pic}/>
             </View>
             <TouchableOpacity
+                onPress={navigate_to_signUp}
                 style={styles.signUp}>
                 <Text style={styles.buttonTxt}>Sign Up</Text>
             </TouchableOpacity>
