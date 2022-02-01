@@ -11,6 +11,7 @@ const SignUp = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           
+          
             <Text style={styles.headerTxt,{fontFamily:'MontserratMed',fontSize:30,color:"white"}}>
               Create {"\n"}
               Account
