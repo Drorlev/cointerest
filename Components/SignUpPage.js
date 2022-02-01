@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions,View, TextInput, Image,Text ,TouchableOpacity,Keyboard,TouchableWithoutFeedback,ImageBackground  } from 'react-native';
 import Sign_Up from  '../assets/Sign_Up.png'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const SignUp = ({navigation}) => {
