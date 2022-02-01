@@ -1,6 +1,4 @@
-
 import { StyleSheet, View } from 'react-native';
-
 import Start from './Components/StartPage';
 import SignUp from './Components/SignUpPage';
 import Login from './Components/LoginPage';
