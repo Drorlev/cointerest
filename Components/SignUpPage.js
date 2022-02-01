@@ -1,5 +1,6 @@
-import { StyleSheet, Dimensions,View, TextInput, Image,Text ,TouchableOpacity,Keyboard,TouchableWithoutFeedback,ImageBackground  } from 'react-native';
+import { StyleSheet, Dimensions,View, TextInput,Text ,TouchableOpacity,Keyboard,TouchableWithoutFeedback,ImageBackground  } from 'react-native';
 import Sign_Up from  '../assets/Sign_Up.png'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const SignUp = ({navigation}) => {
@@ -10,13 +11,13 @@ const SignUp = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           
-            <Text style={styles.headerTxt,{fontFamily:'Montserrat',fontSize:30,color:"white"}}>
+            <Text style={styles.headerTxt,{fontFamily:'MontserratMed',fontSize:30,color:"white"}}>
               Create {"\n"}
               Account
             </Text>
 
             <TouchableOpacity style={styles.roundButton1}>
-              <Text>+</Text>
+            <MaterialCommunityIcons name="camera-plus-outline" color={"white"} size={30} />
             </TouchableOpacity>
           
         </View>
@@ -85,8 +86,8 @@ textbox:{
         height:50,
         marginTop:12,
         textAlign: 'center',
-        backgroundColor:'#1A1A1A'
-        
+        backgroundColor:'#1A1A1A',
+        fontFamily:'Montserrat',
 },
 
 
@@ -139,8 +140,10 @@ roundButton1: {
   alignItems: 'center',
   marginLeft:100,
   borderRadius: 100,
-  backgroundColor: 'lightgrey',
+  backgroundColor: 'black',
   alignSelf:"flex-end",
+  borderColor:"white",
+  borderWidth:1.5
  
 },
 

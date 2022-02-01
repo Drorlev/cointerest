@@ -11,14 +11,15 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [loaded] = useFonts({
-    Montserrat: require('./assets/fonts/MontserratAlternates-Medium.otf'),
-  
+    Montserrat: require('./assets/fonts/Montserrat-ThinItalic.otf'),
+    MontserratMed: require('./assets/fonts/MontserratAlternates-Medium.otf'),
+
   });
   
   return (
     <>
     {loaded && <NavigationContainer style={{fontFamily:'Montserrat',fontSize:30,color:"white"}}>
-      <Stack.Navigator  initialRouteName="StartPage" 
+      <Stack.Navigator  initialRouteName="SignUpPage" 
         screenOptions={{
             headerShown: false
         }} 
