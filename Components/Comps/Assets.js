@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         width:"90%",
         //color:'#fff'
         alignSelf: 'center',
-        marginBottom:50
+        marginBottom:40
        // justifyContent: 'center',
     },
     text:{
