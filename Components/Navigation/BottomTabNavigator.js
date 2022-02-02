@@ -5,6 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Portfolio from '../PortfolioPage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DiscoverPage from '../DiscoverPage';
+//import User from '../UserDiscoverPage';
+import InAppStackNavigator from './InAppStackNavigator';
 
 //import Start from './Components/StartPage';
 const Tab = createBottomTabNavigator();
@@ -22,7 +24,9 @@ const BottomTabNavigator = () => {
           backgroundColor: '#504CF1',
           position: 'absolute',
           borderTopWidth: 0,
+          //width:'130%',
       },
+      
       
     })}
     
@@ -54,6 +58,15 @@ const BottomTabNavigator = () => {
           ),
         }}
         />
+
+        <Tab.Screen  
+          style={{backgroundColor:'white'}}
+          name="InAppPages" 
+          component={InAppStackNavigator}
+          options={{
+            tabBarLabel: 'InApp',
+           
+        }}/>
     </Tab.Navigator>
   );
 };
@@ -63,3 +76,12 @@ export default BottomTabNavigator;
 const styles = StyleSheet.create({
  
 });
+
+/*
+//will make the Icon hide nut still be pressable
+ tabBarIcon: ({ focused }) => (
+              <View style={{
+              resizeMode:'contain'}}>
+              </View>
+          ),
+*/

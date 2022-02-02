@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flex: 0.4,
         width:"90%",
         alignSelf: 'center',
-        marginBottom:20
+        marginBottom:60
     },
     history: {
         //flexDirection:'row',

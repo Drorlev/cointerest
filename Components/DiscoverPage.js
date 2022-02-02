@@ -7,7 +7,20 @@ const DiscoverPage = ({navigation}) => {
 
     const getDataFromChild=(data)=>{
         console.log("Discover page "+ data)
-        navigation.navigate('Login')
+        navigation.navigate('InAppPages',{
+          screen: 'UserPage',
+          params: { userName: data },
+      })
+
+      /*
+      navigation.navigate(
+    'NestedNavigator1', 
+    {}, 
+    NavigationActions.navigate({ 
+        routeName: 'screenB' 
+    })
+)
+      */
     }
   return (
     <View style={styles.container}>

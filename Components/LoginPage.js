@@ -42,7 +42,7 @@ const Login = ({navigation}) => {
     //this function is used after userAuthentication 
     const navigate_to_homePage=()=>{
         //navigation.navigate('HomePage')
-        navigation.navigate('Portfolio')
+        navigation.navigate('InApp')
     }
 
 

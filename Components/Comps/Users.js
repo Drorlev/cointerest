@@ -35,7 +35,7 @@ const users_HardCoded=[
 ]
 
 
-const Users = (props) => {
+const Users = (props,{navigation}) => {
     const [users,setUsers]=useState();
     //will be the fetch get users
 
