@@ -13,10 +13,16 @@ const UserBlock = (props) => {
     let Image_Http_URL ={ uri: props.img};
   return (
     <TouchableOpacity style={styles.container} >
-        <Text style={styles.userName} onPress={sendDataToFather}>{props.userName}</Text>
-        <View style={styles.row}>
-            <Text style={styles.balance}>{"$"+ balance}</Text>
-            <Image source={Image_Http_URL} style={styles.roundButton1}/>
+        <View style={styles.col1}>
+            <Text style={styles.userName} onPress={sendDataToFather}>{props.userName}</Text>
+        
+          
+                <Text style={styles.balance}>{"$"+ balance}</Text>
+        </View>
+        <View style={styles.col2}>
+            <View>
+                <Image source={Image_Http_URL} style={styles.img}/>
+            </View>
         </View>
     </TouchableOpacity>
   );
@@ -32,9 +38,11 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         width:"100%",
         borderRadius:10,
-        height:150
+        height:150,
+        flexDirection:'row',
+        justifyContent:'space-between',
     },
-    roundButton1: {
+    img: {
         width: 100,
         height: 100,
         //justifyContent: 'center',
@@ -43,7 +51,9 @@ const styles = StyleSheet.create({
         //backgroundColor: 'black',
         alignSelf:"flex-end",
         borderColor:'white',
-        borderWidth: 1.5
+        borderWidth: 1.5,
+        marginRight:7,
+        marginTop:20,
     },
     userName:{
         fontSize:25,
@@ -60,7 +70,16 @@ const styles = StyleSheet.create({
         fontSize:20,
         color:'#fff',
         //alignSelf:'flex-end',
-        marginLeft:100,
-        marginTop:50
+       // marginLeft:100,
+        marginTop:30,
+        marginLeft:50,
+    },
+    col1:{
+        flexDirection:'column',
+        width:'80%',
+    },
+    col2:{
+        flexDirection:'column',
+        width:'20%',
     }
 });

@@ -7,6 +7,7 @@ const DiscoverPage = ({navigation}) => {
 
     const getDataFromChild=(data)=>{
         console.log("Discover page "+ data)
+        
         navigation.navigate('InAppPages',{
           screen: 'UserPage',
           params: { userName: data },

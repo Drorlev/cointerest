@@ -8,6 +8,7 @@ import Transactions from './Comps/Transactions';
 const User = ({route,navigation}) => {
  
   let userNameRoute = 'Erorr';
+  
   if(route.params != undefined){
     console.log(route.params.userName)
     userNameRoute = route.params.userName
