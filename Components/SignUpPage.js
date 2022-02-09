@@ -76,17 +76,18 @@ flexDirection:'column',
 
 
 textbox:{
-        borderColor:'white',
-        borderRadius:10,
-        color:'white',
-        alignSelf:'center',
-        borderWidth: 1,
-        width: 270,
-        height:50,
-        marginTop:12,
-        textAlign: 'center',
-        backgroundColor:'#1A1A1A',
-        fontFamily:'Montserrat'
+  borderColor:'white',
+  borderRadius:10,
+  color:'white',
+  alignSelf:'center',
+  borderWidth: 1,
+  width: 270,
+  height:50,
+  marginTop:12,
+  textAlign: 'center',
+  backgroundColor:'#1A1A1A',
+  //fontFamily:'MontserratMed',
+  fontSize:20
         
 },
 
