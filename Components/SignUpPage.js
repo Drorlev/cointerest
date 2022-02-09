@@ -2,7 +2,6 @@ import { StyleSheet, Dimensions,View, TextInput, Image,Text ,TouchableOpacity,Ke
 import Sign_Up from  '../assets/Sign_Up.png'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 const SignUp = ({navigation}) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -11,36 +10,36 @@ const SignUp = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.header}>
           
-            <Text style={styles.headerTxt,{fontFamily:'Montserrat',fontSize:30,color:"white"}}>
-              Create {"\n"}
-              Account
-            </Text>
+          <Text style={styles.headerTxt,{fontFamily:'MontserratMed',fontSize:30,color:"white"}}>
+            Create {"\n"}
+            Account
+          </Text>
 
-            <TouchableOpacity style={styles.roundButton1}>
+          <TouchableOpacity style={styles.roundButton1}>
             <MaterialCommunityIcons name="camera-plus-outline" color={"white"} size={30} />
-            </TouchableOpacity>
+          </TouchableOpacity>
           
         </View>
         <View style={styles.body}>
-        <View style={styles.test}>
-            <TextInput
-              style={styles.textbox}
-              secureTextEntry={true}
-              placeholder="Enter User Name"
-              placeholderTextColor="#fff"
-            />
-            <TextInput
-              style={styles.textbox}
-              secureTextEntry={true}
-              placeholder="Enter Password"
-              placeholderTextColor="#fff"
-            />
-                <TextInput
-              style={styles.textbox}
-              secureTextEntry={true}
-              placeholder="Enter Birthdate"
-              placeholderTextColor="#fff"
-            />
+          <View style={styles.test}>
+              <TextInput
+                style={styles.textbox}
+                secureTextEntry={true}
+                placeholder="Enter User Name"
+                placeholderTextColor="#fff"
+              />
+              <TextInput
+                style={styles.textbox}
+                secureTextEntry={true}
+                placeholder="Enter Password"
+                placeholderTextColor="#fff"
+              />
+                  <TextInput
+                style={styles.textbox}
+                secureTextEntry={true}
+                placeholder="Enter Birthdate"
+                placeholderTextColor="#fff"
+              />
           </View>
           <TouchableOpacity style={styles.login}>
           <Text style={styles.buttonTxt}>Create Account</Text>
@@ -86,7 +85,8 @@ textbox:{
         height:50,
         marginTop:12,
         textAlign: 'center',
-        backgroundColor:'#1A1A1A'
+        backgroundColor:'#1A1A1A',
+        fontFamily:'Montserrat'
         
 },
 
@@ -140,9 +140,10 @@ roundButton1: {
   alignItems: 'center',
   marginLeft:100,
   borderRadius: 100,
-  backgroundColor: 'lightgrey',
+  backgroundColor: 'black',
   alignSelf:"flex-end",
- 
+  borderColor:'white',
+  borderWidth: 1.5
 },
 
 });

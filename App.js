@@ -1,6 +1,4 @@
-
 import { StyleSheet, View } from 'react-native';
-
 import Start from './Components/StartPage';
 import SignUp from './Components/SignUpPage';
 import Login from './Components/LoginPage';
@@ -9,9 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Portfolio from './Components/PortfolioPage';
 import BottomTabNavigator from './Components/Navigation/BottomTabNavigator';
 import { useFonts } from 'expo-font';
+//import User from './Components/UserPage';
 
 const Stack = createNativeStackNavigator();
-//Protfolio
+//<Stack.Screen name="UserPage" component={User} />
 export default function App() {
   const [loaded] = useFonts({
     Montserrat: require('./assets/fonts/Montserrat-ThinItalic.otf'),
@@ -30,7 +29,8 @@ export default function App() {
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpPage" component={SignUp} />
-        <Stack.Screen name="Portfolio" component={BottomTabNavigator} />
+        <Stack.Screen name="InApp" component={BottomTabNavigator} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   }
