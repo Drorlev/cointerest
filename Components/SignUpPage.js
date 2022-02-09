@@ -27,19 +27,19 @@ const SignUp = ({navigation}) => {
             <TextInput
               style={styles.textbox}
               secureTextEntry={true}
-              placeholder="Enter User Name"
+              placeholder="User Name"
               placeholderTextColor="#fff"
             />
             <TextInput
               style={styles.textbox}
               secureTextEntry={true}
-              placeholder="Enter Password"
+              placeholder="Password"
               placeholderTextColor="#fff"
             />
                 <TextInput
               style={styles.textbox}
               secureTextEntry={true}
-              placeholder="Enter Birthdate"
+              placeholder="Birthdate"
               placeholderTextColor="#fff"
             />
           </View>
@@ -88,7 +88,8 @@ textbox:{
         marginTop:12,
         textAlign: 'center',
         backgroundColor:'#1A1A1A',
-        fontFamily:'Montserrat',
+        //fontFamily:'MontserratMed',
+        fontSize:20
 },
 
 
@@ -132,6 +133,7 @@ buttonTxt:{
     padding: 10,
     marginBottom: 10,
     fontWeight:'bold',
+  
 
 },
 roundButton1: {
