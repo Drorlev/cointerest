@@ -2,6 +2,12 @@ import { StyleSheet, Text, View , ScrollView, Image} from 'react-native';
 import React from 'react';
 
 const Transactions = (props) => {
+
+  //fetch get 
+  const getTransactions=()=>{
+    
+  }
+
   return (
     <View style={styles.container}>
        <Text style={styles.headerTxt}>Transactions History</Text>

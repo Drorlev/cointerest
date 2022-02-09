@@ -5,6 +5,9 @@ import React from 'react';
 //Asset will be ready later on 
 //<Assets/>
 const Assets = (props) => {
+
+    //do the fetch
+
   return (
     <View style={styles.container}>
         <Text style={styles.headerTxt}>Assets  Collection</Text>
