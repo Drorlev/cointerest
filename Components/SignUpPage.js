@@ -3,6 +3,12 @@ import Sign_Up from  '../assets/Sign_Up.png'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SignUp = ({navigation}) => {
+  const navigate_to_Camera=()=>{
+    navigation.navigate('InAppPages',{
+      screen: 'Camera',
+    })}
+
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
@@ -15,7 +21,7 @@ const SignUp = ({navigation}) => {
             Account
           </Text>
 
-          <TouchableOpacity style={styles.roundButton1}>
+          <TouchableOpacity onPress={navigate_to_Camera} style={styles.roundButton1}>
             <MaterialCommunityIcons name="camera-plus-outline" color={"white"} size={30} />
           </TouchableOpacity>
           

@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Portfolio from './Components/PortfolioPage';
 import BottomTabNavigator from './Components/Navigation/BottomTabNavigator';
 import { useFonts } from 'expo-font';
+import Camera from './Components/Comps/CameraComp';
 //import User from './Components/UserPage';
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
             headerShown: false
         }} 
       >
+        {/* <Stack.Screen name="Camera" component={Camera} /> */}
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpPage" component={SignUp} />
