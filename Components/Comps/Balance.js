@@ -1,63 +1,64 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 const Balance = (props) => {
-    //send email in props!!
-    //fetch based email
-    let balance = (props.balance != undefined) ? props.balance : 0
-    
-    return (
-        <View style={styles.container}>
-            <Text style={styles.headerTxt}>Balance</Text>
-            <View style={styles.balance}>
-                <Text style={styles.blnTxt}>{"$" + balance}</Text>
-            </View>
-        </View>
-    );
+  //send email in props!!
+  //fetch based email
+  let balance = props.balance != undefined ? props.balance : 0;
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.balance}>
+      <Text style={styles.headerTxt}>Balance</Text>
+      <Text style={styles.blnTxt}>{"$" + balance}</Text>
+      </View>
+    </View>
+  );
 };
 
-
-
 const styles = StyleSheet.create({
-    container: {
-        //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
-        backgroundColor: '#1A1A1A',
-        flex: 0.2,
-        width:"90%",
-        alignSelf: 'center',
-        marginTop:10,
-        marginBottom:30,
-    },
-    balance: {
-        //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
-        backgroundColor: '#504CF1',
-        flex: 1,
-        width:"100%",
-        //color:'#fff'
-        alignSelf: 'center',
-        borderRadius:10,
-       // justifyContent: 'center',
-    },
-    headerTxt:{
-        color:'#fff',
-        fontWeight:'bold',
-        marginLeft:10,
-        marginBottom:10,
-        fontSize:20
-    },
-    blnTxt:{
-        color:'#fff',
-        fontWeight:'bold',
-        textAlign:'center',
-        fontSize:20,
-        marginTop:20,
-        marginRight:5
-        //justifyContent:'center'
-    }
+  container: {
+    //flexDirection:'row',
+    //paddingTop:30,
+    //backgroundColor: '#1A1A1A',
+    backgroundColor: "#1A1A1A",
+    flex: 0.2,
+    width: "90%",
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 30,
+  },
+  balance: {
+    //flexDirection:'row',
+    //paddingTop:30,
+    //backgroundColor: '#1A1A1A',
+    backgroundColor: "#6136DA",
+    flex: 1,
+    //color:'#fff'
+    alignSelf: "center",
+    borderRadius: 10,
+    // justifyContent: 'center',
+    width: 346,
+    height: 102,
+    
+  },
+  headerTxt: {
+    color: "#fff",
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginTop:10,
+    marginBottom: 10,
+    fontSize: 20,
+  },
+  blnTxt: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 29,
+    marginRight: 5,
+    justifyContent: 'center',
+    alignSelf: "center",
+
+  },
 });
 
 export default Balance;
