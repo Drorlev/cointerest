@@ -13,8 +13,8 @@ const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/";
 
 const storeData = async (value) => {
     try {
-      const jsonValue = JSON.stringify(value)
-      await AsyncStorage.setItem('loggedInUserEmail', jsonValue)
+      //const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('loggedInUserEmail', value)
       const jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
       console.log("after saving ",jsonVal);
     } catch (e) {

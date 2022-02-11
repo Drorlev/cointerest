@@ -1,19 +1,37 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Assets from './Comps/Assets';
 import Balance from './Comps/Balance';
 import Transactions from './Comps/Transactions';
 //import Tabs from './Navigation/Tab';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from "@react-navigation/native";
 
 const Portfolio = ({navigation}) => {
+  const isFocused = useIsFocused();
+  const [userEmail,setUserEmail]=useState();
+  const [isLoading,setIsLoading]=useState(true);
+
+  const getUserEmail = async () =>{
+    setUserEmail(await AsyncStorage.getItem('loggedInUserEmail'))
+  }
+
+  useEffect(() => {
+    getUserEmail().then(setIsLoading(false)).then(console.log("after get user EMAIL"));
+  }, [isFocused]);
+
+  if (isLoading) {
+    return <View><Text>Loading...</Text></View>;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
-        <Text style={styles.title}>Portfolio</Text>
+        <Text style={styles.title}>Portfolio {userEmail}</Text>
         <View style={styles.body}>
-          <Balance balance={1000}/>
-          <Assets/>
-          <Transactions/>
+          {console.log("in portfolio",userEmail)}
+          <Balance email={userEmail} balance={1000}/>
+          <Assets email={userEmail}/>
+          <Transactions email={userEmail}/>
         </View>
       </View>
     </View>
