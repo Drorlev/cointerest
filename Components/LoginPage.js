@@ -3,13 +3,60 @@ import logo from '../assets/cointerest.png'
 //Money_motivation-bro_1
 //import { Header } from 'react-navigation-stack';
 import pic from '../assets/Money_motivation-bro_1.png'
-import React ,{useState} from 'react'
-import { StyleSheet, View, TextInput, Image,Text ,TouchableOpacity,KeyboardAvoidingView, ScrollView } from 'react-native'
+import React ,{useState,useEffect} from 'react'
+import { StyleSheet, View, TextInput, Image,Text ,TouchableOpacity,KeyboardAvoidingView, ScrollView  } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { useFocusEffect } from '@react-navigation/native';
 
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/"; 
 
+const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('loggedInUserEmail', jsonValue)
+      const jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
+      console.log("after saving ",jsonVal);
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  
 
 const Login = ({navigation}) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate_to_homePage=()=>{
+        //navigation.navigate('HomePage')
+        navigation.navigate('InApp')
+        //navigation.popToTop() && navigation.navigate('InApp')
+    }
+
+    const getData = async () => {
+        try {
+          //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
+          let jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
+          console.log("Login Page ", jsonVal)
+            if(jsonVal != null){
+                navigate_to_homePage();
+            }
+          /*
+          await AsyncStorage.getAllKeys()
+          .then(keys => AsyncStorage.multiRemove(keys))
+          .then(() => alert('success'));
+          */
+          //return jsonValue != null ? await JSON.parse(jsonValue) : null;
+          //return  jsonVal;
+          //setUser( await AsyncStorage.getItem('@loggedInUser'));
+        } catch(e) {
+          // error reading value
+        }
+    }
+    getData();
+
+    
     /*
     const [keyboardVisible,setKeyboardVisible]=useState(false);
 
@@ -23,11 +70,60 @@ const Login = ({navigation}) => {
     };
     */
 
+    //flag for respone Ok true or false
+    let flag;
+
+    
 
     //this method get the data from the TextInputs
     //and fetch(get) from the server true/false
     //if true navigate_to_homePage() invoked
     const userAuth =()=>{
+        
+        //To Do regex for Email
+        //
+
+        let user ={
+            userEmail:email,
+            userPassword:password
+        }
+       // console.log(user)
+
+        fetch(apiUrl +"?email="+ email+"&password="+ password , {
+            method: 'GET',
+            headers: new Headers({
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Accept': 'application/json; charset=UTF-8'
+            })
+          })
+            .then(res => {
+            //console.log('res=', res); cant do console.log to this
+              console.log('res.status', res.status);
+              console.log('res.ok', res.ok);
+              /*
+              if(res.ok != true){
+                  return;
+              }
+              */
+              //if the respone is Ok go to home page
+              //navigate_to_homePage();
+              flag = res.ok;
+              return res.json()
+            })
+            .then(
+              (result) => {
+                console.log("fetch user = ", result);
+                //console.log(ing);
+                //setIngredients(ing);
+                
+                flag ? storeData(result).then(navigate_to_homePage()) : alert(result.Message)
+              },
+              (error) => {
+                  //should throw generic 
+                  //email or password are wrong 
+                console.log("err post=", error);
+                
+              });
 
        //this fetch will return just true/false
        //or
@@ -40,12 +136,9 @@ const Login = ({navigation}) => {
     //this function navigate to the home page
     //only and only if the password and the mail are correct
     //this function is used after userAuthentication 
-    const navigate_to_homePage=()=>{
-        //navigation.navigate('HomePage')
-        navigation.navigate('InApp')
-    }
+   
 
-
+  
     //ScrollView
     //the second option is the current one 
     return (
@@ -64,15 +157,17 @@ const Login = ({navigation}) => {
                     <TextInput  style={styles.input}
                     placeholder="Enter Email" 
                     placeholderTextColor="#fff" 
+                    onChangeText={setEmail}
                     />
                     <TextInput style={styles.input}
                     secureTextEntry={true}
                     placeholder="Enter Password"
                     placeholderTextColor="#fff" 
+                    onChangeText={setPassword}
                     />
                 </View> 
             <TouchableOpacity
-                onPress={navigate_to_homePage}
+               onPress={userAuth}
                 style={styles.login}>
                 <Text style={styles.buttonTxt}>Login</Text>
             </TouchableOpacity>

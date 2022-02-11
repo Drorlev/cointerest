@@ -4,9 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
 import Portfolio from '../PortfolioPage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import DiscoverPage from '../DiscoverPage';
 //import User from '../UserDiscoverPage';
 import InAppStackNavigator from './InAppStackNavigator';
+import HomePage from '../HomePage';
 
 //import Start from './Components/StartPage';
 const Tab = createBottomTabNavigator();
@@ -14,7 +16,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator 
-      //  initialRouteName="Portfolio"
+       initialRouteName="Home"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel:false,
@@ -28,9 +30,23 @@ const BottomTabNavigator = () => {
       },
       
       
-    })}
-    
-      >
+    })}>
+        <Tab.Screen  
+          style={{backgroundColor:'white'}}
+          name="Home" 
+          component={HomePage}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ focused }) => (
+              <View style={{alignItems:'center',
+              resizeMode:'contain'}}>
+                <MaterialCommunityIcons name="home-outline" color={"white"} size={30} />
+              </View>
+            ),
+            
+           
+        }}/>
+
         <Tab.Screen 
         name="Discover" 
         component={DiscoverPage}
@@ -65,6 +81,12 @@ const BottomTabNavigator = () => {
           component={InAppStackNavigator}
           options={{
             tabBarLabel: 'InApp',
+            tabBarIcon: ({ focused }) => (
+              <View style={{alignItems:'center',
+              resizeMode:'contain'}}>
+                <AntDesign name="setting" color={"white"} size={30} />
+              </View>
+            ),
            
         }}/>
     </Tab.Navigator>

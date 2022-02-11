@@ -14,16 +14,16 @@ const Transactions = (props) => {
        <Text style={styles.headerTxt}>Transactions History</Text>
         <ScrollView style={styles.history}>
           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
-           <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
+          <Transaction/>
 
         </ScrollView>
     </View>
