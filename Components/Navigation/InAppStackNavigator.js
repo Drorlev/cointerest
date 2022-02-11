@@ -9,6 +9,7 @@ const Stack = createNativeStackNavigator();
 const InAppStackNavigator = () => {
   return (
     <Stack.Navigator
+    initialRouteName='SettingsPage'
     screenOptions={{
         headerShown: false
     }} 
