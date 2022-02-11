@@ -12,6 +12,7 @@ import InAppStackNavigator from './InAppStackNavigator';
 import HomePage from '../HomePage';
 import MarketPage from '../MarketPage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import SettingsPage from '../SettingsPage';
 
 //import Start from './Components/StartPage';
 const Tab = createBottomTabNavigator();
@@ -121,7 +122,6 @@ const BottomTabNavigator = () => {
             ),
           }}
           />
-
         <Tab.Screen  
           style={{backgroundColor:'white'}}
           name="InAppPages" 
