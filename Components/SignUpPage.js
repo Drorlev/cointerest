@@ -28,15 +28,8 @@ const SignUp = ({ navigation }) => {
       screen: "Camera",
     });
   };
-
+// validate the input from the email input section and updating the states
   const emailInputChange = (val) => {
-    // console.log(val);
-    // console.log(val.isValidEmail);
-    // setData({
-    //   ...data,
-    //   email: val
-    // })
-
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(val) === true) {
       setData({
@@ -52,15 +45,9 @@ const SignUp = ({ navigation }) => {
       });
     }
   };
+// validate the input from the password input section and updating the states
 
   const passwordInputChange = (val) => {
-    // console.log(val);
-    // console.log(val.isValidPassword);
-
-    // setData({
-    //   ...data,
-    //   password: val
-    // })
     if (val.trim().length >= 8) {
       setData({
         ...data,
@@ -75,51 +62,32 @@ const SignUp = ({ navigation }) => {
       });
     }
   };
+// user name input section and updating the states
 
   const usernameInputChange = (val) => {
-    console.log(val);
     setData({
       ...data,
       username: val,
     });
   };
 
+  //check if the all register is valid
+  const isValidRegister=()=>{
+    if(data.isValidEmail && data.isValidPassword && data.email.trim().length!=0 && data.username.trim().length!=0 &&data.password.trim().length!=0 ){
+    return true;
+    }
+    else{
+      return false;
+    }
+  }
+  //post the user's data to the DB
   const btnPost = () => {
-    console.log(data);
-  };
+    if(isValidRegister()){
+      console.log(data);
 
-  const handleValidEmail = (val) => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (reg.test(val) === true) {
-      setData({
-        ...data,
-        email: val,
-        isValidEmail: true,
-      });
-    } else {
-      setData({
-        ...data,
-        email: val,
-        isValidEmail: false,
-      });
     }
   };
 
-  const handleValidPassword = (val) => {
-    if (val.trim().length >= 8) {
-      setData({
-        ...data,
-        password: val,
-        isValidPassword: true,
-      });
-    } else {
-      setData({
-        ...data,
-        password: val,
-        isValidPassword: false,
-      });
-    }
-  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -203,7 +171,7 @@ const SignUp = ({ navigation }) => {
               <View style={styles.GoogleIcon}>
                 <MaterialCommunityIcons
                   name="google"
-                  color={"white"}
+                  color={"#504CF1"}
                   size={30}
                 />
                 <Text style={styles.buttonTxt}>Continue with Google</Text>
