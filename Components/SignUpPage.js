@@ -14,8 +14,22 @@ import Sign_Up from "../assets/Sign_Up.png";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState } from "react";
 import * as Animatable from "react-native-animatable";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const storeData = async (value) => {
+  try {
+    await AsyncStorage.setItem('loggedInUserEmail', value)
+    const jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
+    console.log("after saving ",jsonVal);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 
 const SignUp = ({ navigation }) => {
+
+
   const [data, setData] = useState({
     email: "",
     username: "",
@@ -114,19 +128,15 @@ const SignUp = ({ navigation }) => {
         })
         .then(res => {
         console.log('res=', res.ok);
-        if(res.ok){
-          navigate_to_homePage();
-        }
-        else{
-          setData({
-            ...data,
-            isValidEmail: false,
-          });
-          setErrorText({
-            text: "Email already in used",
-          });
 
-        }
+        res.ok ? storeData(data.email).then(navigate_to_homePage()) : setData({
+          ...data,
+          isValidEmail: false,
+        });
+        setErrorText({
+          text: "Email already in used",
+        });
+        
         return res.json()
         })
         .then(
