@@ -23,12 +23,22 @@ const SignUp = ({ navigation }) => {
     isValidEmail: true,
     isValidPassword: true,
   });
+
+  const [errorText, setErrorText] = useState({
+    text:"Must be a valid Email"
+  });
+
   const navigate_to_Camera = () => {
     navigation.navigate("InAppPages", {
       screen: "Camera",
     });
   };
-// validate the input from the email input section and updating the states
+
+  const navigate_to_homePage=()=>{
+    //navigation.navigate('HomePage')
+    navigation.navigate('InApp')
+}
+  // validate the input from the email input section and updating the states
   const emailInputChange = (val) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(val) === true) {
@@ -45,7 +55,7 @@ const SignUp = ({ navigation }) => {
       });
     }
   };
-// validate the input from the password input section and updating the states
+  // validate the input from the password input section and updating the states
 
   const passwordInputChange = (val) => {
     if (val.trim().length >= 8) {
@@ -62,7 +72,7 @@ const SignUp = ({ navigation }) => {
       });
     }
   };
-// user name input section and updating the states
+  // user name input section and updating the states
 
   const usernameInputChange = (val) => {
     setData({
@@ -72,22 +82,67 @@ const SignUp = ({ navigation }) => {
   };
 
   //check if the all register is valid
-  const isValidRegister=()=>{
-    if(data.isValidEmail && data.isValidPassword && data.email.trim().length!=0 && data.username.trim().length!=0 &&data.password.trim().length!=0 ){
-    return true;
-    }
-    else{
+  const isValidRegister = () => {
+    if (
+      data.isValidEmail &&
+      data.isValidPassword &&
+      data.email.trim().length != 0 &&
+      data.username.trim().length != 0 &&
+      data.password.trim().length != 0
+    ) {
+      return true;
+    } else {
       return false;
     }
-  }
+  };
   //post the user's data to the DB
   const btnPost = () => {
-    if(isValidRegister()){
-      console.log(data);
+    if (isValidRegister()) {
+      const s = {
+        Email: data.email,
+        Username: data.username,
+        Password: data.password,
+        Image: "",
+        Bio: ""
+      };
+      fetch('http://194.90.158.74/bgroup53/test2/tar4/api/Users/', {
+        method: 'POST',
+        body: JSON.stringify(s),
+        headers: new Headers({
+        'Content-type': 'application/json; charset=UTF-8'
+        })
+        })
+        .then(res => {
+        console.log('res=', res.ok);
+        if(res.ok){
+          navigate_to_homePage();
+        }
+        else{
+          setData({
+            ...data,
+            isValidEmail: false,
+          });
+          setErrorText({
+            text: "Email already in used",
+          });
+
+        }
+        return res.json()
+        })
+        .then(
+        (result) => {
+        console.log("fetch POST= ", result);
+        console.log(result.Avg);
+        },
+        (error) => {
+        console.log("err post=", error);
+        });
+
+
+
 
     }
   };
-
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -126,7 +181,7 @@ const SignUp = ({ navigation }) => {
               />
               {data.isValidEmail ? null : (
                 <Animatable.View animation="fadeInLeft" duration={800}>
-                  <Text style={styles.msgEror}>Must be a valid email</Text>
+                  <Text style={styles.msgEror}>{errorText.text}</Text>
                 </Animatable.View>
               )}
 
@@ -160,10 +215,20 @@ const SignUp = ({ navigation }) => {
             <TouchableOpacity style={styles.login} onPress={btnPost}>
               <Text style={styles.buttonTxt}>Create Account</Text>
             </TouchableOpacity>
-            <View style={{ flexDirection: "row", alignItems: "center",padding:10 }}>
-              <View style={{ flex: 1, height: 1, backgroundColor: "white"}} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                padding: 10,
+              }}
+            >
+              <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
               <View>
-                <Text style={{ width: 50, textAlign: "center",color:"white" }}>Or</Text>
+                <Text
+                  style={{ width: 50, textAlign: "center", color: "white" }}
+                >
+                  Or
+                </Text>
               </View>
               <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
             </View>
