@@ -113,10 +113,7 @@ const Login = ({navigation}) => {
             .then(
               (result) => {
                 console.log("fetch user = ", result);
-                //console.log(ing);
-                //setIngredients(ing);
-                
-                flag ? storeData(result).then(navigate_to_homePage()) : alert(result.Message)
+                flag ? storeData(result.Email).then(navigate_to_homePage()) : alert(result.Message)
               },
               (error) => {
                   //should throw generic 

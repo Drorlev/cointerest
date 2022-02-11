@@ -2,42 +2,6 @@ import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let val;
-
-const clearAsyncStorage = async () => {
-  try {
-    await AsyncStorage.clear().then(alert(cleared));
-
-    //alert("cleard")
-  } catch (e) {
-    // error reading value
-    alert("NoT!!");
-  }
-};
-
-const dataToConsole = () => {
-  getData().then((res) => {
-    val = res;
-  });
-  console.log("the val", val);
-};
-
-const clearAllData = () => {
-  alert("1");
-  try {
-    alert("2");
-    AsyncStorage.getAllKeys()
-      .then((keys) => AsyncStorage.multiRemove(keys))
-      .then(() => alert("success"));
-  } catch (e) {
-    // error reading value
-    alert("NoT!!");
-  }
-};
-
-const pressMe = () => {
-  clearAsyncStorage();
-};
 
 //START OF THE HOME PAGE
 const HomePage = ({ route, navigation }) => {
