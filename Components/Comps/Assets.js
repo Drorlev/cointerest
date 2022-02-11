@@ -1,18 +1,30 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import Asset from './Asset';
 
 //render the whole assetes
 //Asset will be ready later on 
 //<Assets/>
 const Assets = (props) => {
-
-    //do the fetch
+    //send name in props!!
+    //do the fetch based on props email
 
   return (
     <View style={styles.container}>
         <Text style={styles.headerTxt}>Assets  Collection</Text>
-        <ScrollView style={styles.assets}>
-         <Text style={styles.text}>Hello we are the Assets</Text>
+        <ScrollView horizontal={true} style={styles.assets}>
+            <Asset/>  
+            <Asset/>
+            <Asset/>
+            <Asset/>  
+            <Asset/>
+            <Asset/>
+            <Asset/>  
+            <Asset/>
+            <Asset/>
+            <Asset/>  
+            <Asset/>
+            <Asset/>
         </ScrollView>
     </View>
   );
@@ -45,7 +57,7 @@ const styles = StyleSheet.create({
     },
     assets:{
         flex:1,
-        backgroundColor: 'lightblue',
+       // backgroundColor: 'lightblue',
         borderRadius:10,
     }
 });

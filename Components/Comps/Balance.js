@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 const Balance = (props) => {
+    //send email in props!!
+    //fetch based email
     let balance = (props.balance != undefined) ? props.balance : 0
     
     return (

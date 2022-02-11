@@ -3,8 +3,9 @@ import React from 'react';
 import Transaction from './Transaction';
 
 const Transactions = (props) => {
+  //send email in props!!
 
-  //fetch get 
+  //fetch get based on props email
   const getTransactions=()=>{
     
   }
