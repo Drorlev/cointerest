@@ -7,7 +7,7 @@ const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Assets/?email=";
 //Asset will be ready later on 
 //<Assets/>
 const Assets = (props) => {
-    console.log("in Assets",props.email)
+   // console.log("in Assets",props.email)
     const [userEmail,setUserEmail]=useState();
     const [assets,setAssets]=useState();
     //send name in props!!
@@ -15,7 +15,7 @@ const Assets = (props) => {
     
 
     const getAssets=()=>{
-        console.log("bEFROE rENDER ",apiUrl + props.email)
+        //console.log("bEFROE rENDER ",apiUrl + props.email)
         fetch(apiUrl + props.email, {
             method: 'GET',
             headers: new Headers({

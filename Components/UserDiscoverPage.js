@@ -7,6 +7,9 @@ import Transactions from './Comps/Transactions';
 
 const User = ({route,navigation}) => {
  
+  //with route send the email when fetched
+  //should do use state to render this page when another user is selected
+
   let userNameRoute = 'Erorr';
   
   if(route.params != undefined){
