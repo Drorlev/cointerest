@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import pic from '../../assets/BTC.png'
 
-const Asset = () => {
+const Asset = (props) => {
+    console.log(props.img)
   return (
     <View style={styles.container}>
         <View style={styles.asset}>
-            <Image source={pic} style={styles.img}/>
-            <Text style={styles.txt}>4</Text>
+            <Image source={props.img} style={styles.img}/>
+            <Text style={styles.txt}>{props.amount}</Text>
         </View>
     </View>
   )
