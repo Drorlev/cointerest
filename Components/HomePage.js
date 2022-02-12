@@ -3,14 +3,17 @@ import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Balance from "./Comps/Balance";
+import WelcomeHeader from "./Comps/WelcomeHeader";
+import FollowingComp from "./Comps/FollowingComp";
+import HeadlineInHomePageWithChevron from "./Comps/HeadlineInHomePageWithChevron";
+import { useIsFocused } from "@react-navigation/native";
+
 //START OF THE HOME PAGE
 const HomePage = ({ route, navigation }) => {
+  const isFocused = useIsFocused();
+  const [isLoading,setIsLoading]=useState(true);
   const [user, setUser] = useState();
-  const [colorText,setColorText]=useState({
-    bought:"green",
-    sold:"red"
-  }
-  );
+  
   const getData = async () => {
     try {
       //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
@@ -25,107 +28,35 @@ const HomePage = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    getData();
-    console.log("after render ", user);
-  }, [navigation]);
+      AsyncStorage.getItem('loggedInUserEmail').then((token) => {
+        //setUserEmail(token)
+        console.log("use effect ",token)
+        setUser(token)
+        
+      })
+      if(user != undefined){
+      setIsLoading(false);
+      console.log("error");
+      }
+     
+  
+  }, [isFocused,user]);
 
+  if(isLoading){
+    return <View><Text>Loading...</Text></View>
+  }
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.welcome}>
-          <Text
-            onPress={getData}
-            style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}
-          >
-            Welcome,
-          </Text>
-          <Text onPress={getData} style={styles.text}>
-            idan the king
-          </Text>
-        </View>
-        <View style={styles.profileIcon}>
-          <MaterialCommunityIcons
-            name="camera-plus-outline"
-            color={"white"}
-            size={30}
-          />
-        </View>
-      </View>
-
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 10,
-        }}
-      >
-        <View
-          style={{
-            position: "absolute",
-            width: 356,
-            height: 2,
-            left: 17,
-            backgroundColor: "#474747",
-          }}
-        />
-      </View>
+      <WelcomeHeader email={user} />
       <View style={{ left: 20}}>
         <Text style={styles.text}>Your Protfolio</Text>
       </View>
-      <View style={{ height:120}}><Balance balance={14000} /></View>
-
-      <View style={styles.bodyText}>
-        <View style={styles.following}>
-          <Text style={styles.text}>Following</Text>
-          <MaterialCommunityIcons
-            name="chevron-right"
-            color={"white"}
-            size={30}
-            style={{ top: 5, left: 4 }}
-          />
-        </View>
+      <View style={{ height:120}}>
+      <Balance email={user} balance={14000} />
       </View>
-      <View style={styles.body}>
-
-        <View style={styles.followingInfo}>
-          <View style={styles.followingComp}>
-          <Text style={styles.textInComp}>
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 27 }}>
-              leo messi
-            </Text>
-            <Text style={{ color: colorText.bought }}> bought</Text> <Text style={{fontSize:24}}>10</Text>
-            
-            </Text>
-            <Image style={{resizeMode: "contain",
-            height: 40,
-            width: 30,
-            left:30}}  source={require("../assets/BTC.png") } />
-          </View>
-          <View style={styles.followingComp}>
-          <Text style={styles.textInComp}>
-            <Text style={{ color: "white", fontWeight: "bold", fontSize: 27 }}>
-              leo messi
-            </Text>
-            <Text style={{ color: colorText.sold }}> sold</Text> <Text style={{fontSize:24}}>50</Text>
-            
-            </Text>
-            <Image style={{resizeMode: "contain",
-            height: 40,
-            width: 30,
-            left:30}}  source={require("../assets/BTC.png") } />
-          </View>
-      
-        </View>
-      </View>
-      <View style={styles.Watchlist}>
-        <Text style={styles.text}>Watchlist</Text>
-        <MaterialCommunityIcons
-            name="chevron-right"
-            color={"white"}
-            size={30}
-            style={{ top: 4, left: 4 }}
-          />
-      </View>
+      <HeadlineInHomePageWithChevron text={"Following"}/>
+      <FollowingComp email={user}/>
+      <HeadlineInHomePageWithChevron text={"Watchlist"}/>
     </SafeAreaView>
   );
 };

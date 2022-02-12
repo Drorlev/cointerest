@@ -3,6 +3,7 @@ import React from "react";
 
 const Balance = (props) => {
   //send email in props!!
+  console.log(props.email)
   //fetch based email
   let balance = props.balance != undefined ? props.balance : 0;
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     //backgroundColor: '#1A1A1A',
     backgroundColor: "#1A1A1A",
     flex: 0.2,
-    width: "90%",
+    width: '95%',
     alignSelf: "center",
     marginTop: 10,
     //marginBottom: 30,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     // justifyContent: 'center',
-    width: 346,
+    width: '95%',
     height: 102,
     
   },
