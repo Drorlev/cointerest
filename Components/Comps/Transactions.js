@@ -30,19 +30,11 @@ const Transactions = (props) => {
           (result) => {
             console.log("fetch Transactions= ", result);
             
-            //result.map(trn =>console.log(trn))
-            
-           
-            
-            let a="1.1"
-            let transactionsList =result.map(asset => 
-              <Transaction key={count++}  T_date={a} Coin_amount={"3"}/>
+            let transactionsList =result.map(trn => 
+              <Transaction key={count++}  t_date={trn.T_date} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} />
             );
             
-            
-            
             setTransaction(transactionsList)
-            
           },
           (error) => {
             console.log("err post=", error);
@@ -61,18 +53,7 @@ const Transactions = (props) => {
     <View style={styles.container}>
        <Text style={styles.headerTxt}>Transactions History</Text>
         <ScrollView style={styles.history}>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-          <Transaction/>
-
+          {transaction}
         </ScrollView>
     </View>
   );

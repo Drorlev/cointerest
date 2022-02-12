@@ -2,8 +2,18 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import pic from '../../assets/BTC.png'
 
+const reformatDate = (dateStr) =>{
+
+  dArr = dateStr.split("-");  // ex input "2010-01-18"
+  return dArr[2]+ "/" +dArr[1]+ "/" +dArr[0].substring(2); //ex out: "18/01/10"
+}
+
 const Transaction = (props) => {
     console.log(props)
+
+    let op  = (props.dollar_amount >=0) ? "Buy": "Sell";
+    let tranTime = (props.t_date).substring(0, 10);
+     tranTime = reformatDate(tranTime);
     //console.log(props.amount)
     //const tran = props.transaction;
    // console.log("Transaction",props.date1 )
@@ -11,16 +21,14 @@ const Transaction = (props) => {
   return (
     <View style={styles.container}>
         <View style={styles.row}>
-        
-                
             <View style={styles.dateCol}>
-                <Text style={styles.txt}>{props.T_date}</Text>
+                <Text style={styles.txt}>{tranTime}</Text>
             </View>
             <View style={styles.OpCol}>
-                <Text style={styles.txt}>{"operation"}</Text>
+                <Text style={styles.txt}>{op}</Text>
             </View>
             <View style={styles.amountCol}>
-                <Text style={styles.txt}>{props.Coin_amount}</Text>
+                <Text style={styles.txt}>{props.coin_amount}</Text>
             </View>
             <View style={styles.imageCol}>
                 <Image source={pic} style={styles.img}/>
