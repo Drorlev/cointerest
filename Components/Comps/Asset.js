@@ -11,6 +11,7 @@ const Asset = (props) => {
                 //should uncomment only after pics in th DB
                 //<Image source={props.img} style={styles.img}/>
             }
+            <Image source={pic} style={styles.img}/>
             <Text style={styles.txt}>{props.amount}</Text>
         </View>
     </View>

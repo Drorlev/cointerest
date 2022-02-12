@@ -1,19 +1,32 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
+import pic from '../../assets/BTC.png'
 
 const Transaction = (props) => {
+    console.log(props)
+    //console.log(props.amount)
+    //const tran = props.transaction;
+   // console.log("Transaction",props.date1 )
+    //let operation = props.transaction.Dollar_amount >= 0 ? "Buy" : "Sell"
   return (
     <View style={styles.container}>
         <View style={styles.row}>
+        
+                
             <View style={styles.dateCol}>
-                <Text style={styles.txt}>date</Text>
+                <Text style={styles.txt}>{props.T_date}</Text>
             </View>
             <View style={styles.OpCol}>
-                <Text style={styles.txt}>Oparation</Text>
+                <Text style={styles.txt}>{"operation"}</Text>
             </View>
             <View style={styles.amountCol}>
-                <Text style={styles.txt}>amount</Text>
+                <Text style={styles.txt}>{props.Coin_amount}</Text>
             </View>
+            <View style={styles.imageCol}>
+                <Image source={pic} style={styles.img}/>
+            </View>
+        
+        
          </View>
     </View>
   )
@@ -26,9 +39,10 @@ const styles = StyleSheet.create({
        // flexDirection:'row',
         //paddingTop:30,
         //backgroundColor: '#1A1A1A',
+        height:30,
         backgroundColor: 'gray',
         flex: 1,
-        width:"95%",
+        width:"90%",
         alignSelf: 'center',
         marginTop:4,
         marginBottom:1,
@@ -39,28 +53,43 @@ const styles = StyleSheet.create({
     },
     row:{
        // height:"30%",
+       marginTop:2,
         flexDirection:'row',
-        //justifyContent:'space-between',
+        flex:1,
+        //justifyContent:'center',
         //borderRadius:10,
     },
     dateCol:{
-        //flexDirection:"column",
-        //backgroundColor:"purple",
-        width:"40%",
+        flexDirection:"column",
+        ////backgroundColor:"purple",
+        width:"30%",
     },
     OpCol:{
        // flexDirection:"column",
         //backgroundColor:"lightgreen",
-        width:"30%",
+        width:"20%",
     },
     amountCol:{
         //flexDirection:"column",
-       // backgroundColor:"yellow",
+       //backgroundColor:"yellow",
         width:"30%",
+    },
+    imageCol:{
+        width:"20%",
+       // backgroundColor:"blue",
     },
     txt:{
         textAlign:'center',
-        color:'white'
-    }
+        color:'white',
+        fontSize:17
+    },
+    
+    img: {
+        //marginTop:2,
+        alignSelf:'center',
+        width: 26,
+        height: 26,
+        
+    },
 
 })

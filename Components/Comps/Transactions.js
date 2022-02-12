@@ -3,7 +3,7 @@ import React,{useEffect,useState} from 'react';
 import Transaction from './Transaction';
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email="; 
-
+let count=0;
 const Transactions = (props) => {
   const [transaction,setTransaction]=useState();
   //console.log("Transactions", props.email)
@@ -29,15 +29,20 @@ const Transactions = (props) => {
         .then(
           (result) => {
             console.log("fetch Transactions= ", result);
-
-            result.map(trn =>console.log(trn))
-            /*
+            
+            //result.map(trn =>console.log(trn))
+            
+           
+            
+            let a="1.1"
             let transactionsList =result.map(asset => 
-              <Asset key={asset.Coin_name} img={asset.Coin_info.Coin_picture} amount={asset.Amount}/>
+              <Transaction key={count++}  T_date={a} Coin_amount={"3"}/>
             );
             
+            
+            
             setTransaction(transactionsList)
-            */
+            
           },
           (error) => {
             console.log("err post=", error);
@@ -48,7 +53,7 @@ const Transactions = (props) => {
     //setUserEmail(props.email)
     //();
     //console.log("Assets ", props.email)
-   // getTransactions();
+      getTransactions();
     
   }, []);
 
