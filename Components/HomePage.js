@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Balance from "./Comps/Balance";
-//change
 //START OF THE HOME PAGE
 const HomePage = ({ route, navigation }) => {
   const [user, setUser] = useState();
