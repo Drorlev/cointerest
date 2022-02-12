@@ -1,14 +1,56 @@
 import { StyleSheet, Text, View , ScrollView, Image} from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Transaction from './Transaction';
 
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email="; 
+
 const Transactions = (props) => {
+  const [transaction,setTransaction]=useState();
+  //console.log("Transactions", props.email)
   //send email in props!!
 
   //fetch get based on props email
   const getTransactions=()=>{
-    
+    console.log("Transactions", props.email)
+    console.log("bEFROE rENDER ",apiUrl + props.email +"&n="+1)
+    fetch(apiUrl + props.email +"&n="+1, {
+        method: 'GET',
+        headers: new Headers({
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json; charset=UTF-8'
+        })
+      })
+        .then(res => {
+          //console.log('res=', res);
+          console.log('res.status', res.status);
+          console.log('res.ok', res.ok);
+          return res.json()
+        })
+        .then(
+          (result) => {
+            console.log("fetch Transactions= ", result);
+
+            result.map(trn =>console.log(trn))
+            /*
+            let transactionsList =result.map(asset => 
+              <Asset key={asset.Coin_name} img={asset.Coin_info.Coin_picture} amount={asset.Amount}/>
+            );
+            
+            setTransaction(transactionsList)
+            */
+          },
+          (error) => {
+            console.log("err post=", error);
+          });
   }
+
+  useEffect(() => {
+    //setUserEmail(props.email)
+    //();
+    //console.log("Assets ", props.email)
+   // getTransactions();
+    
+  }, []);
 
   return (
     <View style={styles.container}>
