@@ -1,50 +1,17 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView,Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Balance from './Comps/Balance';
-
-let val;
-
-const clearAsyncStorage = async () => {
-  try {
-    await AsyncStorage.clear().then(alert(cleared));
-
-    //alert("cleard")
-  } catch (e) {
-    // error reading value
-    alert("NoT!!");
-  }
-};
-
-const dataToConsole = () => {
-  getData().then((res) => {
-    val = res;
-  });
-  console.log("the val", val);
-};
-
-const clearAllData = () => {
-  alert("1");
-  try {
-    alert("2");
-    AsyncStorage.getAllKeys()
-      .then((keys) => AsyncStorage.multiRemove(keys))
-      .then(() => alert("success"));
-  } catch (e) {
-    // error reading value
-    alert("NoT!!");
-  }
-};
-
-const pressMe = () => {
-  clearAsyncStorage();
-};
+import Balance from "./Comps/Balance";
 
 //START OF THE HOME PAGE
 const HomePage = ({ route, navigation }) => {
   const [user, setUser] = useState();
-
+  const [colorText,setColorText]=useState({
+    bought:"green",
+    sold:"red"
+  }
+  );
   const getData = async () => {
     try {
       //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
@@ -85,7 +52,7 @@ const HomePage = ({ route, navigation }) => {
           />
         </View>
       </View>
-      
+
       <View
         style={{
           flexDirection: "row",
@@ -103,45 +70,63 @@ const HomePage = ({ route, navigation }) => {
           }}
         />
       </View>
-      <View style={{left:20}}>
-      <Text style={styles.text}>Your Protfolio</Text>
-
+      <View style={{ left: 20}}>
+        <Text style={styles.text}>Your Protfolio</Text>
       </View>
-      <Balance balance={14000}/>
+      <View style={{ height:120}}><Balance balance={14000} /></View>
+
       <View style={styles.bodyText}>
-      <View style={styles.following}>
-      <Text style={styles.text}>Following</Text>
-      <MaterialCommunityIcons
+        <View style={styles.following}>
+          <Text style={styles.text}>Following</Text>
+          <MaterialCommunityIcons
             name="chevron-right"
             color={"white"}
             size={30}
-            style={{top:5,left:4}}
+            style={{ top: 5, left: 4 }}
           />
-
-      </View>
-
-      <View style={styles.trending}>
-      <Text style={styles.text}>Trending</Text>
-      <MaterialCommunityIcons
-            name="chevron-right"
-            color={"white"}
-            size={30}
-            style={{top:5,left:4}}
-          />
-      </View>
+        </View>
       </View>
       <View style={styles.body}>
-      <View style={styles.followingInfo}>
-      <Text style={styles.textInComp}>leo messi</Text>
-      <Text style={styles.textInComp2}>sold 0.4 Bitcoin</Text>
 
+        <View style={styles.followingInfo}>
+          <View style={styles.followingComp}>
+          <Text style={styles.textInComp}>
+            <Text style={{ color: "white", fontWeight: "bold", fontSize: 27 }}>
+              leo messi
+            </Text>
+            <Text style={{ color: colorText.bought }}> bought</Text> <Text style={{fontSize:24}}>10</Text>
+            
+            </Text>
+            <Image style={{resizeMode: "contain",
+            height: 40,
+            width: 30,
+            left:30}}  source={require("../assets/BTC.png") } />
+          </View>
+          <View style={styles.followingComp}>
+          <Text style={styles.textInComp}>
+            <Text style={{ color: "white", fontWeight: "bold", fontSize: 27 }}>
+              leo messi
+            </Text>
+            <Text style={{ color: colorText.sold }}> sold</Text> <Text style={{fontSize:24}}>50</Text>
+            
+            </Text>
+            <Image style={{resizeMode: "contain",
+            height: 40,
+            width: 30,
+            left:30}}  source={require("../assets/BTC.png") } />
+          </View>
+      
+        </View>
       </View>
-      <View style={styles.trendingInfo}>
-      <Text style={styles.textInCompTrend1}>@elonmusk</Text>
-      <Text style={styles.textInCompTrend2}>Elon just tweeted about Doge</Text>
+      <View style={styles.Watchlist}>
+        <Text style={styles.text}>Watchlist</Text>
+        <MaterialCommunityIcons
+            name="chevron-right"
+            color={"white"}
+            size={30}
+            style={{ top: 4, left: 4 }}
+          />
       </View>
-      </View>
-
     </SafeAreaView>
   );
 };
@@ -149,83 +134,65 @@ const HomePage = ({ route, navigation }) => {
 export default HomePage;
 
 const styles = StyleSheet.create({
+  followingComp:{
+   borderRadius: 11,
+    backgroundColor: "#4F28AB",
+    height: 45,
+    top: 10,
+    marginBottom: 10,
+    width: 330,
+    left: 10,
+    flexDirection: "row",
+
+  },
   container: {
     flexDirection: "column",
     flex: 1,
     backgroundColor: "#1A1A1A",
   },
-  textInCompTrend2:{
-    color:"white",
-    fontSize:17,
-    textAlign:"center",
-    borderRadius: 11,
-    backgroundColor: "#4F28AB",
-    height:65,
-    top:10,
-  },
-  textInCompTrend1:{
-    color:"white",
-    fontSize:20,
-    fontWeight: "bold",
-    textAlign:"center",
+  Watchlist:{
+    justifyContent: "flex-start",
+    left: 20,
+    flexDirection: "row",
+    marginTop:10,
     
   },
-  textInComp2:{
-    color:"white",
-    fontSize:17,
-    textAlign:"center",
-    borderRadius: 11,
-    backgroundColor: "#4F28AB",
-    height:65,
-    top:10,
-  },
-  textInComp:{
-    color:"white",
-    fontSize:20,
-    fontWeight: "bold",
-    textAlign:"center",
 
+  textInComp: {
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
+    color: "white",
+    fontSize: 27,
+    textAlign: "center",
+    left:10,
   },
-  trendingInfo:{
-    flexDirection:"column",
+  followingInfo: {
+    flexDirection: "column",
     backgroundColor: "#6136DA",
-    width:150,
-    marginLeft:50,
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 10,
-
-  },
-  followingInfo:{
-    flexDirection:"column",
-    backgroundColor: "#6136DA",
-    width:150,
-    marginLeft:20,
-    borderRadius: 10,
-
-  },
-  trending:{
-    flexDirection: "row",
-    marginLeft: 80,
   },
   header: {
     height: 80,
     marginTop: 60,
     flexDirection: "row",
+    
   },
-  body:{
+  body: {
     flexDirection: "row",
-    height: 100,
-    marginTop:10,
+    height: 120,
+    marginTop: 10,
   },
-  bodyText:{
-   // marginTop:10,
-    //height: 200,
+  bodyText: {
     flexDirection: "row",
   },
-  following:{
+  following: {
     justifyContent: "flex-start",
     left: 20,
     flexDirection: "row",
-    
   },
   text: {
     color: "white",
@@ -249,6 +216,4 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 1.5,
   },
-
-
 });

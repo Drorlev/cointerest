@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     marginTop: 10,
-    marginBottom: 30,
+    //marginBottom: 30,
   },
   balance: {
     //flexDirection:'row',
     //paddingTop:30,
     //backgroundColor: '#1A1A1A',
     backgroundColor: "#6136DA",
-    flex: 1,
+    //flex: 1,
     //color:'#fff'
     alignSelf: "center",
     borderRadius: 10,
@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 20,
     marginTop:10,
-    marginBottom: 10,
+   // marginBottom: 10,
     fontSize: 20,
   },
   blnTxt: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 29,
-    marginRight: 5,
+   marginRight: 5,
     justifyContent: 'center',
     alignSelf: "center",
 
