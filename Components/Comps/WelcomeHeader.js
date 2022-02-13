@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email="; 
-
+import Underline from './Underline';
 const WelcomeHeader = (props) => {
     const [user, setUser] = useState();
 
@@ -56,23 +56,8 @@ const WelcomeHeader = (props) => {
     </View>
     
   </View>
-  <View
-  style={{
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  }}
->
-  <View
-    style={{
-      position: "absolute",
-      width: 356,
-      height: 2,
-      left: 17,
-      backgroundColor: "#474747",
-    }}
-  />
-</View>
+  <Underline/>
+
 </View>
   )
 }
