@@ -3,8 +3,8 @@ import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Underline from "./Comps/Underline";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import SettingBtnComp from "./Comps/SettingBtnComp";
+import SettingsHeader from "./Comps/SettingsHeader";
 const hello = () => {
   alert("hello");
 };
@@ -27,19 +27,7 @@ const SettingsPage = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.profileIcon}>
-          <MaterialCommunityIcons
-            name="camera-plus-outline"
-            color={"white"}
-            size={30}
-          />
-        </View>
-        <View style={styles.UserInfo}>
-          <Text style={styles.Username}>David Cohen</Text>
-          <Text style={styles.UserBio}>Loves Krav Maga</Text>
-        </View>
-      </View>
+      <SettingsHeader/>
       <Underline />
       <View style={styles.SettingsBtn}>
         <SettingBtnComp text={"Change Password"} icon={"chevron-right"} />
@@ -58,38 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#1A1A1A",
   },
-  header: {
-    flexDirection: "column",
-    flex: 0.4,
-    top: "6%",
-    alignItems: "center",
-  },
-  profileIcon: {
-    flexDirection: "column",
-    width: 150,
-    height: 150,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 100,
-    backgroundColor: "black",
-    borderColor: "white",
-    borderWidth: 1.5,
-  },
-  UserInfo: {
-    top: "5%",
-    alignItems: "center",
-  },
-  Username: {
-    color: "white",
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  UserBio: {
-    color: "#C7C7C7",
-    fontWeight: "500",
-    fontSize: 15,
-    //letterSpacing:"-1.5%",
-  },
+  
   SettingsBtn: {
     flex: 0.6,
     top: "4%",
