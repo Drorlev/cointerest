@@ -4,6 +4,7 @@ import React from "react";
 const Balance = (props) => {
   //send email in props!!
   console.log(props.email)
+  console.log("-----------------------------------"+props.balance);
   //fetch based email
   let balance = props.balance != undefined ? props.balance : 0;
 
@@ -11,7 +12,7 @@ const Balance = (props) => {
     <View style={styles.container}>
       <View style={styles.balance}>
       <Text style={styles.headerTxt}>Balance</Text>
-      <Text style={styles.blnTxt}>{"$" + balance}</Text>
+      <Text style={styles.blnTxt}>{"$" + props.balance}</Text>
       </View>
     </View>
   );
