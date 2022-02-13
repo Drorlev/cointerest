@@ -13,7 +13,7 @@ const Assets = (props) => {
     //send name in props!!
     //do the fetch based on props email
     
-
+    let flag;
     const getAssets=()=>{
         //console.log("bEFROE rENDER ",apiUrl + props.email)
         fetch(apiUrl + props.email, {
@@ -27,18 +27,23 @@ const Assets = (props) => {
               //console.log('res=', res);
               console.log('res.status', res.status);
               console.log('res.ok', res.ok);
+              flag=res.ok;
+              if(!flag){
+                setAssets(<View><Text style={styles.headerTxt}>No Assets!!!</Text></View>)
+                return;
+              }
               return res.json()
             })
             .then(
               (result) => {
                 console.log("fetch Assets= ", result);
+                if(result != undefined){
+                  let assetsList =result.map(asset => 
+                    <Asset key={asset.Coin_name} img={asset.Coin_info.Coin_picture} amount={asset.Amount}/>
+                  );
                 
-                let assetsList =result.map(asset => 
-                  <Asset key={asset.Coin_name} img={asset.Coin_info.Coin_picture} amount={asset.Amount}/>
-                );
-                
-                setAssets(assetsList)
-                
+                  setAssets(assetsList)
+                }
               },
               (error) => {
                 console.log("err post=", error);

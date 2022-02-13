@@ -36,12 +36,15 @@ const Transactions = (props) => {
         .then(
           (result) => {
             console.log("fetch Transactions= ", result);
+
+            if(result != undefined){
            
             let transactionsList =result.map(trn => 
               <Transaction key={count++}  t_date={trn.T_date} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} />
             );
             
             setTransaction(transactionsList)
+            }
           },
           (error) => {
             console.log("err post=", error);
