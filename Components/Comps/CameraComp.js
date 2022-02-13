@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 
-export default function CameraComp() {
+export default function CameraComp(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [camera, setCamera] = useState(null);
   const [picUri, setPicUri] = useState('https://upload.wikimedia.org/wikipedia/commons/2/25/Coldplay_%282842037407%29.jpg');
 
+  const snapClicked=(val)=>{
+    props.sendData(val);
+  };
 
   useEffect(() => {
     (async () => {
@@ -47,6 +50,7 @@ export default function CameraComp() {
                 const data = await camera.takePictureAsync(null);
                 console.log(data.uri)
                 setPicUri(data.uri);
+                snapClicked(picUri);
               }
 
             }}>
@@ -55,14 +59,6 @@ export default function CameraComp() {
 
         </View>
       </Camera>
-
-      <View style={{
-        flex: 0.25, justifyContent: 'center', alignItems: 'center', margin: 10
-      }}>
-        <Image
-          source={{ uri: picUri }}
-          style={{ width: 250, height: 150, borderWidth: 1, borderColor: 'red', margin: 10 }} />
-      </View>
     </View>
   );
 }
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   camera: {
-    flex: 0.9,
+    flex:1,
   },
   buttonContainer: {
     flex: 1,
