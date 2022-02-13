@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,TouchableOpacity} from "react-native";
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const SettingBtnComp = (props) => {
+  const btnCliked=(val)=>{
+    props.sendData(val);
+
+  };
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={{height:"100%"}} onPress={()=> {
+      btnCliked(props.text)
+    }}>
+
       <View style={styles.balance}>
         <View style={styles.text}>
           <Text style={styles.headerTxt}>{props.text}</Text>
@@ -18,6 +28,8 @@ const SettingBtnComp = (props) => {
           />
         </View>
       </View>
+      </TouchableOpacity>
+
     </View>
   );
 };

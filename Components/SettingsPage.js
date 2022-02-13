@@ -1,14 +1,32 @@
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Underline from "./Comps/Underline";
 import SettingBtnComp from "./Comps/SettingBtnComp";
 import SettingsHeader from "./Comps/SettingsHeader";
-const hello = () => {
-  alert("hello");
-};
+import BottomSheet from "./Comps/BottomSheet";
+import { useIsFocused } from "@react-navigation/native";
+
 const SettingsPage = ({ route, navigation }) => {
+  const isFocused = useIsFocused();
+  const [isLoading,setIsLoading]=useState(true);
+  const [user, setUser] = useState();
+
+  const HandleData = (data)=>{
+    switch(data) {
+
+      case 'Change Password':
+        console.log("change password");
+        break;
+      
+      case 'Log Out':
+        clearAsyncStorage();
+      break;
+    
+      }
+    }
+    
   const goToStartPage = () => {
     console.log("in");
 
@@ -25,15 +43,34 @@ const SettingsPage = ({ route, navigation }) => {
     }
   };
 
+  useEffect(() => {
+    AsyncStorage.getItem('loggedInUserEmail').then((token) => {
+      //setUserEmail(token)
+      console.log("use effect ",token)
+      setUser(token)
+      
+    })
+    if(user != undefined){
+    setIsLoading(false);
+    console.log("error");
+    }
+   
+
+}, [isFocused,user]);
+
+if(isLoading){
+  return <View><Text>Loading...</Text></View>
+}
+  
+
   return (
     <SafeAreaView style={styles.container}>
-      <SettingsHeader/>
+      <SettingsHeader email={user} />
       <Underline />
       <View style={styles.SettingsBtn}>
-        <SettingBtnComp text={"Change Password"} icon={"chevron-right"} />
-        <SettingBtnComp onPress={clearAsyncStorage} text={"Log Out"} icon={"logout"} />
+        <SettingBtnComp text={"Change Password"} icon={"chevron-right"} sendData={HandleData} />
+        <SettingBtnComp text={"Log Out"} icon={"logout"} sendData={HandleData} />
       </View>
-
     </SafeAreaView>
   );
 };
