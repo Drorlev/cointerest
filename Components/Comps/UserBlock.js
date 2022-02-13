@@ -3,21 +3,23 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const UserBlock = (props) => {
+    //console.log(props.user)
+    let user = props.user;
 
     const sendDataToFather=()=>{
-        console.log("User "+ props.userName)
-        props.send2papa(props.userName)
+        console.log("User "+ props.user)
+        props.send2papa(props.user)
     }
 
-    let balance = (props.balance != undefined) ? props.balance : 0 ;
+    //let balance = (props.balance != undefined) ? props.balance : 0 ;
     let Image_Http_URL ={ uri: props.img};
   return (
     <TouchableOpacity style={styles.container} >
         <View style={styles.col1}>
-            <Text style={styles.userName} onPress={sendDataToFather}>{props.userName}</Text>
+            <Text style={styles.userName} onPress={sendDataToFather}>{user.Username}</Text>
         
           
-                <Text style={styles.balance}>{"$"+ balance}</Text>
+                <Text style={styles.balance}>{"$1000"}</Text>
         </View>
         <View style={styles.col2}>
             <View>
