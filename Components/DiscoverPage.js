@@ -1,28 +1,20 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+import React ,{useState,useEffect} from 'react'
 import Users from './Comps/Users';
 
 const DiscoverPage = ({navigation}) => {
+  const [search, setSearch] = useState("");
 
     const getDataFromChild=(data)=>{
         console.log("Discover page "+ data)
         
         navigation.navigate('InAppPages',{
           screen: 'UserPage',
-          params: { userName: data },
+          params: { user: data },
       })
-
-      /*
-      navigation.navigate(
-    'NestedNavigator1', 
-    {}, 
-    NavigationActions.navigate({ 
-        routeName: 'screenB' 
-    })
-)
-      */
     }
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -32,6 +24,7 @@ const DiscoverPage = ({navigation}) => {
            <TextInput  style={styles.input}
                     placeholder="Enter Username"   
                     placeholderTextColor="#fff" 
+                    onChangeText={setSearch}
                     />
             <TouchableOpacity
                 //onPress={navigate_to_signUp}
@@ -40,7 +33,7 @@ const DiscoverPage = ({navigation}) => {
             </TouchableOpacity>
            </View>
            <View style={styles.users}>
-                <Users send2papa={getDataFromChild}/>
+                <Users send2papa={getDataFromChild} search={search}/>
            </View>
         </View>
       </View>

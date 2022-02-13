@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 
-const UserDiscoverBio = () => {
+const UserDiscoverBio = (props) => {
   return (
     <View style={styles.container} >
         <View style={styles.row}>
-            <Text style={styles.balance}>Hello User Bio{'\n'}</Text>
+            <Text style={styles.balance}>{props.email}{'\n'}</Text>
             <Image  style={styles.roundButton1}/>
         </View>
     </View>

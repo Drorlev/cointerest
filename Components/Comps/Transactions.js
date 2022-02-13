@@ -8,7 +8,7 @@ const Transactions = (props) => {
   const [transaction,setTransaction]=useState();
   //console.log("Transactions", props.email)
   //send email in props!!
-
+  let flag;
   //fetch get based on props email
   const getTransactions=()=>{
     console.log("Transactions", props.email)
@@ -24,12 +24,19 @@ const Transactions = (props) => {
           //console.log('res=', res);
           console.log('res.status', res.status);
           console.log('res.ok', res.ok);
+          
+          flag=res.ok;
+          if(!flag){
+            setTransaction(<View><Text style={styles.headerTxt}>No Transaction Here</Text></View>)
+            return;
+          }
+          
           return res.json()
         })
         .then(
           (result) => {
             console.log("fetch Transactions= ", result);
-            
+           
             let transactionsList =result.map(trn => 
               <Transaction key={count++}  t_date={trn.T_date} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} />
             );
@@ -47,7 +54,7 @@ const Transactions = (props) => {
     //console.log("Assets ", props.email)
       getTransactions();
     
-  }, []);
+  }, [props]);
 
   return (
     <View style={styles.container}>

@@ -51,7 +51,7 @@ const Assets = (props) => {
         //console.log("Assets ", props.email)
         getAssets();
         
-      }, []);
+      }, [props]);
   return (
     <View style={styles.container}>
         <Text style={styles.headerTxt}>Assets  Collection</Text>

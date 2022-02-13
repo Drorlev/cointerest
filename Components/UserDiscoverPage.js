@@ -1,32 +1,55 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React ,{useState,useEffect} from 'react'
 import UserDiscoverBio from './Comps/UserDiscoverBio';
 import Balance from './Comps/Balance';
 import Assets from './Comps/Assets';
 import Transactions from './Comps/Transactions';
 
 const User = ({route,navigation}) => {
- 
+  const [user,setUser] = useState();
+  const [portffolio,setPortfolio]=useState((<View><Text>Loading...</Text></View>));
+  const [isLoading,setIsLoading]=useState(true);
   //with route send the email when fetched
   //should do use state to render this page when another user is selected
 
+  //let user;
   let userNameRoute = 'Erorr';
   
-  if(route.params != undefined){
-    console.log(route.params.userName)
-    userNameRoute = route.params.userName
+  console.log("USER discover Start", route.params.user)
+
+  const setUpComps=()=>{
+    if(route.params.user == undefined){
+      console.log("User Discover Page",route.params.user)
+      //user = route.params.user    
+      return (<View><Text>Loading...</Text></View>);
+    }
+    userNameRoute = route.params.user.Username
+    let comps =  <>
+      <Text style={styles.title}>{userNameRoute}</Text>
+      <View style={styles.body}>
+        <UserDiscoverBio email={route.params.user.Email}/>
+        <Balance email={route.params.user.Email} balance={1000}/>
+        <Assets email={route.params.user.Email}/>
+        <Transactions email={route.params.user.Email}/>
+      </View>
+      </>
+    setPortfolio(comps);
+    setIsLoading(false);
   }
-  //let usernameFromNRoute= route.params;
+  
+
+
+  useEffect(() => {    
+    setUpComps()
+  }, [route.params]);
+
+  if(isLoading){
+    return <View><Text>Loading...</Text></View>
+  }
   return (
     <View style={styles.container}>
     <View style={styles.container2}>
-      <Text style={styles.title}>{userNameRoute}</Text>
-      <View style={styles.body}>
-        <UserDiscoverBio/>
-        <Balance balance={1000}/>
-        <Assets/>
-        <Transactions/>
-      </View>
+       {portffolio}
     </View>
   </View>
   );

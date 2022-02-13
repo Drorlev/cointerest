@@ -35,9 +35,13 @@ const users_HardCoded=[
 ]
 
 
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/users/?search="; 
+
 const Users = (props,{navigation}) => {
-    const [users,setUsers]=useState();
+    const [users,setUsers]=useState(<></>);
     //will be the fetch get users
+
+    let searchName=props.search;
 
     const getDataFromChild=(data)=>{
         console.log("Users "+ data)
@@ -45,19 +49,41 @@ const Users = (props,{navigation}) => {
     }
 
     const getUsers=()=>{
-        /*
-            fetch(get)
-        */
-        let usersList = users_HardCoded.map(user =>     
-            <UserBlock send2papa={getDataFromChild} key={user.UserName} userName={user.UserName} balance={user.Balance} img={user.ImgUrl}/>)
-        //setUsers(usersList);
-        setUsers(usersList)
+        
+        fetch(apiUrl + searchName, {
+            method: 'GET',
+            headers: new Headers({
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Accept': 'application/json; charset=UTF-8'
+            })
+          })
+            .then(res => {
+              //console.log('res=', res);
+              console.log('res.status', res.status);
+              console.log('res.ok', res.ok);
+              return res.json()
+            })
+            .then(
+              (result) => {
+                console.log("fetch Assets= ", result);
+                
+                let usersList =result.map(user => 
+                    <UserBlock send2papa={getDataFromChild} key={user.Username} user={user}/>
+                );
+                
+                setUsers(usersList)
+                
+              },
+              (error) => {
+                console.log("err post=", error);
+              });
     }
 
     
     useEffect(() => {
-        getUsers();
-      },[]);
+        ( searchName != "" )?getUsers(): setUsers(<></>); 
+        console.log(searchName)
+      },[props]);
   return (
       <ScrollView style={styles.container}>
           {users}
