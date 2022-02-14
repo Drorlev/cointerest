@@ -1,17 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View ,Keyboard,
+  TouchableWithoutFeedback,} from 'react-native'
 import BottomSheet from "./Comps/BottomSheet";
 import React from 'react'
+import MarketHeader from './Comps/MarketHeader';
 
 const MarketPage = () => {
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
       <View style={styles.container2}>
-        <Text style={styles.title}>Market</Text>
+        
+        <MarketHeader/>
         <View style={styles.body}>
-          <BottomSheet/>
         </View>
       </View>
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 
