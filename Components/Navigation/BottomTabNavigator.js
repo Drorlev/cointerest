@@ -13,6 +13,7 @@ import InAppStackNavigator from './InAppStackNavigator';
 import HomePage from '../HomePage';
 import MarketPage from '../MarketPage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import SettingsPage from '../SettingsPage';
 
 //import Start from './Components/StartPage';
@@ -41,6 +42,7 @@ const CustomButton = ({ children, onPress }) => (
 );
 
 const BottomTabNavigator = () => {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator 
        initialRouteName="Home"
@@ -132,6 +134,17 @@ const BottomTabNavigator = () => {
           style={{backgroundColor:'white'}}
           name="InAppPages" 
           component={InAppStackNavigator}
+          listeners={{
+            tabPress: (e) => {
+              // Prevent default action
+              e.preventDefault();
+              
+              navigation.navigate('InAppPages',{
+                screen: 'SettingsPage',
+                
+            })
+            },
+          }}
           options={{
             tabBarLabel: 'InApp',
             tabBarIcon: ({ focused }) => (
