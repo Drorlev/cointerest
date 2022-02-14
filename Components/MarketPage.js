@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import BottomSheet from "./Comps/BottomSheet";
 import React from 'react'
 
 const MarketPage = () => {
@@ -7,6 +8,7 @@ const MarketPage = () => {
       <View style={styles.container2}>
         <Text style={styles.title}>Market</Text>
         <View style={styles.body}>
+          <BottomSheet/>
         </View>
       </View>
     </View>
