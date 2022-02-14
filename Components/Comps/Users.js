@@ -67,7 +67,7 @@ const Users = (props,{navigation}) => {
             })
             .then(
               (result) => {
-                console.log("fetch Assets= ", result);
+               // console.log("fetch Assets= ", result);
                 
                 let usersList =result.map(user => 
                    // <UserBlock send2papa={getDataFromChild} key={user.Username} user={user}/>
