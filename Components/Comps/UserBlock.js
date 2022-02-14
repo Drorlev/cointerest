@@ -1,22 +1,35 @@
 import { StyleSheet, Text, View, Image, Alert } from 'react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 const UserBlock = (props) => {
+    const navigation = useNavigation();
     //console.log(props.user)
     let user = props.user;
 
+    /*
     const sendDataToFather=()=>{
         console.log("User "+ props.user)
         props.send2papa(props.user)
     }
+    */
+
+    const navigateToUserDiscoverPage = () =>{
+        navigation.navigate('InAppPages',{
+            screen: 'UserPage',
+            params: { user: user },
+        })
+    }
+
+
 
     //let balance = (props.balance != undefined) ? props.balance : 0 ;
     let Image_Http_URL ={ uri: props.img};
   return (
     <TouchableOpacity style={styles.container} >
         <View style={styles.col1}>
-            <Text style={styles.userName} onPress={sendDataToFather}>{user.Username}</Text>
+            <Text style={styles.userName}  onPress={navigateToUserDiscoverPage}>{user.Username} </Text>
         
           
                 <Text style={styles.balance}>{"$1000"}</Text>

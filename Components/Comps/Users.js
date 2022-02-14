@@ -43,10 +43,12 @@ const Users = (props,{navigation}) => {
 
     let searchName=props.search;
 
+    /*
     const getDataFromChild=(data)=>{
         console.log("Users "+ data)
         props.send2papa(data)
     }
+    */
 
     const getUsers=()=>{
         
@@ -68,7 +70,8 @@ const Users = (props,{navigation}) => {
                 console.log("fetch Assets= ", result);
                 
                 let usersList =result.map(user => 
-                    <UserBlock send2papa={getDataFromChild} key={user.Username} user={user}/>
+                   // <UserBlock send2papa={getDataFromChild} key={user.Username} user={user}/>
+                   <UserBlock key={user.Username} user={user}/>
                 );
                 
                 setUsers(usersList)
