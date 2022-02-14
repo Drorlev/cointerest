@@ -25,7 +25,7 @@ const Portfolio = ({navigation}) => {
   }
   const setUpComps=()=>{
     let comps =  <>
-      <Balance email={userEmail} balance={1000}/>
+      <Balance email={userEmail} />
       
       <Assets email={userEmail}/>
       

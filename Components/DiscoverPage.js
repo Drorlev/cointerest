@@ -6,6 +6,7 @@ import Users from './Comps/Users';
 const DiscoverPage = ({navigation}) => {
   const [search, setSearch] = useState("");
 
+  /*
     const getDataFromChild=(data)=>{
         console.log("Discover page "+ data)
         
@@ -14,6 +15,7 @@ const DiscoverPage = ({navigation}) => {
           params: { user: data },
       })
     }
+    */
 
   return (
     <View style={styles.container}>
@@ -33,7 +35,7 @@ const DiscoverPage = ({navigation}) => {
             </TouchableOpacity>
            </View>
            <View style={styles.users}>
-                <Users send2papa={getDataFromChild} search={search}/>
+                <Users  search={search}/>
            </View>
         </View>
       </View>
