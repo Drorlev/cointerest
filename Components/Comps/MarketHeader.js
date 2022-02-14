@@ -4,25 +4,47 @@ import { TextInput } from 'react-native-gesture-handler'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+const dict ={false:"Buy", true:"Sell"}
 //search
-const MarketHeader = () => {
-    const [isEnabled, setIsEnabled] = useState(false);
+const MarketHeader = (props) => {
+    const [isEnabled, setIsEnabled] = useState(true);
+    const [search, setSearch] = useState("");
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    
+    const sendtToMarket = () =>{
+       
+        let oper = dict[isEnabled]
+        console.log(oper)
+        console.log(search);
+
+        let action = {
+            op: oper,
+            txt: search,
+        }
+        props.send2Papa(action);
+    }
+
+    sendtToMarket();
+    //console.log(dict[isEnabled]);
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Market</Text>
-            <Switch style={styles.switch}
-            trackColor={{ false: "gray", true: "green" }}
-            thumbColor={isEnabled ? "lightgreen" : "lightgray"}
-            //ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-            />
+            <View style={styles.switch}>
+                <Text style={styles.txt}>Buy</Text>
+                <Switch style={styles.switch}
+                trackColor={{ false: "green", true: "gray" }}
+                thumbColor={isEnabled ? "lightgray" : "lightgreen"}
+                //ios_backgroundColor="#3e3e3e"
+                onValueChange={ toggleSwitch}
+                value={isEnabled}
+                />
+                <Text style={styles.txt}>Sell</Text>
+            </View>
             <View style={styles.search}>
             <TextInput  style={styles.input}
-                        placeholder="Enter Username"   
-                        placeholderTextColor="#fff" 
-                        //onChangeText={setSearch}
+                        placeholder="search a Coin"   
+                        placeholderTextColor="#1A1A1A" 
+                        onChangeText={setSearch}
                         />
                 <TouchableOpacity
                     //onPress={navigate_to_signUp}
@@ -86,6 +108,13 @@ const styles = StyleSheet.create({
         height:'100%'
     },
     switch:{
-       
+       flexDirection:"row",
+       justifyContent:"center",
+       alignItems:"center",
+    },
+    txt:{
+        fontSize:20,
+        color:"white"
     }
+
 })

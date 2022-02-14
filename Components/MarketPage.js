@@ -4,13 +4,16 @@ import BottomSheet from "./Comps/BottomSheet";
 import React from 'react'
 import MarketHeader from './Comps/MarketHeader';
 
+const getDataFromSon = (value) =>{
+  console.log("In MarketPage",value)
+}
+
 const MarketPage = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
       <View style={styles.container2}>
-        
-        <MarketHeader/>
+        <MarketHeader send2Papa={getDataFromSon}/>
         <View style={styles.body}>
         </View>
       </View>
@@ -48,8 +51,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
       },
       body:{
-        flex:1,
+        flex:0.4,
         marginTop:40,
+
       }
 
 })
