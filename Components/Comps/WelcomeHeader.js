@@ -25,7 +25,6 @@ const WelcomeHeader = (props) => {
         (result) => {
           setUser(result.Username);
           setProfileImg(result.Image);
-          console.log("--------------------------------------"+ profileImg);
         },
         (error) => {
           console.log("err post=", error);
@@ -35,7 +34,7 @@ const WelcomeHeader = (props) => {
 
   useEffect(() => {
     getUser();
-  }, [profileImg,user]);
+  }, []);
   
   return (
     <View>
@@ -48,18 +47,8 @@ const WelcomeHeader = (props) => {
         </View>
 
         <View style={styles.profileIcon}>
-          {/* <Image
-        style={styles.logo}
-        source={{
-          uri: {profileImg},
-        }}
-      /> */}
+        <Image source={{uri:profileImg}} style={styles.image} />
 
-          {/* <MaterialCommunityIcons
-        name="camera-plus-outline"
-        color={"white"}
-        size={30}
-      /> */}
         </View>
       </View>
       <Underline />
@@ -70,9 +59,10 @@ const WelcomeHeader = (props) => {
 export default WelcomeHeader;
 
 const styles = StyleSheet.create({
-  logo: {
-    width: "100%",
-    height: "100%",
+  image: {
+
+    width: '100%',
+    height:  '100%',
   },
   text: {
     color: "white",

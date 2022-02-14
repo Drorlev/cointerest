@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal,Image } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
 import CameraComp from "./CameraComp";
@@ -42,6 +42,8 @@ const SettingsHeader = (props) => {
           setUser(result.Username);
           setProfileImg(result.Image);
           setBio(result.bio)
+          console.log("--------------------------------------profile: "+profileImg);
+          console.log("--------------------------------------------bio: "+bio);
         },
         (error) => {
           console.log("err post=", error);
@@ -71,11 +73,7 @@ const SettingsHeader = (props) => {
         }}
       >
         <View style={styles.profileIcon}>
-          <MaterialCommunityIcons
-            name="camera-plus-outline"
-            color={"white"}
-            size={50}
-          />
+          <Image source={{uri:profileImg}} style={styles.image} />
         </View>
       </TouchableOpacity>
 
@@ -90,58 +88,12 @@ const SettingsHeader = (props) => {
 export default SettingsHeader;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   padding: 25,
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-  // button: {
-  //   display: 'flex',
-  //   height: 60,
-  //   borderRadius: 6,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   width: '100%',
-  //   backgroundColor: '#2AC062',
-  //   shadowColor: '#2AC062',
-  //   shadowOpacity: 0.5,
-  //   shadowOffset: {
-  //     height: 10,
-  //     width: 0
-  //   },
-  //   shadowRadius: 25,
-  // },
-  // closeButton: {
-  //   display: 'flex',
-  //   height: 60,
-  //   borderRadius: 6,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   backgroundColor: '#FF3974',
-  //   shadowColor: '#2AC062',
-  //   shadowOpacity: 0.5,
-  //   shadowOffset: {
-  //     height: 10,
-  //     width: 0
-  //   },
-  //   shadowRadius: 25,
-  // },
-  // buttonText: {
-  //   color: '#FFFFFF',
-  //   fontSize: 22,
-  // },
-  // image: {
-  //   marginTop: 150,
-  //   marginBottom: 10,
-  //   width: '100%',
-  //   height: 350,
-  // },
-  // text: {
-  //   fontSize: 24,
-  //   marginBottom: 30,
-  //   padding: 40,
-  // },
+
+  image: {
+
+    width: '100%',
+    height:  '100%',
+  },
   closeText: {
     color: "white",
     alignItems: "center",
