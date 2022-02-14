@@ -22,17 +22,13 @@ const UserBlock = (props) => {
         })
     }
 
-
-
     //let balance = (props.balance != undefined) ? props.balance : 0 ;
     let Image_Http_URL ={ uri: props.img};
   return (
     <TouchableOpacity style={styles.container} >
         <View style={styles.col1}>
             <Text style={styles.userName}  onPress={navigateToUserDiscoverPage}>{user.Username} </Text>
-        
-          
-                <Text style={styles.balance}>{"$1000"}</Text>
+            <Text style={styles.balance}>{user.Bio}</Text>
         </View>
         <View style={styles.col2}>
             <View>
