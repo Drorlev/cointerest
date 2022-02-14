@@ -17,7 +17,6 @@ const InAppStackNavigator = () => {
     <Stack.Screen name="SettingsPage" component={SettingsPage}/>
     <Stack.Screen name="UserPage" component={User}/>
     <Stack.Screen name="Camera" component={CameraComp}/>
-
   </Stack.Navigator>
   );
 };
