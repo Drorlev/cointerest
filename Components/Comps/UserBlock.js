@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert ,TouchableOpacity} from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+//import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 const UserBlock = (props) => {
@@ -23,11 +23,12 @@ const UserBlock = (props) => {
     }
 
     //let balance = (props.balance != undefined) ? props.balance : 0 ;
-    let Image_Http_URL ={ uri: props.img};
+    let Image_Http_URL ={ uri: user.Image};
   return (
-    <TouchableOpacity style={styles.container} >
+    <TouchableOpacity style={styles.container} onPress={navigateToUserDiscoverPage}>
+        
         <View style={styles.col1}>
-            <Text style={styles.userName}  onPress={navigateToUserDiscoverPage}>{user.Username} </Text>
+            <Text style={styles.userName}  >{user.Username} </Text>
             <Text style={styles.balance}>{user.Bio}</Text>
         </View>
         <View style={styles.col2}>
@@ -35,6 +36,7 @@ const UserBlock = (props) => {
                 <Image source={Image_Http_URL} style={styles.img}/>
             </View>
         </View>
+        
     </TouchableOpacity>
   );
 };

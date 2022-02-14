@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         flex: 0.4,
         width:"90%",
         alignSelf: 'center',
-        marginBottom:60,
+        marginBottom:"20%",
     },
     history: {
         //flexDirection:'row',
