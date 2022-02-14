@@ -38,7 +38,8 @@
     "react-native-screens": "^3.10.2",
     "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.1",
-    "react-native-svg": "12.1.1"
+    "react-native-svg": "12.1.1",
+    "expo-linear-gradient": "~11.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
