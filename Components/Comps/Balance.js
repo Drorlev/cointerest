@@ -14,6 +14,7 @@ const Balance = (props) => {
  
 
   const getBalance = () => {
+    console.log("-------balance api:", apiUrl + props.email+"&n=1")
     fetch(apiUrl + props.email+"&n=1", {
       method: 'GET',
       headers: new Headers({
