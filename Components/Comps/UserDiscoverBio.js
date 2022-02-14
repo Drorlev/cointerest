@@ -1,14 +1,55 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from "react";
+
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
 
 const UserDiscoverBio = (props) => {
+    const [user, setUser] = useState();
 
-    //should be get user
+    const getUser = () => {
+        console.log()
+        fetch(apiUrl + props.email + "&n=1", {
+          method: "GET",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            Accept: "application/json; charset=UTF-8",
+          }),
+        })
+          .then((res) => {
+            //console.log('res=', res);
+            console.log("res.status ", res.status);
+            console.log("res.ok ", res.ok);
+            return res.json();
+          })
+          .then(
+            (result) => {
+                console.log("User Discover Bio",result)
+                
+                if(result != undefined){
+                    setUser(<>
+                        <Text style={styles.txt}>{result.Bio}{'\n'}</Text>
+                        <Image source={{uri:result.Image}} style={styles.roundButton1}/>
+                        </>);
+                }
+                
+              
+              //setProfileImg(result.Image);
+            },
+            (error) => {
+              console.log("err post=", error);
+            }
+          );
+      };
+    
+      useEffect(() => {
+        getUser();
+      }, [props]);
+
+
   return (
     <View style={styles.container} >
         <View style={styles.row}>
-            <Text style={styles.balance}>{props.email}{'\n'}</Text>
-            <Image  style={styles.roundButton1}/>
+           {user}
         </View>
     </View>
   );
@@ -50,7 +91,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         paddingTop:5
     },
-    balance:{
+    txt:{
         fontSize:20,
         color:'#fff',
         //alignSelf:'flex-end',
