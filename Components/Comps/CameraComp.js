@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
 
 export default function CameraComp(props) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -10,21 +10,21 @@ export default function CameraComp(props) {
   const [picUri, setPicUri] = useState();
   const [image, setImage] = useState();
 
-  btnOpenGalery = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  // btnOpenGalery = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1,
+  //   });
 
-    console.log(result);
+  //   console.log(result);
 
-    if (!result.cancelled) {
-      console.log("shit");
-      setImage(result.uri);
-    }
-  };
+  //   if (!result.cancelled) {
+  //     console.log("shit");
+  //     setImage(result.uri);
+  //   }
+  // };
 
   const snapClicked=(val)=>{
     props.sendData(val);
@@ -77,7 +77,7 @@ export default function CameraComp(props) {
           </TouchableOpacity>
             <TouchableOpacity
              style={styles.button1}
-            onPress={btnOpenGalery}
+            // onPress={btnOpenGalery}
             >
             <Text style={styles.text}>Upload</Text>
 

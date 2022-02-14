@@ -71,6 +71,7 @@ if(isLoading){
         <SettingBtnComp text={"Change Password"} icon={"chevron-right"} sendData={HandleData} />
         <SettingBtnComp text={"Log Out"} icon={"logout"} sendData={HandleData} />
       </View>
+      <BottomSheet/>
     </SafeAreaView>
   );
 };
