@@ -1,18 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React,{useEffect,useState} from 'react';
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Assets/?email=";
 
-let balance;
 let flag;
 
 const Balance = (props) => {
-  //send email in props!!
-  console.log(props.email)
-  //console.log("-----------------------------------"+props.balance);
-  //fetch based email
- 
+  const [balance,setBalance]=useState();
 
+  console.log(props.email)
+  
   const getBalance = () => {
     console.log("-------balance api:", apiUrl + props.email+"&n=1")
     fetch(apiUrl + props.email+"&n=1", {
@@ -38,23 +35,23 @@ const Balance = (props) => {
       .then(
         (result) => {
           console.log("fetch Balance = ", result);
-          /*
-            balance = result != undefined ? result : 0;
-          */
-          balance = result
+          
+          setBalance(<Text style={styles.blnTxt}>{"$" + result}</Text>) 
           },
         (error) => {
           console.log("err post=", error);
         });
   }
-
-  getBalance();
+  useEffect(() => {
+    getBalance();    
+  }, [props]);
+  
 
   return (
     <View style={styles.container}>
       <View style={styles.balance}>
       <Text style={styles.headerTxt}>Balance</Text>
-      <Text style={styles.blnTxt}>{"$" + balance}</Text>
+      {balance}
       </View>
     </View>
   );
