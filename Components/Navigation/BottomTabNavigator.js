@@ -1,9 +1,10 @@
 import { StyleSheet, View, KeyboardAvoidingView, Text} from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 import Portfolio from '../PortfolioPage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 //FontAwesome5Free
 import DiscoverPage from '../DiscoverPage';
@@ -17,7 +18,9 @@ import SettingsPage from '../SettingsPage';
 //import Start from './Components/StartPage';
 const Tab = createBottomTabNavigator();
 
-
+const marketBuySell= () =>{
+  alert("Market")
+}
 
 const CustomButton = ({ children, onPress }) => (
   <TouchableOpacity
@@ -28,17 +31,12 @@ const CustomButton = ({ children, onPress }) => (
     }}
     onPress={onPress}
   >
-    <View
-      style={{
-        width: 60,
-        height: 60,
-        //borderRadius: 30,
-        //backgroundColor: "#504CF1",
-        backgroundColor:"white"
-      }}
-    >
-      
-    </View>
+     <LinearGradient
+              // Button Linear Gradient
+              colors={['#4c669f', '#3b5998', '#192f6a']}
+              style={styles.customBtton}>
+              <Text style={styles.text}>Sign in with Facebook</Text>
+      </LinearGradient>
   </TouchableOpacity>
 );
 
@@ -52,7 +50,7 @@ const BottomTabNavigator = () => {
         tabBarHideOnKeyboard:true,
         tabBarStyle: {
           showLabel: false,
-          backgroundColor: '#504CF1',
+          backgroundColor: '#6136DA',
           position: 'absolute',
           borderTopWidth: 0,
           //width:'130%',
@@ -84,7 +82,7 @@ const BottomTabNavigator = () => {
           tabBarLabel: 'Discover',
           tabBarIcon: ({ focused }) => (
             <View style={{alignItems:'center',
-            resizeMode:'contain'}}>
+            resizeMode:'contain'}} >
               <MaterialCommunityIcons name="account-search-outline" color={"white"} size={30} />
             </View>
           ),
@@ -97,13 +95,21 @@ const BottomTabNavigator = () => {
           options={{
             tabBarLabel: 'Market',
             tabBarIcon: ({ focused }) => (
-              <CustomButton/>
-            ),
-            tabBarIcon: ({ focused }) => (
-              <View style={{alignItems:'center',
-              resizeMode:'contain'}}>
-                <MaterialCommunityIcons name="bank" color={"white"} size={30} />
-              </View>
+              <TouchableOpacity
+                style={{
+                  top: -15,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+               <LinearGradient 
+                  // Button Linear Gradient
+                  colors={['#8A43F4', '#6949E7']}
+                  
+                  style={styles.linerGrad}>
+                    <MaterialIcons name="sync-alt" color={"white"} size={40} style={{ marginTop:10}}/>
+                </LinearGradient>
+            </TouchableOpacity>
             ),
 
           }}
@@ -149,18 +155,16 @@ const styles = StyleSheet.create({
     alignItems:'center',
    // ...styles.shadow
   },
-  customBtton:{
-    width:70,
-    height:70,
-    borderRadius:35,
+  linerGrad:{
+    width:66,
+    height:62,
+    borderRadius:25,
+    alignItems:'center',
+    //shadowRadius:200,
+    //shadowColor:"black"
    // ...styles.shadow
   },
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5
-  },
+ 
   buttonText: {
     fontSize: 18,
     fontFamily: 'Gill Sans',

@@ -78,8 +78,9 @@ const styles = StyleSheet.create({
         flex: 0.3,
         width:"90%",
         //color:'#fff'
+        marginTop:5,
         alignSelf: 'center',
-        marginBottom:40
+        marginBottom:10
        // justifyContent: 'center',
     },
     text:{
