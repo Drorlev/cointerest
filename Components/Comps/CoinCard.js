@@ -42,13 +42,14 @@ export default CoinCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: "100%",
-    backgroundColor: "red",
-    flex: 0.15,
-    marginTop: "10%",
+    height: "15%",
+    
+    //flex: 1,
+    marginTop: "5%",
     width: "92%",
     alignSelf: "center",
     backgroundColor: "#1C1C1C",
+   
     borderRadius: 10,
     shadowColor: "black",
     shadowOffset: {
@@ -63,19 +64,23 @@ const styles = StyleSheet.create({
   Coin: {
     flexDirection: "column",
     flex: 0.3,
-    justifyContent:"center"
+    justifyContent:"center",
+   
   },
   CoinInfo: {
     flexDirection: "column",
     flex: 0.3,
+    
   },
   CoinGraph: {
     flexDirection: "column",
     flex: 0.05,
+    
   },
   Precent: {
     flexDirection: "column",
     flex: 0.4,
+    
   },
   coinName: {
     color: "white",
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
   img: {
     //marginTop:2,
     alignSelf: "center",
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
   },
 });

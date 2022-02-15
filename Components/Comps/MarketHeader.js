@@ -7,7 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const dict ={false:"Buy", true:"Sell"}
 //search
 const MarketHeader = (props) => {
-    const [isEnabled, setIsEnabled] = useState(true);
+    const [isEnabled, setIsEnabled] = useState(false);
     const [search, setSearch] = useState("");
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     
@@ -27,7 +27,7 @@ const MarketHeader = (props) => {
     sendtToMarket();
     //console.log(dict[isEnabled]);
     return (
-        <View style={styles.container}>
+        <View style={styles.header}>
             <Text style={styles.title}>Market</Text>
             <View style={styles.switch}>
                 <Text style={styles.txt}>Buy</Text>
@@ -59,7 +59,7 @@ const MarketHeader = (props) => {
 export default MarketHeader
 
 const styles = StyleSheet.create({
-    container: {
+    header: {
         //flexDirection:'row',
         //paddingTop:30,
         backgroundColor: 'lightblue',
@@ -71,12 +71,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#1A1A1A'
         */
-      },
-      container2:{
-        marginTop:30,
-        backgroundColor: '#1A1A1A',
-        flex: 1,
-        //alignItems: 'center',
       },
       title:{
         color:'#fff',
