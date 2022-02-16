@@ -12,7 +12,7 @@ const WelcomeHeader = (props) => {
 
   const getData = async () => {
     try {
-      const value  = await AsyncStorage.getItem('@UserEmail')
+      const value  = await AsyncStorage.getItem('loggedInUserEmail')
       if(value !== null) {
         console.log("----------------------------------"+value);
         return value
@@ -63,7 +63,7 @@ const WelcomeHeader = (props) => {
         </View>
 
         <View style={styles.profileIcon}>
-        <Image source={{uri:profileImg}} style={styles.image} />
+        <Image source={{uri:profileImg}}  style={styles.image} />
 
         </View>
       </View>
@@ -108,5 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     borderColor: "white",
     borderWidth: 1.5,
+    resizeMode: 'contain',
+    overflow: "hidden",
   },
 });

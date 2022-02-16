@@ -15,6 +15,7 @@ const SettingsHeader = (props) => {
 
 
   const getData = (data)=>{
+    console.log("/////////////////////////////////////////////////"+data)
     displayModal(!state.isVisible);
     };
     
@@ -120,7 +121,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "black",
     borderColor: "white",
-    borderWidth: 2,
+    borderWidth: 3,
+    resizeMode: 'contain',
+    overflow: "hidden",
   },
   UserInfo: {
     top: "5%",
