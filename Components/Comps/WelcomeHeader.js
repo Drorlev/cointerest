@@ -12,7 +12,7 @@ const WelcomeHeader = (props) => {
 
   const getData = async () => {
     try {
-      const value  = await AsyncStorage.getItem('@UserEmail')
+      const value  = await AsyncStorage.getItem('loggedInUserEmail')
       if(value !== null) {
         console.log("----------------------------------"+value);
         return value

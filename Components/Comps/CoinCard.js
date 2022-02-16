@@ -1,11 +1,18 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity} from "react-native";
 import React, { useState, useEffect } from "react";
+import { useNavigation } from '@react-navigation/native';
 
 import pic from "../../assets/BTC.png";
 
 const CoinCard = (props) => {
+  const navigation = useNavigation();
+
   const btnCliked=()=>{
-    alert("1");
+    //alert("1");
+    navigation.navigate('InAppPages',{
+      screen: 'BuySell',
+      //params: { user: user },
+  })
   };
   const [colorText, setColorText] = useState({
     color: "blue",
