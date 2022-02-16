@@ -11,7 +11,12 @@ const CoinCard = (props) => {
     //alert("1");
     navigation.navigate('InAppPages',{
       screen: 'BuySell',
-      //params: { user: user },
+      params: { transaction: {
+        //email:props.email,
+        coinName:props.name,
+        op:props.op,
+        coinPrice:props.value
+      } },
   })
   };
   const [colorText, setColorText] = useState({
@@ -51,7 +56,8 @@ export default CoinCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: "15%",
+    height: 80,
+
     
     //flex: 1,
     marginTop: "5%",

@@ -15,7 +15,7 @@ const SettingsHeader = (props) => {
 
 
   const getData = (data)=>{
-    console.log("/////////////////////////////////////////////////"+data)
+    setProfileImg(data);
     displayModal(!state.isVisible);
     };
     
@@ -55,7 +55,7 @@ const SettingsHeader = (props) => {
   useEffect(() => {
     console.log(profileImg)
     getUser();
-  }, [state,getData]);
+  }, [state,profileImg]);
 
   return (
     <View style={styles.header}>
