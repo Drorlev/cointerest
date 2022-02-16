@@ -8,6 +8,7 @@ let email="";
 let transDetails;
 
 const BuySellPage = ({route,navigation}) => {
+  const [search, setSearch] = useState("");
   const isFocused = useIsFocused();
   const [userEmail,setUserEmail]=useState();
   console.log("---------------------route params buy sell "+route.params);
@@ -41,7 +42,11 @@ const BuySellPage = ({route,navigation}) => {
         <Text style={styles.title}>{transDetails.coinPrice}</Text>
         <Text style={styles.title}>{transDetails.coinName}</Text>
       </View>
-      <TextInput></TextInput>
+      <TextInput  style={styles.input}
+                          placeholder="search a Coin"   
+                          placeholderTextColor="#1A1A1A" 
+                          onChangeText={setSearch}
+                          />
       <TouchableOpacity style={styles.button}>
         <Text style={styles.title}>{transDetails.op}</Text>
       </TouchableOpacity>
@@ -91,5 +96,16 @@ const styles = StyleSheet.create({
     //alignItems:"center",
     //alignContent:"center"
     
-  }
+  },
+  input:{
+    borderColor:'white',
+   // backgroundColor:"red",
+    borderRadius:10,
+    color:'black',
+    alignSelf:'center',
+    borderWidth: 1,
+    textAlign: 'center',
+    flex:1,
+    height:'100%'
+},
 })
