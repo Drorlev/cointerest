@@ -15,7 +15,8 @@ const CoinCard = (props) => {
         //email:props.email,
         coinName:props.name,
         op:props.op,
-        coinPrice:props.value
+        coinPrice:props.value,
+        coinImg: props.img
       } },
   })
   };
@@ -28,7 +29,7 @@ const CoinCard = (props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={()=> {
-      btnCliked(props.text)
+      btnCliked()
     }}>
   
       <View style={styles.Coin}>

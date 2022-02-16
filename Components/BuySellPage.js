@@ -3,31 +3,95 @@ import React,{useEffect,useState} from 'react';
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
+import CoinCardBuySell from './Comps/CoinCardBuySell';
+
 
 let email="";
-let transDetails;
+let flag;
+let transDetails = 0;
 
+const apiUrl="http://194.90.158.74/bgroup53/test2/tar4/api/assets/?user_comment=";
+//Buy Sell Page
 const BuySellPage = ({route,navigation}) => {
+
+  const [amount, setAmount] = useState(0);
+  const [comment, setComment] = useState(0);
   const isFocused = useIsFocused();
   const [userEmail,setUserEmail]=useState();
-  console.log("---------------------route params buy sell "+route.params);
+
+  let PostPrice =(amount * transDetails.coinPrice);
+
+  //Check that there is data about would be transaction
   if(route.params != undefined){
     transDetails = route.params.transaction
   }
-  console.log("---------------------transDetails buy sell "+transDetails.op);
- 
+
+  //async call to get the user email
   AsyncStorage.getItem('loggedInUserEmail').then((token) => {
-    //setUserEmail(token)
     console.log("use effect ",token)
     email=token
     setUserEmail(token)
   })
 
+ 
+
+/*
+  console.log("---------------------route params buy sell "+route.params);
+  
+  console.log("---------------------transDetails buy sell "+transDetails.op);
+ */
+
+
+  const afterSuccessBuy = () =>{
+  
+    navigation.navigate('Market')
+    
+  }
+
+  //Post Function
+  const PostAction = () => {
+    let realAmount = (transDetails.op == "Buy") ? amount: (amount * (-1));
+    
+    let action={
+      Coin_name:transDetails.coinName,
+      Email:email,
+      Amount:realAmount,
+    }
+
+    fetch(apiUrl + comment, {
+      method: 'POST',
+      body: JSON.stringify(action),
+      headers: new Headers({
+        'Content-type': 'application/json; charset=UTF-8', //very important to add the 'charset=UTF-8'!!!!
+        'Accept': 'application/json; charset=UTF-8'
+      })
+    })
+      .then(res => {
+        //console.log('res=', res.ok);
+        console.log("---------------------"+res);
+        flag=res.ok;
+        
+        return res.json()
+      })
+      .then(
+        (result) => {
+          console.log("fetch POST= ", result);
+          (flag)?   alert("Success buying") : alert(result.Message)
+
+
+          
+        },
+        (error) => {
+          console.log("err post=", error);
+        });
+
+  }
+
   
 
   useEffect(() => {  
   
-  }, [isFocused]);
+  }, [isFocused,amount]);
 
   return (
     <View style={styles.container}>
@@ -36,13 +100,37 @@ const BuySellPage = ({route,navigation}) => {
       <Text style={styles.title}>{userEmail}</Text>
       <View style={styles.body}>
         {console.log("in BuySell")}
-      
+      {
+        /*
+          coinName:props.name,
+        op:props.op,
+        coinPrice:props.value,
+        coinImg: props.img
+        */
+
+      }
       <View>
-        <Text style={styles.title}>{transDetails.coinPrice}</Text>
-        <Text style={styles.title}>{transDetails.coinName}</Text>
+        <CoinCardBuySell name={transDetails.coinName} img={transDetails.coinImg} value={transDetails.coinPrice} />
       </View>
-      <TextInput></TextInput>
-      <TouchableOpacity style={styles.button}>
+      <View style={styles.search}>
+        <TextInput  style={styles.input}
+                            placeholder="enter Coin amount "   
+                            placeholderTextColor="#1A1A1A" 
+                            onChangeText={setAmount}
+                            />
+      </View>
+
+      <Text style={styles.title}>That would be {PostPrice}$</Text>
+
+      <View style={styles.search}>
+        <TextInput  style={styles.input}
+                            placeholder="Brag about it "   
+                            placeholderTextColor="#1A1A1A" 
+                            onChangeText={setComment}
+                            />
+      </View>
+      
+      <TouchableOpacity style={styles.button} details={transDetails} onPress={PostAction}>
         <Text style={styles.title}>{transDetails.op}</Text>
       </TouchableOpacity>
       </View>
@@ -88,8 +176,35 @@ const styles = StyleSheet.create({
     backgroundColor:"lightblue",
     width:"40%",
     alignSelf:"center",
+    marginTop:20,
+    borderRadius:10,
     //alignItems:"center",
     //alignContent:"center"
     
-  }
+  },
+  input:{
+    borderColor:'white',
+   // backgroundColor:"red",
+    borderRadius:10,
+    color:'black',
+    alignSelf:'center',
+    borderWidth: 1,
+    textAlign: 'center',
+    flex:1,
+    height:'100%',
+    
+},
+search:{
+  width: 300,
+  height: 60,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#fff',
+  alignSelf:"center",
+ // borderColor:'#fff',
+  borderRadius:10,
+  flexDirection:'row',
+  //borderWidth: 1,
+  marginTop:20,
+},
 })
