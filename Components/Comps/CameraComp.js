@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { Camera } from "expo-camera";
-// import * as ImagePicker from 'expo-image-picker';
+
 
 export default function CameraComp(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [camera, setCamera] = useState(null);
   const [picUri, setPicUri] = useState();
-  const [image, setImage] = useState();
   const [email, setEmail] = useState(props.user);
 
-  // btnOpenGalery = async () => {
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //   allowsEditing: true,
-  //   aspect: [4, 3],
-  //   });
-  //   if (!result.cancelled) {
-  //   this.setState({ image: result.uri });
-  //   }
-  //   };
 
-  const imageUpload = (imgUri, picName, email) => {
+  const imageUpload = (imgUri, picName) => {
+ 
     let urlAPI = "https://proj.ruppin.ac.il/bgroup53/test2/tar4/uploadpicture";
     let dataI = new FormData();
     dataI.append("picture", {
@@ -44,7 +35,6 @@ export default function CameraComp(props) {
         }
       })
       .then((responseData) => {
-        // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa "+responseData)
         snapClicked(responseData);
         setPicUri(responseData);
       })
@@ -60,7 +50,10 @@ export default function CameraComp(props) {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
+      if(status !== null){
       setHasPermission(status === "granted");
+      }
+      
     })();
   }, []);
 
@@ -92,23 +85,16 @@ export default function CameraComp(props) {
             onPress={async () => {
               if (camera) {
                 const data = await camera.takePictureAsync({quality : 0.4});
-                imageUpload(data.uri, email + ".jpg", email);
-                console.log(
-                  "snap:-------------------------------- " + data.uri
-                );
-                //  snapClicked(picUri);
+                imageUpload(data.uri, email + ".jpg");
+                
               }
             }}
           >
             <Text style={styles.text}> Snap </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button1}
-            //onPress={btnOpenGalery()}
-          >
-            <Text style={styles.text}>Upload</Text>
-          </TouchableOpacity>
+          
         </View>
+        
       </Camera>
     </View>
   );
