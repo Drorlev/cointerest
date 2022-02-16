@@ -11,7 +11,12 @@ const CoinCard = (props) => {
     //alert("1");
     navigation.navigate('InAppPages',{
       screen: 'BuySell',
-      //params: { user: user },
+      params: { transaction: {
+        //email:props.email,
+        coinName:props.name,
+        op:props.op,
+        coinPrice:props.value
+      } },
   })
   };
   const [colorText, setColorText] = useState({

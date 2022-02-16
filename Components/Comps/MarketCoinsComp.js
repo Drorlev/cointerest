@@ -50,14 +50,14 @@ const MarketCoinsComp = (props) => {
                   
                   if(props.action.txt == ""){
                   coinsList =result.map((asset) =>
-                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h}/>
+                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h} op={props.action.op}/>
                   );
                   }
                   else{
                     let coins = result.filter((coin) => coin.Coin_name.toLowerCase().includes(props.action.txt.toLowerCase()));
                    
                     coinsList =coins.map((asset) =>
-                      <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h}/>
+                      <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h} op={props.action.op}/>
                   );
                   }
                   
