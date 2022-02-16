@@ -1,11 +1,23 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity} from "react-native";
 import React, { useState, useEffect } from "react";
+import { useNavigation } from '@react-navigation/native';
 
 import pic from "../../assets/BTC.png";
 
 const CoinCard = (props) => {
+  const navigation = useNavigation();
+
   const btnCliked=()=>{
-    alert("1");
+    //alert("1");
+    navigation.navigate('InAppPages',{
+      screen: 'BuySell',
+      params: { transaction: {
+        //email:props.email,
+        coinName:props.name,
+        op:props.op,
+        coinPrice:props.value
+      } },
+  })
   };
   const [colorText, setColorText] = useState({
     color: "blue",
@@ -44,7 +56,8 @@ export default CoinCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: "15%",
+    height: 80,
+
     
     //flex: 1,
     marginTop: "5%",

@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image,BackHandler} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
 import Underline from "./Underline";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from "@react-navigation/native";
 
 const WelcomeHeader = (props) => {
+  const isFocused = useIsFocused();
+
   const [user, setUser] = useState();
   const [profileImg, setProfileImg] = useState();
   // const userEmail = await AsyncStorage.getItem('loggedInUserEmail')
 
   const getData = async () => {
     try {
-      const value  = await AsyncStorage.getItem('@UserEmail')
+      const value  = await AsyncStorage.getItem('loggedInUserEmail')
       if(value !== null) {
         console.log("----------------------------------"+value);
         return value
@@ -50,7 +53,7 @@ const WelcomeHeader = (props) => {
   useEffect(() => {
     let value=getData()
     getUser();
-  }, []);
+  }, [isFocused]);
   
   return (
     <View>
@@ -63,7 +66,7 @@ const WelcomeHeader = (props) => {
         </View>
 
         <View style={styles.profileIcon}>
-        <Image source={{uri:profileImg}} style={styles.image} />
+        <Image source={{uri:profileImg}}  style={styles.image} />
 
         </View>
       </View>
@@ -108,5 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     borderColor: "white",
     borderWidth: 1.5,
+    resizeMode: 'contain',
+    overflow: "hidden",
   },
 });

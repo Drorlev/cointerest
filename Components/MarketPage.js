@@ -12,8 +12,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 let count = 0;
 
 let action = { op:"Buy", txt:"",}
-
+let email ="";
 const dict ={false:"Buy", true:"Sell"}
+
 
 const MarketPage = () => {
   //action = getDataFromSon();
@@ -23,8 +24,8 @@ const MarketPage = () => {
   const [search, setSearch] = useState("");
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   //const [action, setAction] = useState({ op:"Buy", txt:"",});
-  const [body,setBody]=useState(( <MarketCoinsComp action={action}/>));
- 
+  const [body,setBody]=useState(( <MarketCoinsComp action={action}  />));
+  //const [body,setBody]=useState(( <></>));
   //const [search, setSearch] = useState(action);
 
   console.log("--------Market Page------"+ action.op + "----"+action.txt )
@@ -40,7 +41,7 @@ const MarketPage = () => {
     action.op = dict[isEnabled]
     action.txt = search
     let comps =  <>
-       <MarketCoinsComp action={action}/>
+       <MarketCoinsComp action={action} userEmail={email}/>
       </>
     setBody(comps);
   }
@@ -56,6 +57,7 @@ const MarketPage = () => {
       AsyncStorage.getItem('loggedInUserEmail').then((token) => {
         //setUserEmail(token)
         console.log("use effect ",token)
+        email=token
         setUserEmail(token)
        
        /* setAction({

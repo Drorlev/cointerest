@@ -15,6 +15,7 @@ const SettingsHeader = (props) => {
 
 
   const getData = (data)=>{
+    setProfileImg(data);
     displayModal(!state.isVisible);
     };
     
@@ -54,7 +55,7 @@ const SettingsHeader = (props) => {
   useEffect(() => {
     console.log(profileImg)
     getUser();
-  }, [state,getData]);
+  }, [state,profileImg]);
 
   return (
     <View style={styles.header}>
@@ -120,7 +121,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "black",
     borderColor: "white",
-    borderWidth: 2,
+    borderWidth: 3,
+    resizeMode: 'contain',
+    overflow: "hidden",
   },
   UserInfo: {
     top: "5%",
