@@ -42,11 +42,13 @@ const BuySellPage = ({route,navigation}) => {
         <Text style={styles.title}>{transDetails.coinPrice}</Text>
         <Text style={styles.title}>{transDetails.coinName}</Text>
       </View>
-      <TextInput  style={styles.input}
-                          placeholder="search a Coin"   
-                          placeholderTextColor="#1A1A1A" 
-                          onChangeText={setSearch}
-                          />
+      <View style={styles.search}>
+        <TextInput  style={styles.input}
+                            placeholder="enter Coin amount "   
+                            placeholderTextColor="#1A1A1A" 
+                            onChangeText={setSearch}
+                            />
+      </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.title}>{transDetails.op}</Text>
       </TouchableOpacity>
@@ -93,6 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor:"lightblue",
     width:"40%",
     alignSelf:"center",
+    marginTop:10,
     //alignItems:"center",
     //alignContent:"center"
     
@@ -107,5 +110,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex:1,
     height:'100%'
+},
+search:{
+  width: 300,
+  height: 60,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#fff',
+  alignSelf:"center",
+ // borderColor:'#fff',
+  borderRadius:10,
+  flexDirection:'row',
+  //borderWidth: 1,
 },
 })
