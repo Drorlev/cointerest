@@ -10,6 +10,8 @@ const CoinCard = (props) => {
   const [colorText, setColorText] = useState({
     color: "blue",
   });
+  let image ={ uri: props.img};
+  console.log(props.img);
 
 
   return (
@@ -18,7 +20,7 @@ const CoinCard = (props) => {
     }}>
   
       <View style={styles.Coin}>
-        <Image source={pic} style={styles.img} />
+        <Image source={image} style={styles.img} />
       </View>
       <View style={styles.CoinInfo}>
         <Text style={styles.coinName}>{props.name}</Text>
@@ -28,7 +30,7 @@ const CoinCard = (props) => {
       </View>
       <View style={styles.Precent}>
       <Text style={styles.coinName}>{props.value} $</Text>
-        <Text style={styles.coinPrecent}>-1.7%</Text>
+        <Text style={styles.coinPrecent}>{props.change+"%"}</Text>
       </View>
 
     </TouchableOpacity>
