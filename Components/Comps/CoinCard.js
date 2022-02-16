@@ -51,7 +51,8 @@ export default CoinCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: "15%",
+    height: 80,
+
     
     //flex: 1,
     marginTop: "5%",
