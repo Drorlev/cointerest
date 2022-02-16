@@ -44,7 +44,8 @@ export default function CameraComp(props) {
         }
       })
       .then((responseData) => {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa "+responseData)
+        // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa "+responseData)
+        snapClicked(responseData);
         setPicUri(responseData);
       })
       .catch((err) => {
@@ -53,7 +54,6 @@ export default function CameraComp(props) {
   };
 
   const snapClicked = (val) => {
-    console.log("22222222222222222222222222"+val)
     props.sendData(val);
   };
 
@@ -96,7 +96,7 @@ export default function CameraComp(props) {
                 console.log(
                   "snap:-------------------------------- " + data.uri
                 );
-                snapClicked(picUri);
+                //  snapClicked(picUri);
               }
             }}
           >

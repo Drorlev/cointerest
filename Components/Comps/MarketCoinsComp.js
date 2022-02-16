@@ -96,8 +96,10 @@ const MarketCoinsComp = (props) => {
   return (
     
       <ScrollView style={styles.history}
-      contentContainerStyle={{paddingBottom: "100%", flexGrow:1}}>
-        {coin}
+      // contentContainerStyle={{overflow:"scroll", flexGrow:1}}
+      >
+        <View style={styles.test}>{coin}</View>
+        
       </ScrollView>
   
   );
@@ -106,6 +108,10 @@ const MarketCoinsComp = (props) => {
 export default MarketCoinsComp;
 
 const styles = StyleSheet.create({
+  test:{
+    flex:1,
+    paddingBottom:"80%",
+  },
     container: {
      flex:1,
     },
@@ -125,13 +131,13 @@ const styles = StyleSheet.create({
     //flexDirection:'row',
     //paddingTop:30,
     //backgroundColor: '#1A1A1A',
-    //backgroundColor: 'lightblue',
     flex: 0.9,
     width:"100%",
-     height:2000,
+    //height:'100%',
+     //height:2000,
     //color:'#fff'
     alignSelf: 'center',
-    borderRadius:10,
+    //borderRadius:10,
     // justifyContent: 'center',
   },
   container2: {
