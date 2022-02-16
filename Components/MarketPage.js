@@ -40,7 +40,7 @@ const MarketPage = () => {
     action.op = dict[isEnabled]
     action.txt = search
     let comps =  <>
-       <MarketCoinsComp action={action}/>
+       <MarketCoinsComp action={action} userEmail={userEmail}/>
       </>
     setBody(comps);
   }
