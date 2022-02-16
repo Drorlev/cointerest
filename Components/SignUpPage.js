@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storeData = async (value) => {
   try {
-    await AsyncStorage.setItem('@UserEmail', value)
+    await AsyncStorage.setItem('loggedInUserEmail', value)
     // const jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
     // console.log("after saving ",jsonVal);
   } catch (e) {
