@@ -1,10 +1,15 @@
 import { StyleSheet, Text, View, TouchableOpacity, Modal,Image } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
+
 import CameraComp from "./CameraComp";
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
 
+
+
+
 const SettingsHeader = (props) => {
+
   const [state, setState] = useState({
     isVisible: false,
   });
@@ -33,7 +38,6 @@ const SettingsHeader = (props) => {
       }),
     })
       .then((res) => {
-        //console.log('res=', res);
         console.log("res.status ", res.status);
         console.log("res.ok ", res.ok);
         return res.json();
@@ -43,8 +47,6 @@ const SettingsHeader = (props) => {
           setUser(result.Username);
           setProfileImg(result.Image);
           setBio(result.bio)
-          console.log("--------------------------------------profile: "+profileImg);
-          console.log("--------------------------------------------bio: "+bio);
         },
         (error) => {
           console.log("err post=", error);
@@ -53,9 +55,8 @@ const SettingsHeader = (props) => {
   };
 
   useEffect(() => {
-    console.log(profileImg)
     getUser();
-  }, [state,profileImg]);
+  }, [state,props,profileImg]);
 
   return (
     <View style={styles.header}>
@@ -66,6 +67,7 @@ const SettingsHeader = (props) => {
         onRequestClose={() => {
           displayModal(!state.isVisible);
         }}
+        
       >
         <CameraComp sendData={getData} user={props.email} />
       </Modal>
