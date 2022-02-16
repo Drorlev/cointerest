@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
   img: {
     //marginTop:2,
     alignSelf: "center",
-    width: 40,
-    height: 40,
+    width: 40 ,
+    height: 40 ,
+    
   },
 });
