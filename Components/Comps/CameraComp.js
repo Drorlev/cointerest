@@ -13,19 +13,13 @@ export default function CameraComp(props) {
 
   // btnOpenGalery = async () => {
   //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
-  //     allowsEditing: true,
-  //     aspect: [4, 3],
-  //     quality: 1,
+  //   allowsEditing: true,
+  //   aspect: [4, 3],
   //   });
-
-  //   console.log(result);
-
   //   if (!result.cancelled) {
-  //     console.log("shit");
-  //     setImage(result.uri);
+  //   this.setState({ image: result.uri });
   //   }
-  // };
+  //   };
 
   const imageUpload = (imgUri, picName, email) => {
     let urlAPI = "https://proj.ruppin.ac.il/bgroup53/test2/tar4/uploadpicture";
@@ -50,7 +44,8 @@ export default function CameraComp(props) {
         }
       })
       .then((responseData) => {
-        console.log(responseData)
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa "+responseData)
+        setPicUri(responseData);
       })
       .catch((err) => {
         alert("err upload= " + err);
@@ -58,6 +53,7 @@ export default function CameraComp(props) {
   };
 
   const snapClicked = (val) => {
+    console.log("22222222222222222222222222"+val)
     props.sendData(val);
   };
 
@@ -95,9 +91,8 @@ export default function CameraComp(props) {
             style={styles.button}
             onPress={async () => {
               if (camera) {
-                const data = await camera.takePictureAsync(null);
+                const data = await camera.takePictureAsync({quality : 0.4});
                 imageUpload(data.uri, email + ".jpg", email);
-                setPicUri(data.uri);
                 console.log(
                   "snap:-------------------------------- " + data.uri
                 );
@@ -109,7 +104,7 @@ export default function CameraComp(props) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button1}
-            // onPress={btnOpenGalery}
+            //onPress={btnOpenGalery()}
           >
             <Text style={styles.text}>Upload</Text>
           </TouchableOpacity>
