@@ -38,7 +38,8 @@ const Assets = (props) => {
               (result) => {
                 console.log("fetch Assets= ", result);
                 if(result != undefined){
-                  let assetsList =result.map(asset => 
+                  let filterAssets = result.filter((asset) => asset.Amount > 0);
+                  let assetsList = filterAssets.map(asset => 
                     <Asset key={asset.Coin_name} img={asset.Coin_info.Coin_picture} amount={asset.Amount}/>
                   );
                 

@@ -42,21 +42,25 @@ const BuySellPage = ({route,navigation}) => {
  */
 
 
-  const afterSuccessBuy = () =>{
-  
-    navigation.navigate('Market')
+  const afterSuccess = () =>{
+    alert("Action succeeded")
+    //navigation.navigate('Market')
     
   }
 
   //Post Function
   const PostAction = () => {
     let realAmount = (transDetails.op == "Buy") ? amount: (amount * (-1));
+    //console.log("-------------BuySellPage Trans OPERATION " + transDetails.op);
+    //console.log("-------------BuySellPage REAL amount " + realAmount);
     
     let action={
       Coin_name:transDetails.coinName,
       Email:email,
       Amount:realAmount,
     }
+
+    console.log("-------------BuySellPage sent object " + action.Coin_name +" "+ action.email +" "+ action.realAmount +" " );
 
     fetch(apiUrl + comment, {
       method: 'POST',
@@ -76,10 +80,7 @@ const BuySellPage = ({route,navigation}) => {
       .then(
         (result) => {
           console.log("fetch POST= ", result);
-          (flag)?   alert("Success buying") : alert(result.Message)
-
-
-          
+          (flag) ? alert("Action succeeded") : alert(result.Message)
         },
         (error) => {
           console.log("err post=", error);
@@ -96,7 +97,7 @@ const BuySellPage = ({route,navigation}) => {
   return (
     <View style={styles.container}>
     <View style={styles.container2}>
-      <Text style={styles.title}>BUy Sell</Text>
+      <Text style={styles.title} onPress={afterSuccess}>BUy Sell</Text>
       <Text style={styles.title}>{userEmail}</Text>
       <View style={styles.body}>
         {console.log("in BuySell")}

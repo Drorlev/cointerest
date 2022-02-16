@@ -83,9 +83,77 @@ const MarketCoinsComp = (props) => {
         break;
 
       case "Sell":
-        console.log("Sell");
-        let coinsList = <><View style={styles.container}><Text style={styles.headerTxt}>Sell MF</Text></View></>
-        setCoin(coinsList)
+
+      const sellApiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/assets/?email="
+        console.log("Sell "+ props.userEmail );
+        //let coinsList = <><View style={styles.container}><Text style={styles.headerTxt}>Sell MF</Text></View></>
+        fetch(sellApiUrl + props.userEmail, {
+          method: "GET",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            Accept: "application/json; charset=UTF-8",
+          }),
+        })
+          .then((res) => {
+            //console.log('res=', res);
+            //console.log("res.status", res.status);
+            //console.log("res.ok", res.ok);
+            
+            flag = res.ok;
+            console.log("Sell case flag : " + flag);
+            /*
+            if (!flag) {
+              setCoin(
+                <View>
+                  <Text style={styles.headerTxt}>No Assets</Text>
+                </View>
+              );
+              return;
+            }
+            */
+            return res.json();
+          })
+          .then(
+            (result) => {
+              console.log("fetch Assets= ", result.Coin_name);
+              if (result != undefined) {
+                console.log("-------in Sell----"+props.action.txt);
+                  let coinsList;
+                  
+                  if(props.action.txt == ""){
+                  coinsList =result.map((asset) =>
+                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_info.Coin_picture} value={asset.Coin_info.Price_history[0].Coin_value} change={asset.Coin_info.Price_history[0].Percent_change_24h} op={props.action.op}/>
+                  );
+                  }
+                  else{
+                    let coins = result.filter((coin) => coin.Coin_name.toLowerCase().includes(props.action.txt.toLowerCase()));
+                   
+                    coinsList =coins.map((asset) =>
+                    <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_info.Coin_picture} value={asset.Coin_info.Price_history[0].Coin_value} change={asset.Coin_info.Price_history[0].Percent_change_24h} op={props.action.op}/>
+                  );
+                  }
+                  
+                 /*
+               
+               */
+              /*
+                  coinsList =result.map((asset) =>
+                  <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value}/>
+               );
+
+               let transactionsList =result.map(asset => 
+                <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value}/>
+              );
+              */
+                  setCoin(coinsList)
+              }
+            },
+            (error) => {
+              console.log("err post=", error);
+            }
+          );
+        
+        //setCoin(coinsList)
         break;
     }
   };
