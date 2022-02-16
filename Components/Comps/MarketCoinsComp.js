@@ -47,33 +47,33 @@ const MarketCoinsComp = (props) => {
               if (result != undefined) {
                 console.log("-------inBuy----"+props.action.txt);
                   let coinsList;
-                  /*
+                  
                   if(props.action.txt == ""){
                   coinsList =result.map((asset) =>
-                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} value={asset.Price_history[0].Coin_value}/>
+                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h}/>
                   );
                   }
                   else{
-                    coins = result.filter((coin) => coin.Coin_name.includes(props.action.txt));
+                    let coins = result.filter((coin) => coin.Coin_name.toLowerCase().includes(props.action.txt.toLowerCase()));
+                   
                     coinsList =coins.map((asset) =>
-                     <CoinCard key={asset.Coin_name} name={asset.Coin_name} value={asset.Price_history[0].Coin_value}/>
+                      <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value} change={asset.Price_history[0].Percent_change_24h}/>
                   );
                   }
-                  */
+                  
                  /*
-                coinsList.forEach(element => {
-                    console.log("conis lsit "+ JSON.stringify(element));
-                  });
-                  console.log("conis lsit "+ JSON.stringify(coinsList));
+               
                */
+              /*
                   coinsList =result.map((asset) =>
-                  <CoinCard key={asset.Coin_name} name={asset.Coin_name} value={asset.Price_history[0].Coin_value}/>
+                  <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value}/>
                );
 
                let transactionsList =result.map(asset => 
-                <CoinCard key={asset.Coin_name} name={asset.Coin_name} value={asset.Price_history[0].Coin_value}/>
+                <CoinCard key={asset.Coin_name} name={asset.Coin_name} img={asset.Coin_picture} value={asset.Price_history[0].Coin_value}/>
               );
-                  setCoin(transactionsList)
+              */
+                  setCoin(coinsList)
               }
             },
             (error) => {
@@ -96,7 +96,7 @@ const MarketCoinsComp = (props) => {
   return (
     
       <ScrollView style={styles.history}
-      contentContainerStyle={{paddingBottom: "100%"}}>
+      contentContainerStyle={{paddingBottom: "100%", flexGrow:1}}>
         {coin}
       </ScrollView>
   
@@ -120,30 +120,31 @@ const styles = StyleSheet.create({
     flex:1,
    // backgroundColor: 'lightblue',
     borderRadius:10,
-},
-history: {
+  },
+  history: {
+    //flexDirection:'row',
+    //paddingTop:30,
+    //backgroundColor: '#1A1A1A',
+    //backgroundColor: 'lightblue',
+    flex: 0.9,
+    width:"100%",
+     height:2000,
+    //color:'#fff'
+    alignSelf: 'center',
+    borderRadius:10,
+    // justifyContent: 'center',
+  },
+  container2: {
+    marginTop:5,
   //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
-        //backgroundColor: 'lightblue',
-        flex: 0.9,
-        width:"100%",
-        //color:'#fff'
-        alignSelf: 'center',
-        borderRadius:10,
-       // justifyContent: 'center',
-},
-container2: {
-  marginTop:5,
- //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
-        backgroundColor: '#1A1A1A',
-        flex: 1,
-        width:"90%",
-        alignSelf: 'center',
-        justifyContent:"center",
-        //marginBottom:"20%",
-},
+    //paddingTop:30,
+    //backgroundColor: '#1A1A1A',
+    backgroundColor: '#1A1A1A',
+    flex: 1,
+    width:"90%",
+    alignSelf: 'center',
+    justifyContent:"center",
+    //marginBottom:"20%",
+  },
 
 });

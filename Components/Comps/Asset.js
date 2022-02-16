@@ -3,15 +3,12 @@ import React from 'react'
 import pic from '../../assets/BTC.png'
 
 const Asset = (props) => {
+    let image ={ uri: props.img};
     console.log(props.img)
   return (
     <View style={styles.container}>
         <View style={styles.asset}>
-            {   
-                //should uncomment only after pics in th DB
-                //<Image source={props.img} style={styles.img}/>
-            }
-            <Image source={pic} style={styles.img}/>
+            <Image source={image} style={styles.img}/>
             <Text style={styles.txt}>{props.amount}</Text>
         </View>
     </View>
