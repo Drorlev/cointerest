@@ -32,8 +32,9 @@ const MarketHeader = (props) => {
             <View style={styles.switch}>
                 <Text style={styles.txt}>Buy</Text>
                 <Switch style={styles.switch}
-                trackColor={{ false: "green", true: "gray" }}
-                thumbColor={isEnabled ? "lightgray" : "lightgreen"}
+                
+                trackColor={{ false: "white", true: "white" }}
+                thumbColor={isEnabled ? "#504CF1" : "#504CF1"}
                 //ios_backgroundColor="#3e3e3e"
                 onValueChange={ toggleSwitch}
                 value={isEnabled}
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
     header: {
         //flexDirection:'row',
         //paddingTop:30,
-        backgroundColor: 'lightblue',
         flex: 0.3,
         //alignItems: 'center',
        // justifyContent: 'center',
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
        flexDirection:"row",
        justifyContent:"center",
        alignItems:"center",
+       transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }]
     },
     txt:{
         fontSize:20,

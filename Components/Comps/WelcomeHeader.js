@@ -3,11 +3,26 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import React, { useState, useEffect } from "react";
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
 import Underline from "./Underline";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const WelcomeHeader = (props) => {
   const [user, setUser] = useState();
   const [profileImg, setProfileImg] = useState();
+  // const userEmail = await AsyncStorage.getItem('loggedInUserEmail')
 
+  const getData = async () => {
+    try {
+      const value  = await AsyncStorage.getItem('@UserEmail')
+      if(value !== null) {
+        console.log("----------------------------------"+value);
+        return value
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
   const getUser = () => {
+    
     fetch(apiUrl + props.email + "&n=1", {
       method: "GET",
       headers: new Headers({
@@ -33,6 +48,7 @@ const WelcomeHeader = (props) => {
   };
 
   useEffect(() => {
+    let value=getData()
     getUser();
   }, []);
   

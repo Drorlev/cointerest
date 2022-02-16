@@ -52,8 +52,9 @@ const SettingsHeader = (props) => {
   };
 
   useEffect(() => {
+    console.log(profileImg)
     getUser();
-  }, []);
+  }, [state,getData]);
 
   return (
     <View style={styles.header}>
@@ -65,7 +66,7 @@ const SettingsHeader = (props) => {
           displayModal(!state.isVisible);
         }}
       >
-        <CameraComp sendData={getData} />
+        <CameraComp sendData={getData} user={props.email} />
       </Modal>
       <TouchableOpacity
         onPress={() => {
