@@ -11,7 +11,7 @@ const reformatDate = (dateStr) =>{
 const Transaction = (props) => {
     console.log(props)
 
-    let op  = (props.dollar_amount >=0) ? "Bought": "Sold";
+    let op  = (props.dollar_amount >=0) ?  "Sold":"Bought";
     let tranTime = (props.t_date).substring(0, 10);
      tranTime = reformatDate(tranTime);
      let image ={ uri: props.coin_pic};
