@@ -101,17 +101,9 @@ const BuySellPage = ({route,navigation}) => {
       <Text style={styles.title}>{userEmail}</Text>
       <View style={styles.body}>
         {console.log("in BuySell")}
-      {
-        /*
-          coinName:props.name,
-        op:props.op,
-        coinPrice:props.value,
-        coinImg: props.img
-        */
-
-      }
+     
       <View>
-        <CoinCardBuySell name={transDetails.coinName} img={transDetails.coinImg} value={transDetails.coinPrice} />
+        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} />
       </View>
       <View style={styles.search}>
         <TextInput  style={styles.input}
