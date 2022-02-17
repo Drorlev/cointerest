@@ -97,19 +97,20 @@ const BuySellPage = ({route,navigation}) => {
   return (
     <View style={styles.container}>
     <View style={styles.container2}>
-      <Text style={styles.title} onPress={afterSuccess}>BUy Sell</Text>
-      <Text style={styles.title}>{userEmail}</Text>
       <View style={styles.body}>
         {console.log("in BuySell")}
      
       <View>
-        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} />
+        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} />
       </View>
+      <Text style={styles.smallHeader}>Coin amount</Text>
+
       <View style={styles.search}>
         <TextInput  style={styles.input}
-                            placeholder="enter Coin amount "   
+                            placeholder="Coin amount "   
                             placeholderTextColor="#1A1A1A" 
                             onChangeText={setAmount}
+                            keyboardType={"number-pad"}
                             />
       </View>
 
@@ -117,14 +118,15 @@ const BuySellPage = ({route,navigation}) => {
 
       <View style={styles.search}>
         <TextInput  style={styles.input}
-                            placeholder="Brag about it "   
+                            placeholder="Comment"   
                             placeholderTextColor="#1A1A1A" 
                             onChangeText={setComment}
+                            
                             />
       </View>
       
       <TouchableOpacity style={styles.button} details={transDetails} onPress={PostAction}>
-        <Text style={styles.title}>{transDetails.op}</Text>
+        <Text style={styles.btnText}>{transDetails.op}</Text>
       </TouchableOpacity>
       </View>
     </View>
@@ -135,6 +137,20 @@ const BuySellPage = ({route,navigation}) => {
 export default BuySellPage
 
 const styles = StyleSheet.create({
+  smallHeader:{
+    color:"white",
+    fontSize:40,
+    fontWeight:"bold",
+    textAlign:"center",
+    marginTop:"5%"
+
+  },
+  btnText:{
+    color:"white",
+    textAlign:"center",
+    fontSize:18,
+    fontWeight:"bold"
+  },
   container: {
     //flexDirection:'row',
     //paddingTop:30,
@@ -149,13 +165,13 @@ const styles = StyleSheet.create({
     */
   },
   container2:{
-    marginTop:30,
-   // backgroundColor: '#1A1A1A',
+    backgroundColor: '#1A1A1A',
    //backgroundColor:"white",
     flex: 1,
     //alignItems: 'center',
   },
   title:{
+    marginTop:"5%",
     color:'#fff',
     alignSelf:'center',
     fontSize:30,
@@ -166,9 +182,12 @@ const styles = StyleSheet.create({
     marginTop:40,
   },
   button:{
-    backgroundColor:"lightblue",
-    width:"40%",
+    backgroundColor:"#6136DA",
+    width:"50%",
+    height:"7%",
     alignSelf:"center",
+    textAlign:"center",
+    justifyContent:"center",
     marginTop:20,
     borderRadius:10,
     //alignItems:"center",
@@ -194,10 +213,10 @@ search:{
   alignItems: 'center',
   backgroundColor: '#fff',
   alignSelf:"center",
- // borderColor:'#fff',
+  borderColor:'#fff',
   borderRadius:10,
   flexDirection:'row',
   //borderWidth: 1,
-  marginTop:20,
+  marginTop:30,
 },
 })

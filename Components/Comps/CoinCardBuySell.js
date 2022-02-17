@@ -1,93 +1,74 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
+import Underline from "./Underline";
+
 import React from 'react'
 
 const CoinCardBuySell = (props) => {
-
     let image ={ uri: props.img};
   return (
-    <View style={styles.container}>
-       <View style={styles.Coin}>
-        <Image source={image} style={styles.img} />
+     
+      <View>
+      <View style={styles.header}>
+        <View style={styles.welcome}>
+          <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
+            {props.action}
+          </Text>
+          <Text style={styles.text}>{props.name}</Text>
+        </View>
+
+        <View style={styles.profileIcon}>
+        <Image source={image}  style={styles.image} />
+
+        </View>
       </View>
-      <View style={styles.CoinInfo}>
-        <Text style={styles.coinName}>{props.name}</Text>
-      </View>
-      <View style={styles.CoinGraph}>
-        <Text style={styles.coinName}></Text>
-      </View>
-      <View style={styles.Precent}>
-        <Text style={styles.coinName}>{props.value} $</Text>
-      </View>
+      <Underline />
     </View>
-  )
+      
+
+
+
+
+  );
 }
 
 export default CoinCardBuySell
 
 const styles = StyleSheet.create({
-    container: {
-      flexDirection: "row",
-      height: 80,
-  
-      
-      //flex: 1,
-      marginTop: "5%",
-      width: "92%",
-      alignSelf: "center",
-      backgroundColor: "#1C1C1C",
-     
-      borderRadius: 10,
-      shadowColor: "black",
-      shadowOffset: {
-        width: 0,
-        height: 5,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4.84,
-  
-      elevation: 5,
+   
+    image: {
+
+      width: '100%',
+      height:  '100%',
     },
-    Coin: {
-      flexDirection: "column",
-      flex: 0.3,
-      justifyContent:"center",
-     
-    },
-    CoinInfo: {
-      flexDirection: "column",
-      flex: 0.3,
-      
-    },
-    CoinGraph: {
-      flexDirection: "column",
-      flex: 0.05,
-      
-    },
-    Precent: {
-      flexDirection: "column",
-      flex: 0.4,
-      
-    },
-    coinName: {
+    text: {
       color: "white",
-      fontSize: 23,
       fontWeight: "bold",
-      textAlign: "center",
-      top: "35%",
+      fontSize: 25,
     },
-    coinPrecent: {
-      color: "red",
-      fontSize: 15,
-      fontWeight: "bold",
-      alignSelf: "center",
-      textAlign: "center",
-      top: "35%",
+    welcome: {
+      justifyContent: "flex-start",
+      left: 20,
+      flexDirection: "column",
+      flex: 0.7,
     },
-    img: {
-      //marginTop:2,
-      alignSelf: "center",
-      width: 40,
-      height: 40,
+    header: {
+      height: 80,
+      marginTop: "5%",
+      flexDirection: "row",
+    },
+    profileIcon: {
+      flexDirection: "column",
+      justifyContent: "space-around",
+      left: 80,
+      width: 70,
+      height: 70,
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 90,
+      backgroundColor: "black",
+      // borderColor: "white",
+      // borderWidth: 1,
+      
     },
   });
   
