@@ -2,7 +2,7 @@ import { StyleSheet, Text, View , ScrollView, Image} from 'react-native';
 import React,{useEffect,useState} from 'react';
 import FeedElement from './FeedElement';
 
-const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?input_email="; 
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions"; 
 let count=0;
 const Feed = (props) => {
   const [transaction,setTransaction]=useState();
@@ -13,7 +13,7 @@ const Feed = (props) => {
   const getTransactions=()=>{
     console.log("Transactions", props.email)
     console.log("bEFROE rENDER ",apiUrl + props.email)
-    fetch(apiUrl + props.email , {
+    fetch(apiUrl , {
         method: 'GET',
         headers: new Headers({
           'Content-Type': 'application/json; charset=UTF-8',
