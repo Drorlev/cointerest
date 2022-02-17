@@ -7,6 +7,9 @@ import WelcomeHeader from "./Comps/WelcomeHeader";
 import FollowingComp from "./Comps/FollowingComp";
 import HeadlineInHomePageWithChevron from "./Comps/HeadlineInHomePageWithChevron";
 import { useIsFocused } from "@react-navigation/native";
+import Transactions from "./Comps/Transactions";
+import Feed from "./Comps/FeedComp";
+
 
 //START OF THE HOME PAGE
 const HomePage = ({ route, navigation }) => {
@@ -55,8 +58,8 @@ const HomePage = ({ route, navigation }) => {
       <Balance email={user} balance={14000} />
       </View>
       <HeadlineInHomePageWithChevron text={"Following"}/>
-      <FollowingComp email={user}/>
-      <HeadlineInHomePageWithChevron text={"Watchlist"}/>
+      {/* <FollowingComp email={user}/> */}
+      <Feed email={user}/>
     </SafeAreaView>
   );
 };
