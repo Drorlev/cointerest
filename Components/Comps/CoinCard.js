@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     top: "35%",
   },
   coinPrecent: {
-    color: "red",
+    color: "white",
     fontSize: 15,
     fontWeight: "bold",
     alignSelf: "center",
