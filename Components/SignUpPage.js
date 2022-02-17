@@ -14,22 +14,19 @@ import Sign_Up from "../assets/Sign_Up.png";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React, { useState } from "react";
 import * as Animatable from "react-native-animatable";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const storeData = async (value) => {
   try {
-    await AsyncStorage.setItem('loggedInUserEmail', value)
+    await AsyncStorage.setItem("loggedInUserEmail", value);
     // const jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
     // console.log("after saving ",jsonVal);
   } catch (e) {
     console.log(e);
   }
-}
-
+};
 
 const SignUp = ({ navigation }) => {
-
-
   const [data, setData] = useState({
     email: "",
     username: "",
@@ -39,7 +36,7 @@ const SignUp = ({ navigation }) => {
   });
 
   const [errorText, setErrorText] = useState({
-    text:"Must be a valid Email"
+    text: "Must be a valid Email",
   });
 
   const navigate_to_Camera = () => {
@@ -48,10 +45,10 @@ const SignUp = ({ navigation }) => {
     });
   };
 
-  const navigate_to_homePage=()=>{
+  const navigate_to_homePage = () => {
     //navigation.navigate('HomePage')
-    navigation.navigate('InApp')
-}
+    navigation.navigate("InApp");
+  };
   // validate the input from the email input section and updating the states
   const emailInputChange = (val) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -117,40 +114,39 @@ const SignUp = ({ navigation }) => {
         Username: data.username,
         Password: data.password,
         Image: "",
-        Bio: ""
+        Bio: "",
       };
-      fetch('http://194.90.158.74/bgroup53/test2/tar4/api/Users/', {
-        method: 'POST',
+      fetch("http://194.90.158.74/bgroup53/test2/tar4/api/Users/", {
+        method: "POST",
         body: JSON.stringify(s),
         headers: new Headers({
-        'Content-type': 'application/json; charset=UTF-8'
-        })
-        })
-        .then(res => {
-        console.log('res=', res.ok);
+          "Content-type": "application/json; charset=UTF-8",
+        }),
+      })
+        .then((res) => {
+          console.log("res=", res.ok);
 
-        res.ok ? storeData(data.email).then(navigate_to_homePage()) : setData({
-          ...data,
-          isValidEmail: false,
-        });
-        setErrorText({
-          text: "Email already in used",
-        });
-        
-        return res.json()
+          res.ok
+            ? storeData(data.email).then(navigate_to_homePage())
+            : setData({
+                ...data,
+                isValidEmail: false,
+              });
+          setErrorText({
+            text: "Email already in used",
+          });
+
+          return res.json();
         })
         .then(
-        (result) => {
-        console.log("fetch POST= ", result);
-        console.log(result.Avg);
-        },
-        (error) => {
-        console.log("err post=", error);
-        });
-
-
-
-
+          (result) => {
+            console.log("fetch POST= ", result);
+            console.log(result.Avg);
+          },
+          (error) => {
+            console.log("err post=", error);
+          }
+        );
     }
   };
 
@@ -173,10 +169,11 @@ const SignUp = ({ navigation }) => {
               onPress={navigate_to_Camera}
               style={styles.roundButton1}
             >
-              <MaterialCommunityIcons
-                name="camera-plus-outline"
-                color={"white"}
-                size={30}
+              <Image
+                style={styles.tinyLogo}
+                source={{
+                  uri: "http://194.90.158.74/bgroup53/test2/tar4/Assets/default.png",
+                }}
               />
             </TouchableOpacity>
           </View>
@@ -225,7 +222,7 @@ const SignUp = ({ navigation }) => {
             <TouchableOpacity style={styles.login} onPress={btnPost}>
               <Text style={styles.buttonTxt}>Create Account</Text>
             </TouchableOpacity>
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -241,8 +238,8 @@ const SignUp = ({ navigation }) => {
                 </Text>
               </View>
               <View style={{ flex: 1, height: 1, backgroundColor: "white" }} />
-            </View>
-            <TouchableOpacity style={styles.GoogleLogin} onPress={btnPost}>
+            </View> */}
+            {/* <TouchableOpacity style={styles.GoogleLogin} onPress={btnPost}>
               <View style={styles.GoogleIcon}>
                 <MaterialCommunityIcons
                   name="google"
@@ -251,7 +248,7 @@ const SignUp = ({ navigation }) => {
                 />
                 <Text style={styles.buttonTxt}>Continue with Google</Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </ImageBackground>
@@ -263,6 +260,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+  },
+  tinyLogo:{
+    width: "100%",
+    height: "100%",
   },
   header: {
     //paddingTop:90,
@@ -356,8 +357,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   roundButton1: {
-    width: 60,
-    height: 60,
+    width: 90,
+    height: 90,
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 100,
