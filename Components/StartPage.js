@@ -3,7 +3,8 @@ import logo from '../assets/cointerest.png'
 //Money_motivation-bro_1
 import pic from '../assets/Money_motivation-bro_1.png'
 import React from 'react'
-import { StyleSheet, View, Button, Image,Text ,TouchableOpacity} from 'react-native'
+import { StyleSheet, View, Image,Text ,TouchableOpacity} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 //Test
@@ -17,6 +18,34 @@ const Start = ({navigation} ) => {
     const navigate_to_signUp=()=>{
         navigation.navigate('SignUpPage')
     }
+
+    const navigate_to_homePage=()=>{
+        //navigation.navigate('HomePage')
+        navigation.navigate('InApp')
+        //navigation.popToTop() && navigation.navigate('InApp')
+    }
+
+    const getData = async () => {
+        try {
+          //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
+          let jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
+          console.log("Login Page ", jsonVal)
+            if(jsonVal != null){
+                navigate_to_homePage();
+            }
+          /*
+          await AsyncStorage.getAllKeys()
+          .then(keys => AsyncStorage.multiRemove(keys))
+          .then(() => alert('success'));
+          */
+          //return jsonValue != null ? await JSON.parse(jsonValue) : null;
+          //return  jsonVal;
+          //setUser( await AsyncStorage.getItem('@loggedInUser'));
+        } catch(e) {
+          // error reading value
+        }
+    }
+    getData();
 
     
     return (
