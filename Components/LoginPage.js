@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
         navigation.navigate('InApp')
         //navigation.popToTop() && navigation.navigate('InApp')
     }
-
+    
     const getData = async () => {
         try {
           //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
