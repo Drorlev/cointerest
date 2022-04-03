@@ -30,8 +30,32 @@ const Start = ({navigation} ) => {
           //const jsonValue = await AsyncStorage.getItem('@loggedInUser')
           let jsonVal = await AsyncStorage.getItem('loggedInUserEmail')
           console.log("Login Page ", jsonVal)
+
             if(jsonVal != null){
-                navigate_to_homePage();
+                let email = jsonVal
+
+                fetch("http://194.90.158.74/bgroup53/test2/tar4/api/Logins/?email="+email, {
+                    method: "POST",
+                    body: JSON.stringify(),
+                    headers: new Headers({
+                      "Content-type": "application/json; charset=UTF-8",
+                    }),
+                  })
+                    .then((res) => {
+                      console.log("res=", res.ok);
+                      (res.ok ? navigate_to_homePage() : "no_op");
+                      return res.json();
+                    })
+                    .then(
+                      (result) => {
+                        console.log("fetch logInlOG POST= ", result);
+                      },
+                      (error) => {
+                        console.log("err post=", error);
+                      }
+                    );  
+                    
+                //navigate_to_homePage();
             }
           /*
           await AsyncStorage.getAllKeys()

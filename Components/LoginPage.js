@@ -80,54 +80,67 @@ const Login = ({navigation}) => {
     //if true navigate_to_homePage() invoked
     const userAuth =()=>{
         
-        //To Do regex for Email
-        //
 
-        let user ={
-            userEmail:email,
-            userPassword:password
-        }
-       // console.log(user)
+      let user ={
+          userEmail:email,
+          userPassword:password
+      }
+      // console.log(user)
 
-        fetch(apiUrl +"?email="+ email+"&password="+ password , {
-            method: 'GET',
-            headers: new Headers({
-              'Content-Type': 'application/json; charset=UTF-8',
-              'Accept': 'application/json; charset=UTF-8'
-            })
+      const logs = (email) =>{
+        fetch("http://194.90.158.74/bgroup53/test2/tar4/api/Logins/?email="+email, {
+          method: "POST",
+          body: JSON.stringify(),
+          headers: new Headers({
+            "Content-type": "application/json; charset=UTF-8",
+          }),
+        })
+          .then((res) => {
+            console.log("res=", res.ok);
+            (res.ok ? navigate_to_homePage() : "no_op");
+            return res.json();
           })
-            .then(res => {
-            //console.log('res=', res); cant do console.log to this
-              console.log('res.status', res.status);
-              console.log('res.ok', res.ok);
-              /*
-              if(res.ok != true){
-                  return;
-              }
-              */
-              //if the respone is Ok go to home page
-              //navigate_to_homePage();
-              flag = res.ok;
-              return res.json()
-            })
-            .then(
-              (result) => {
-                console.log("fetch user = ", result);
-                flag ? storeData(result.Email).then(navigate_to_homePage()) : alert(result.Message)
-              },
-              (error) => {
-                  //should throw generic 
-                  //email or password are wrong 
-                console.log("err post=", error);
-                
-              });
+          .then(
+            (result) => {
+              console.log("fetch logInlOG POST= ", result);
+            },
+            (error) => {
+              console.log("err post=", error);
+            }
+          );  
+      }
 
-       //this fetch will return just true/false
-       //or
-       //this fetch will get the whole data if the get is true
-       //should we send all the data to HomePage
-       //or we should fetch the whole data in HomePage??
-       
+      fetch(apiUrl +"?email="+ email+"&password="+ password , {
+          method: 'GET',
+          headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': 'application/json; charset=UTF-8'
+          })
+        })
+          .then(res => {
+          //console.log('res=', res); cant do console.log to this
+            console.log('res.status', res.status);
+            console.log('res.ok', res.ok);
+            /*
+            if(res.ok != true){
+                return;
+            }
+            */
+            //if the respone is Ok go to home page
+            //navigate_to_homePage();
+            flag = res.ok;
+            return res.json()
+          })
+          .then(
+            (result) => {
+              console.log("fetch user = ", result);
+              flag ? storeData(result.Email).then(logs(result.Email)) : alert(result.Message)
+            },
+            (error) => {
+                //should throw generic 
+                //email or password are wrong 
+              console.log("err post=", error);
+            });
     } 
 
     //this function navigate to the home page
