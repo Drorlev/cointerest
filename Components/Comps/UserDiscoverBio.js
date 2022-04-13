@@ -14,6 +14,8 @@ const UserDiscoverBio = (props) => {
       alert("Follow me")
     }
     const getFollowState = () =>{
+
+      //email is the user or the discoverd
       fetch(apiUrlFollow + props.email + "&discover_user="+emailDiscover, {
         method: "GET",
         headers: new Headers({
