@@ -2,13 +2,40 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from "react";
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
+const apiUrlFollow = "http://194.90.158.74/bgroup53/test2/tar4/api/Follows/?email=";
+
+const followDict = {true: "Follow",false: "unFollow"}
 
 const UserDiscoverBio = (props) => {
     const [user, setUser] = useState();
+    const [following, setFollwing] = useState(true);
 
     const follow = () =>{
       alert("Follow me")
     }
+    const getFollowState = () =>{
+      fetch(apiUrlFollow + props.email + "&discover_user="+emailDiscover, {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json; charset=UTF-8",
+          Accept: "application/json; charset=UTF-8",
+        }),
+      }) .then((res) => {
+        //console.log('res=', res);
+        console.log("res.status ", res.status);
+        console.log("res.ok ", res.ok);
+        return res.json();
+      })
+      .then(
+        (result) => {
+            console.log("User Discover Follow",result)
+            setFollwing(result)
+          },(error) => {
+            console.log("err post=", error);
+          });
+    } 
+
+
 
     const getUser = () => {
         console.log()
@@ -32,11 +59,11 @@ const UserDiscoverBio = (props) => {
                 if(result != undefined){
                     setUser(<>
                         <View style={styles.leftCol}>
-                          <TouchableOpacity style={styles.followBtn} onPress={follow}>
-                            <Text style={styles.txtFollow}>Follow</Text>
-                          </TouchableOpacity>
                           <Text style={styles.txt}>{result.Bio}{'\n'}</Text>
-                          </View>
+                          <TouchableOpacity style={styles.followBtn} onPress={follow}>
+                            <Text style={styles.txtFollow}>{followDict[following]}</Text>
+                          </TouchableOpacity>
+                        </View>
                         <View style={styles.rightCol}>
                           <Image source={{uri:result.Image}} style={styles.roundButton1}/>
                         </View>
@@ -54,6 +81,7 @@ const UserDiscoverBio = (props) => {
     
       useEffect(() => {
         getUser();
+        getFollowState();
       }, [props]);
 
 
@@ -70,7 +98,7 @@ export default UserDiscoverBio;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#504CF1',
+        //backgroundColor: '#504CF1',
         flex: 0.2,
         alignSelf:'center',
         width:"90%",
@@ -121,16 +149,16 @@ const styles = StyleSheet.create({
     },
     followBtn:{
       flexDirection:"row",
-      backgroundColor:"white",
+      backgroundColor:"#504CF1",
       borderRadius:20,
       marginTop:"3%",
-      marginLeft:"3%",
+      marginLeft:"10%",
       width:"50%",
       height:"30%"
     },
     txtFollow:{
       fontSize:20,
-      color:'purple',
+      color:'white',
       //alignSelf:'flex-end',
       marginLeft:"20%",
       //alignContent:"center",

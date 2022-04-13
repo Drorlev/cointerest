@@ -4,7 +4,7 @@ import UserDiscoverBio from './Comps/UserDiscoverBio';
 import Balance from './Comps/Balance';
 import Assets from './Comps/Assets';
 import Transactions from './Comps/Transactions';
-
+import Underline from './Comps/Underline';
 const User = ({route,navigation}) => {
   const [user,setUser] = useState();
   const [portffolio,setPortfolio]=useState((<View><Text>Loading...</Text></View>));
@@ -26,6 +26,7 @@ const User = ({route,navigation}) => {
     userNameRoute = route.params.user.Username
     let comps =  <>
       <Text style={styles.title}>{userNameRoute}</Text>
+      <Underline/>
       <View style={styles.body}>
         <UserDiscoverBio email={route.params.user.Email}/>
         <Balance email={route.params.user.Email} balance={1000}/>
