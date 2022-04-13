@@ -16,7 +16,8 @@ const CoinCard = (props) => {
         coinName:props.name,
         op:props.op,
         coinPrice:props.value,
-        coinImg: props.img
+        coinImg: props.img,
+        change:props.change
       } },
   })
   };

@@ -101,9 +101,9 @@ const BuySellPage = ({route,navigation}) => {
         {console.log("in BuySell")}
      
       <View>
-        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} />
+        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
       </View>
-      <Text style={styles.smallHeader}>Coin amount</Text>
+      <Text style={styles.smallHeader}>Amount</Text>
 
       <View style={styles.search}>
         <TextInput  style={styles.input}
@@ -114,7 +114,7 @@ const BuySellPage = ({route,navigation}) => {
                             />
       </View>
 
-      <Text style={styles.title}>That would be {PostPrice}$</Text>
+      <Text style={styles.title}>{PostPrice}$</Text>
 
       <View style={styles.search}>
         <TextInput  style={styles.input}
@@ -171,10 +171,10 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
   },
   title:{
-    marginTop:"5%",
-    color:'#fff',
+    marginTop:"3%",
+    color:'gray',
     alignSelf:'center',
-    fontSize:30,
+    fontSize:25,
     fontWeight:'bold',
   },
   body:{
@@ -217,6 +217,18 @@ search:{
   borderRadius:10,
   flexDirection:'row',
   //borderWidth: 1,
-  marginTop:30,
+  marginTop:10,
 },
+green: {
+  color: '#00ff00',
+  fontWeight: "bold",
+  fontSize: 14,
+},
+red: {
+  color: '#ff0000',
+  fontWeight: "bold",
+  fontSize: 14,
+}
+
+
 })

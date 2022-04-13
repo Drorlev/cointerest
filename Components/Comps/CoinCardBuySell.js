@@ -1,74 +1,73 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image } from "react-native";
 import Underline from "./Underline";
 
-import React from 'react'
+import React, { useState } from "react";
 
 const CoinCardBuySell = (props) => {
-    let image ={ uri: props.img};
+  const [color, setColor] = useState("red");
+
+  let image = { uri: props.img };
   return (
-     
-      <View>
+    <View>
       <View style={styles.header}>
-        <View style={styles.welcome}>
-          <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
-            {props.action}
-          </Text>
-          <Text style={styles.text}>{props.name}</Text>
-        </View>
-
+        <Text
+          style={{
+            color: "#A7A7A7",
+            fontWeight: "bold",
+            fontSize: 20,
+            marginBottom: "2%",
+          }}
+        >
+          {props.name}
+        </Text>
         <View style={styles.profileIcon}>
-        <Image source={image}  style={styles.image} />
-
+          <Image source={image} style={styles.image} />
+        </View>
+        <View style={styles.welcome}>
+          {/* <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
+            {props.action}
+          </Text> */}
+          <Text style={styles.text}>{"$" + props.value}</Text>
+          <Text style={props.precentage}>{props.change + "%"}</Text>
         </View>
       </View>
       <Underline />
     </View>
-      
-
-
-
-
   );
-}
+};
 
-export default CoinCardBuySell
+export default CoinCardBuySell;
 
 const styles = StyleSheet.create({
-   
-    image: {
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  text: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 25,
+  },
+  welcome: {
+    justifyContent: "center",
+    alignItems: "center",
 
-      width: '100%',
-      height:  '100%',
-    },
-    text: {
-      color: "white",
-      fontWeight: "bold",
-      fontSize: 25,
-    },
-    welcome: {
-      justifyContent: "flex-start",
-      left: 20,
-      flexDirection: "column",
-      flex: 0.7,
-    },
-    header: {
-      height: 80,
-      marginTop: "5%",
-      flexDirection: "row",
-    },
-    profileIcon: {
-      flexDirection: "column",
-      justifyContent: "space-around",
-      left: 80,
-      width: 70,
-      height: 70,
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: 90,
-      backgroundColor: "black",
-      // borderColor: "white",
-      // borderWidth: 1,
-      
-    },
-  });
-  
+    flexDirection: "column",
+    flex: 0.7,
+  },
+  header: {
+    height: 150,
+    marginTop: "2%",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  profileIcon: {
+    width: "15%",
+    height: "40%",
+    borderRadius: 90,
+    backgroundColor: "black",
+    marginBottom: "2%",
+    // borderColor: "white",
+    // borderWidth: 1,
+  },
+});
