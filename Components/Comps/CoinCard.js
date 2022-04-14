@@ -44,7 +44,7 @@ const CoinCard = (props) => {
       </View>
       <View style={styles.Precent}>
       <Text style={styles.coinName}>{props.value} $</Text>
-        <Text style={styles.coinPrecent}>{props.change+"%"}</Text>
+        <Text style={(props.change >= 0) ? styles.green : styles.red}>{props.change+"%"}</Text>
       </View>
 
     </TouchableOpacity>
@@ -106,14 +106,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     top: "35%",
   },
-  coinPrecent: {
-    color: "white",
-    fontSize: 15,
-    fontWeight: "bold",
-    alignSelf: "center",
-    textAlign: "center",
-    top: "35%",
-  },
   img: {
     //marginTop:2,
     alignSelf: "center",
@@ -121,4 +113,21 @@ const styles = StyleSheet.create({
     height: 40 ,
     
   },
+  green: {
+    color: '#00ff00',
+    fontWeight: "bold",
+    fontSize: 14,
+    alignSelf: "center",
+    textAlign: "center",
+    top: "35%",
+  },
+  red: {
+    color: '#ff0000',
+    fontWeight: "bold",
+    fontSize: 14,
+    alignSelf: "center",
+    textAlign: "center",
+    top: "35%",
+
+  }
 });
