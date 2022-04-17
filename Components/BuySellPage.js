@@ -4,6 +4,7 @@ import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import CoinCardBuySell from './Comps/CoinCardBuySell';
+import Graph from './Comps/Graph';
 
 
 let email="";
@@ -103,8 +104,9 @@ const BuySellPage = ({route,navigation}) => {
       <View>
         <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
       </View>
-      <Text style={styles.smallHeader}>Amount</Text>
+      <Graph/>
 
+      <Text style={styles.smallHeader}>Amount</Text>
       <View style={styles.search}>
         <TextInput  style={styles.input}
                             placeholder="Coin amount "   
@@ -139,7 +141,7 @@ export default BuySellPage
 const styles = StyleSheet.create({
   smallHeader:{
     color:"white",
-    fontSize:40,
+    fontSize:30,
     fontWeight:"bold",
     textAlign:"center",
     marginTop:"5%"
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
 },
 search:{
   width: 300,
-  height: 60,
+  height: 40,
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#fff',
