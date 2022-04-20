@@ -104,7 +104,7 @@ const BuySellPage = ({route,navigation}) => {
       <View>
         <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
       </View>
-      <Graph/>
+      <Graph name={transDetails.coinName}/>
 
       <Text style={styles.smallHeader}>Amount</Text>
       <View style={styles.search}>
