@@ -212,7 +212,7 @@ const Graph = (props) => {
 
   useEffect(() => {
     getCoinsPricePerPeriod()
-  }, [selectedDate]);
+  }, [selectedDate, props.name]);
 
   return (
     <View>
