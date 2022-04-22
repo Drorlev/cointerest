@@ -118,12 +118,20 @@ const Graph = (props) => {
             
             labels = [];
             dataS = [];
+            let cnt = 0;
             
             for (const key in result) {
                 console.log(result[key].Name);
                 console.log("--------------------------")
-                labels = [...labels, result[key].Name]
+                if(cnt % 2 ==0){
+                  
+                  labels = [...labels, result[key].Name.slice(0, 2)]
+                }else{
+                  labels = [...labels, ""]
+                }
+                cnt = cnt+1;
             }
+
 
             for (const key in result) {
               console.log("--------------------------")
@@ -172,7 +180,7 @@ const Graph = (props) => {
                     },
                   ],
                 }}
-                width={350} // from react-native
+                width={400} // from react-native
                 height={165}
                 //yAxisLabel="$"
                 propsForLabels={
@@ -252,7 +260,7 @@ const styles = StyleSheet.create({
   },
   btnText: { textAlign: "center" },
   graph:{
-    marginLeft:"5%",
+   
     
   }
   ,
