@@ -10,6 +10,21 @@ import {
 } from "react-native-chart-kit";
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Coins/?coin_name="
+const predUrl ="http://194.90.158.74/bgroup53/test2/tar4/api/Predictions/?coin_name=Bitcoin" 
+const cutDate = (date) =>{
+  let date1="";
+  cnt=0;
+  for (let index = 0; index < date.length; index++) {
+    let element = date[index];
+    console.log(element)
+    console.log(date1)
+    if(cnt == 2){
+      return date1;
+    }
+      cnt += 1 
+      date1 +=element
+  }
+}
 
 const preferDate = (days) => {
   var dateObj = new Date();
@@ -31,25 +46,28 @@ const preferDate = (days) => {
     hours = "0" + hours
   }
 
-
   let newdate = year + "-" + month + "-" + day + "T" + hours + ":" + min + ":" + sec;
-
 
   return newdate
 }
 
+
+let labels = [];
+let dataS = [];
+
+
 const Graph = (props) => {
   let now = preferDate(0);
   const [selectedDate, setSelectedDate] = useState(preferDate(7));
+  const [intervals, setIntervals] = useState("D");
   const [graph, setGraph] = useState();
-
-
-
+  const [pred, setPred] = useState();
 
   const selectPrevDate_1 = () => {
 
     let day = preferDate(1)
     setSelectedDate(day)
+    setIntervals("H")
   }
 
   const selectPrevDate_7 = () => {
@@ -59,12 +77,14 @@ const Graph = (props) => {
     //alert(temp)
     let day = preferDate(7)
     setSelectedDate(day)
+    setIntervals("D")
   }
 
   const selectPrevDate_30 = () => {
 
     let day = preferDate(30)
     setSelectedDate(day)
+    setIntervals("D")
 
   }
 
@@ -77,7 +97,7 @@ const Graph = (props) => {
     //fetch the data (get)
     //http://194.90.158.74/bgroup53/test2/tar4/api/Coins/?coin_name=Bitcoin&start=2022-04-19T18:00:00&finish=2022-04-20T18:00:00
     console.log(apiUrl + props.name + "&start=" + selectedDate + "&finish=" + now);
-    fetch(apiUrl + props.name + "&start=" + selectedDate + "&finish=" + now, {
+    fetch(apiUrl + props.name +"&interval_type=" + intervals + "&start=" + selectedDate + "&finish=" + now, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json; charset=UTF-8",
@@ -96,27 +116,68 @@ const Graph = (props) => {
           if (result != undefined) {
             //get
             
-            let label = ["January", "February", "March", "April", "May", "June"]
-            let dataset = [1, 2, 2, 4, 4, 1, 15]
+            labels = [];
+            dataS = [];
+            
+            for (const key in result) {
+                console.log(result[key].Name);
+                console.log("--------------------------")
+                labels = [...labels, result[key].Name]
+            }
 
+            for (const key in result) {
+              console.log("--------------------------")
+              dataS = [...dataS, result[key].Value]
+          }
+            
+            
+            console.log(labels)
             if (props.name == "Bitcoin") {
               //Do here fetch to bitcoin_pred
+              fetch(predUrl, {
+                method: 'GET',
+                headers: new Headers({
+                  'Content-Type': 'application/json; charset=UTF-8',
+                  'Accept': 'application/json; charset=UTF-8'
+                })
+              })
+                .then(res => {
+                 
+                  return res.json()
+                })
+                .then(
+                  (result) => {
+                    console.log("fetch Pred ", result);
+                    //result.map(st => console.log(st.Name));
+                    for (let index = 0; index < result.length; index++) {
+                      let element = result[index];
+                      if(index == result.length - 1 ){
+                        setPred(result[index].Predicted_price)
+                      }
+                      
+                    }
+                  },
+                  (error) => {
+                    console.log("err post=", error);
+                  });
             }
 
             let graph1 =
-              <LineChart
+              <LineChart style={styles.txt}
                 data={{
-                  labels: label,//Dates
+                  labels: labels,//Dates
                   datasets: [
                     {
-                      data: dataset,//Coins values
+                      data: dataS,//Coins values
                     },
                   ],
                 }}
-                width={370} // from react-native
+                width={350} // from react-native
                 height={165}
-                yAxisLabel="$"
-                yAxisSuffix="k"
+                //yAxisLabel="$"
+                propsForLabels={
+                  fontSize = 3
+                }
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
                   backgroundGradientFrom: "#1A1A1A",
@@ -158,7 +219,17 @@ const Graph = (props) => {
           <Text style={styles.btnText}>24H</Text>
         </TouchableOpacity>
       </View>
-      {graph}
+      <View style={styles.graph}>
+        {graph}
+      </View>
+      {(props.name == "Bitcoin")?<>
+       <Text style={styles.predict}>Prediction {pred}</Text> 
+        {(pred  - props.price) >= 0 ? <Text style={styles.predictUP}>{((pred /props.price) - 1).toFixed(3)  }% </Text>
+        :
+        <Text style={styles.predictDown}>-{(1-(pred /props.price)).toFixed(3)}% </Text>
+        }
+    
+       </>:<></>}
     </View>
   );
 };
@@ -180,4 +251,27 @@ const styles = StyleSheet.create({
 
   },
   btnText: { textAlign: "center" },
+  graph:{
+    marginLeft:"5%",
+    
+  }
+  ,
+  txt:{
+    fontSize: 10,
+  },
+  predict:{
+    fontSize:15,
+    color:"white",
+    textAlign:"center"
+  },
+  predictUP:{
+    fontSize:15,
+    color:"green",
+    textAlign:"center"
+  },
+  predictDown:{
+    fontSize:15,
+    color:"red",
+    textAlign:"center"
+  }
 });
