@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View , ScrollView, Image} from 'react-native';
 import React,{useEffect,useState} from 'react';
 import Transaction from './Transaction';
+import FeedElement from './FeedElement';
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email="; 
 let count=0;
@@ -38,9 +39,13 @@ const Transactions = (props) => {
             console.log("fetch Transactions= ", result);
 
             if(result != undefined){
-           
+              /*
             let transactionsList =result.map(trn => 
               <Transaction key={count++}  t_date={trn.T_date} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} />
+            );
+            */
+            let transactionsList =result.map(trn => 
+              <FeedElement key={count++}  t_date={trn.T_date} trns_profile_img={trn.User_pic} trns_user_name={trn.Username} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} usr_Comment={trn.Comment} />
             );
             
             setTransaction(transactionsList)

@@ -29,17 +29,18 @@ const FeedElement = (props) => {
             <View style={styles.name_col}>
                     <Text style={styles.userTxt}>{props.trns_user_name}</Text>
             </View>
+            <View style={styles.dateCol}>
+                <Text style={styles.txtAgo}>5 minutes ago</Text>
+            </View>
         </View>
         <View style={styles.row}>
            
-            {/* <View style={styles.dateCol}>
-                <Text style={styles.txt}>{tranTime}</Text>
-            </View> */}
+            {/*  */}
            
             <View style={styles.col1}>
                 <View style={styles.row3}>
                     <View style={styles.usr_Comment}>
-                        <Text style={styles.txtUser}>{props.usr_Comment}</Text>
+                        <Text style={styles.commentTxt}>{props.usr_Comment}</Text>
                     </View> 
                 </View>
                 <View style={styles.row2}>
@@ -124,9 +125,9 @@ const styles = StyleSheet.create({
     },
     
     dateCol:{
-        flexDirection:"column",
+        alignItems:"flex-end",
        // backgroundColor:"purple",
-        width:"25%",
+        width:"40%",
     },
     OpCol:{
        // flexDirection:"column",
@@ -153,6 +154,11 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:17,
         
+    },
+    txtAgo:{
+        textAlign:'center',
+        color:'#C0C0C0',
+        fontSize:17, 
     },
     userTxt:{
         //textAlign:'center',
@@ -213,5 +219,11 @@ const styles = StyleSheet.create({
       spaceCol:{
           width:"25%"
       },
+      commentTxt:{
+        textAlign:'center',
+        color:'white',
+        fontSize:17,
+        paddingTop:"2%"
+      }
       
 })
