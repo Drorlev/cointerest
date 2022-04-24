@@ -22,20 +22,28 @@ const FeedElement = (props) => {
     //let operation = props.transaction.Dollar_amount >= 0 ? "Buy" : "Sell"
   return (
     <View style={styles.container}>
-        
-        
-        <View style={styles.row}>
+        <View style={styles.row1}>
             <View style={styles.profile_imageCol}>
                 <Image source={image} style={styles.profileIcon}/>
             </View>
-            {/* <View style={styles.dateCol}>
-                <Text style={styles.txt}>{tranTime}</Text>
-            </View> */}
+            <View style={styles.name_col}>
+                    <Text style={styles.userTxt}>{props.trns_user_name}</Text>
+            </View>
+        </View>
+        <View style={styles.row}>
+           
+            {/*  */}
+           
             <View style={styles.col1}>
+                <View style={styles.row3}>
+                    <View style={styles.usr_Comment}>
+                        <Text style={styles.commentTxt}>{props.usr_Comment}</Text>
+                    </View> 
+                </View>
                 <View style={styles.row2}>
                 
-                    <View style={styles.name_col}>
-                        <Text style={styles.userTxt}>{props.trns_user_name}</Text>
+                    <View style={styles.spaceCol}>
+                      
                     </View>
                     <View style={styles.OpCol}>
                         <Text style={styles.txt}>{op}</Text>
@@ -46,13 +54,12 @@ const FeedElement = (props) => {
                     <View style={styles.imageCol}>
                         <Image source={imageCoin} style={styles.img}/>
                     </View>
+                    <View style={styles.spaceCol}>
+                      
+                    </View>
                    
                 </View>
-                <View style={styles.row3}>
-                    <View style={styles.usr_Comment}>
-                        <Text style={styles.txtUser}>{props.usr_Comment}</Text>
-                    </View> 
-                </View>
+                
             </View>
             
         </View>
@@ -68,8 +75,8 @@ const styles = StyleSheet.create({
     container: {
        // flexDirection:'row',
         //paddingTop:30,
-        backgroundColor: '#4F28AB',
-        height:60,
+        //backgroundColor: '#4F28AB',
+        height:150,
        // backgroundColor: 'gray',
         flex: 1,
         width:"100%",
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
        // borderRadius:10,
     },
     name_col:{
-        flexDirection:'column',
+       // flexDirection:'column',
         width:"40%",
        // backgroundColor:"green"
     },
@@ -93,29 +100,31 @@ const styles = StyleSheet.create({
        // backgroundColor:"black",
     },
     row:{
-        //height:"50%",
-    //    marginTop:2,
+        height:"60%",
+        // marginTop:2,
         flexDirection:'row',
-        flex:1,
+        backgroundColor: '#4F28AB',
+        //flex:1,
         //justifyContent:'center',
-        //borderRadius:10,
+        borderRadius:10
        // backgroundColor:"salmon",
     },
     row2:{
-        //height:"50%",
+        height:"25%",
         // marginTop:2,
         flexDirection:'row',
-        flex:0.5,
+        //flex:0.4,
         //justifyContent:'center',
         //borderRadius:10,
        // backgroundColor:"white",
+       
         width:"100%",
     },
     
     dateCol:{
-        flexDirection:"column",
+        alignItems:"flex-end",
        // backgroundColor:"purple",
-        width:"25%",
+        width:"40%",
     },
     OpCol:{
        // flexDirection:"column",
@@ -125,11 +134,12 @@ const styles = StyleSheet.create({
     amountCol:{
         //flexDirection:"column",
         // backgroundColor:"yellow",
-        width:"30%",
+        width:"20%",
     },
     profile_imageCol:{
-        width:"15%",
-        height: "90%",
+        width:"10%",
+        height: "95%",
+        //flexDirection:"row"
        //backgroundColor:"green",
     },
     imageCol:{
@@ -142,12 +152,18 @@ const styles = StyleSheet.create({
         fontSize:17,
         
     },
-    userTxt:{
+    txtAgo:{
         textAlign:'center',
+        color:'#C0C0C0',
+        fontSize:17, 
+    },
+    userTxt:{
+        //textAlign:'center',
         color:'white',
         fontSize:20,
        // fontStyle:"italic",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        marginLeft:"10%"
         
     },
     
@@ -184,8 +200,27 @@ const styles = StyleSheet.create({
       },
       row3:{
         flexDirection:'row',
-        flex:0.5,
-       // backgroundColor:"red",
+        //flex:0.5,
+        backgroundColor:"#504CF1",
         width:"100%",
+        height:"60%",
+        borderRadius:10
+      },
+      row1:{
+        flexDirection:'row',
+        height:"25%",
+        //backgroundColor:"red",
+        backgroundColor: '#1A1A1A',
+        width:"100%",
+      },
+      spaceCol:{
+          width:"25%"
+      },
+      commentTxt:{
+        textAlign:'center',
+        color:'white',
+        fontSize:17,
+        paddingTop:"2%"
       }
+      
 })
