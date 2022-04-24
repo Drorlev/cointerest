@@ -29,9 +29,6 @@ const FeedElement = (props) => {
             <View style={styles.name_col}>
                     <Text style={styles.userTxt}>{props.trns_user_name}</Text>
             </View>
-            <View style={styles.dateCol}>
-                <Text style={styles.txtAgo}>5 minutes ago</Text>
-            </View>
         </View>
         <View style={styles.row}>
            

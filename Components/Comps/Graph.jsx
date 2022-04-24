@@ -125,7 +125,7 @@ const Graph = (props) => {
                 console.log("--------------------------")
                 if(cnt % 2 ==0){
                   
-                  labels = [...labels, result[key].Name.slice(0, 2)]
+                  labels = [...labels, result[key].Name.slice(0, 5)]
                 }else{
                   labels = [...labels, ""]
                 }
@@ -157,6 +157,7 @@ const Graph = (props) => {
                   (result) => {
                     console.log("fetch Pred ", result);
                     //result.map(st => console.log(st.Name));
+                    /*
                     for (let index = 0; index < result.length; index++) {
                       let element = result[index];
                       if(index == result.length - 1 ){
@@ -164,6 +165,8 @@ const Graph = (props) => {
                       }
                       
                     }
+                    */
+                    setPred(result[0].Predicted_price)
                   },
                   (error) => {
                     console.log("err post=", error);
@@ -231,12 +234,11 @@ const Graph = (props) => {
         {graph}
       </View>
       {(props.name == "Bitcoin")?<>
-       <Text style={styles.predict}>Prediction {pred}</Text> 
+       <Text style={styles.predict}>Prediction {pred} for 23:00</Text> 
         {(pred  - props.price) >= 0 ? <Text style={styles.predictUP}>{((pred /props.price) - 1).toFixed(3)  }% </Text>
         :
         <Text style={styles.predictDown}>-{(1-(pred /props.price)).toFixed(3)}% </Text>
         }
-    
        </>:<></>}
     </View>
   );
