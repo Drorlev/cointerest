@@ -33,9 +33,7 @@ const Transaction = (props) => {
             </View>
             <View style={styles.imageCol}>
                 <Image source={image} style={styles.img}/>
-            </View>
-        
-        
+            </View> 
          </View>
     </View>
   )
