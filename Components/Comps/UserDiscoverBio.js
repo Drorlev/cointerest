@@ -25,17 +25,48 @@ const UserDiscoverBio = (props) => {
 
 
     const follow = () =>{
-      alert("Follow me")
+      //alert("Follow me")
 
-      alert(props.searchedUser + " " + props.email);
+      //alert(props.searchedUser + " " + props.email);
+      if(following == "Follow"){
+        postFollowState()
+      }
+      else{
+        alert(following)
+      }
+      
     }
 
     
-    const getFollowState2 = () =>{
+    const postFollowState = () =>{
       //alert(currentUserEmail)
-      if(userEmail != undefined){
-        console.log(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser);
+      if(currentUserEmail != undefined){
+        //console.log(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser);
         //alert(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser)
+
+        //post would be here + change following state
+        fetch(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser, {
+          method: 'POST',
+          body: "",
+          headers: new Headers({
+            'Content-type': 'application/json; charset=UTF-8', //very important to add the 'charset=UTF-8'!!!!
+            'Accept': 'application/json; charset=UTF-8'
+          })
+        })
+          .then(res => {
+            //console.log('res=', res);
+            return res.json()
+          })
+          .then(
+            (result) => {
+              //console.log("fetch POST= ", result);
+              //if (result == currentUserEmail + " Is now following " + props.searchedUser)
+                setFollwing("unFollow")
+            },
+            (error) => {
+              console.log("err post=", error);
+            });
+    
       }
     }
     
