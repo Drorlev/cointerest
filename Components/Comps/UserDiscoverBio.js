@@ -1,10 +1,75 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
+const apiUrlFollow = "http://194.90.158.74/bgroup53/test2/tar4/api/Follows/?email=";
+
+const followDict = {true: "unFollow",false: "Follow"}
+
+let currentUserEmail;
 
 const UserDiscoverBio = (props) => {
     const [user, setUser] = useState();
+    const [following, setFollwing] = useState("Follow");
+    //const [userEmail, setUserEmail] = useState();
+    
+    AsyncStorage.getItem('loggedInUserEmail').then((token) => {
+      //setUserEmail(token)
+      currentUserEmail= token;
+      //console.log("use effect ",token)
+      //userEmail = token
+    })
+    
+    //alert(currentUserEmail)
+
+
+    const follow = () =>{
+      alert("Follow me")
+
+      alert(props.searchedUser + " " + props.email);
+    }
+
+    
+    const getFollowState2 = () =>{
+      //alert(currentUserEmail)
+      if(userEmail != undefined){
+        console.log(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser);
+        //alert(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser)
+      }
+    }
+    
+    const getFollowState = (userEmail) =>{
+      //alert(followDict[true])
+      //email is the user or the discoverd
+      if(userEmail != undefined){
+        //alert(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser)
+        fetch(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser, {
+          method: "GET",
+          headers: new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            Accept: "application/json; charset=UTF-8",
+          }),
+        }) .then((res) => {
+          //console.log('res=', res);
+          console.log("res.status ", res.status);
+          console.log("res.ok ", res.ok);
+          return res.json();
+        })
+        .then(
+          (result) => {
+            //alert("user dicover res ", result)
+              console.log("User Discover Follow",result);
+              (result == "True" ) ? setFollwing("unFollow") :  setFollwing("Follow");
+              //setFollwing(followDict[result])
+            },(error) => {
+              console.log("err post=", error);
+            });
+    } 
+  }
+
+
+
 
     const getUser = () => {
         console.log()
@@ -24,12 +89,25 @@ const UserDiscoverBio = (props) => {
           .then(
             (result) => {
                 console.log("User Discover Bio",result)
-                
+                getFollowState(currentUserEmail)
                 if(result != undefined){
-                    setUser(<>
-                        <Text style={styles.txt}>{result.Bio}{'\n'}</Text>
-                        <Image source={{uri:result.Image}} style={styles.roundButton1}/>
+                    setUser(
+                      <>
+                        <View style={styles.leftCol}>
+                          <Text style={styles.txt}>{result.Bio}{'\n'}</Text>
+                            <TouchableOpacity style={styles.followBtn} onPress={follow}>
+                              <Text style={styles.txtFollow}>{following}</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rightCol}>
+                          <Image source={{uri:result.Image}} style={styles.roundButton1}/>
+                        </View>
                         </>);
+                        
+                        //alert(currentUserEmail)
+                        
+                    //getFollowState();
+                    
                 }
                 
               
@@ -43,7 +121,7 @@ const UserDiscoverBio = (props) => {
     
       useEffect(() => {
         getUser();
-      }, [props]);
+      }, [props,following]);
 
 
   return (
@@ -59,7 +137,7 @@ export default UserDiscoverBio;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#504CF1',
+        //backgroundColor: '#504CF1',
         flex: 0.2,
         alignSelf:'center',
         width:"90%",
@@ -96,6 +174,34 @@ const styles = StyleSheet.create({
         color:'#fff',
         //alignSelf:'flex-end',
         marginLeft:20,
-        //marginTop:50
+        marginTop:"5%"
+    },
+    rightCol:{
+      //backgroundColor:"blue",
+      width:"40%",
+      height:"100%",
+    },
+    leftCol:{
+      width:"60%",
+      height:"100%",
+     // backgroundColor:"green",
+    },
+    followBtn:{
+      flexDirection:"row",
+      backgroundColor:"#504CF1",
+      borderRadius:20,
+      marginTop:"3%",
+      marginLeft:"10%",
+      width:"50%",
+      height:"30%"
+    },
+    txtFollow:{
+      fontSize:20,
+      color:'white',
+      //alignSelf:'flex-end',
+      marginLeft:"20%",
+      //alignContent:"center",
+      //textAlign:"center"
+      //marginTop:50
     }
 });
