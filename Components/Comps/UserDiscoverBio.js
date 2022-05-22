@@ -31,7 +31,7 @@ const UserDiscoverBio = (props) => {
       else{
         alert(following);
         //unComment when server side is ready
-        deleteFollowState();
+        //deleteFollowState();
       }
       
     }
@@ -57,6 +57,7 @@ const UserDiscoverBio = (props) => {
     
     const postFollowState = () =>{
       if(currentUserEmail != undefined){
+        alert(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser)
         fetch(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser, {
           method: 'POST',
           body: "",
@@ -70,6 +71,7 @@ const UserDiscoverBio = (props) => {
           })
           .then(
             (result) => {
+                console.log("FETCH post=", result);
                 setFollwing("unFollow")
             },
             (error) => {
@@ -94,7 +96,8 @@ const UserDiscoverBio = (props) => {
         })
         .then(
           (result) => {
-              console.log("User Discover Follow",result);
+              //console.log("User Discover Follow",result);
+              //alert(result);
               (result == "True" ) ? setFollwing("unFollow") :  setFollwing("Follow");
             },(error) => {
               console.log("err post=", error);
