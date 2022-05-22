@@ -2,12 +2,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+let currentUserEmail;
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Users/?email=";
 const apiUrlFollow = "http://194.90.158.74/bgroup53/test2/tar4/api/Follows/?email=";
-
-const followDict = {true: "unFollow",false: "Follow"}
-
-let currentUserEmail;
 
 const UserDiscoverBio = (props) => {
     const [user, setUser] = useState();
@@ -32,35 +29,47 @@ const UserDiscoverBio = (props) => {
         postFollowState()
       }
       else{
-        alert(following)
+        alert(following);
+        //unComment when server side is ready
+        deleteFollowState();
       }
       
     }
 
+    const deleteFollowState = () => {
+      fetch(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json; charset=UTF-8'
+        })
+      })
+        .then(res => {
+          //console.log('res=', res);
+          //console.log('res.status', res.status);
+          console.log('res.ok', res.ok);
+          setFollwing("Follow")
+        },
+          (error) => {
+            console.log("err post=", error);
+          });
+    }
     
     const postFollowState = () =>{
-      //alert(currentUserEmail)
       if(currentUserEmail != undefined){
-        //console.log(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser);
-        //alert(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser)
-
-        //post would be here + change following state
         fetch(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser, {
           method: 'POST',
           body: "",
           headers: new Headers({
-            'Content-type': 'application/json; charset=UTF-8', //very important to add the 'charset=UTF-8'!!!!
+            'Content-type': 'application/json; charset=UTF-8',
             'Accept': 'application/json; charset=UTF-8'
           })
         })
           .then(res => {
-            //console.log('res=', res);
             return res.json()
           })
           .then(
             (result) => {
-              //console.log("fetch POST= ", result);
-              //if (result == currentUserEmail + " Is now following " + props.searchedUser)
                 setFollwing("unFollow")
             },
             (error) => {
@@ -70,8 +79,6 @@ const UserDiscoverBio = (props) => {
     }
     
     const getFollowState = (userEmail) =>{
-      //alert(followDict[true])
-      //email is the user or the discoverd
       if(userEmail != undefined){
         //alert(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser)
         fetch(apiUrlFollow + userEmail + "&discover_user="+ props.searchedUser, {
@@ -81,17 +88,14 @@ const UserDiscoverBio = (props) => {
             Accept: "application/json; charset=UTF-8",
           }),
         }) .then((res) => {
-          //console.log('res=', res);
           console.log("res.status ", res.status);
           console.log("res.ok ", res.ok);
           return res.json();
         })
         .then(
           (result) => {
-            //alert("user dicover res ", result)
               console.log("User Discover Follow",result);
               (result == "True" ) ? setFollwing("unFollow") :  setFollwing("Follow");
-              //setFollwing(followDict[result])
             },(error) => {
               console.log("err post=", error);
             });
