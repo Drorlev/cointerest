@@ -66,7 +66,6 @@ const UserDiscoverBio = (props) => {
             (error) => {
               console.log("err post=", error);
             });
-    
       }
     }
     
