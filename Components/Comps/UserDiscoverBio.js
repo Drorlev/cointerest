@@ -22,18 +22,7 @@ const UserDiscoverBio = (props) => {
 
 
     const follow = () =>{
-      //alert("Follow me")
-
-      //alert(props.searchedUser + " " + props.email);
-      if(following == "Follow"){
-        postFollowState()
-      }
-      else{
-        alert(following);
-        //unComment when server side is ready
-        //deleteFollowState();
-      }
-      
+      (following == "Follow") ?  postFollowState() :alert(following) //deleteFollowState();;
     }
 
     const deleteFollowState = () => {
@@ -57,7 +46,6 @@ const UserDiscoverBio = (props) => {
     
     const postFollowState = () =>{
       if(currentUserEmail != undefined){
-        alert(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser)
         fetch(apiUrlFollow + currentUserEmail + "&discover_user="+ props.searchedUser, {
           method: 'POST',
           body: "",
