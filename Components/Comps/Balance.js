@@ -50,7 +50,7 @@ const Balance = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.balance}>
-      <Text style={styles.headerTxt}>Total Net Worth</Text>
+      <Text style={styles.headerTxt}>Wallet Worth</Text>
       {balance}
       </View>
     </View>
