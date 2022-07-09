@@ -13,9 +13,9 @@ const FeedElement = (props) => {
 
     let op  = (props.coin_amount >=0) ?  "Bought": "Sold";
     let tranTime = (props.t_date).substring(0, 10);
-     tranTime = reformatDate(tranTime);
-     let image ={ uri: props.trns_profile_img};
-     let imageCoin = { uri: props.coin_pic};
+    tranTime = reformatDate(tranTime);
+    let image ={ uri: props.trns_profile_img};
+    let imageCoin = { uri: props.coin_pic};
     //console.log(props.amount)
     //const tran = props.transaction;
    // console.log("Transaction",props.date1 )
@@ -43,7 +43,7 @@ const FeedElement = (props) => {
                 <View style={styles.row2}>
                 
                     <View style={styles.spaceCol}>
-                      
+                        <Text style={styles.txt}>{tranTime}</Text>
                     </View>
                     <View style={styles.OpCol}>
                         <Text style={styles.txt}>{op}</Text>
@@ -55,7 +55,7 @@ const FeedElement = (props) => {
                         <Image source={imageCoin} style={styles.img}/>
                     </View>
                     <View style={styles.spaceCol}>
-                      
+                    
                     </View>
                    
                 </View>
