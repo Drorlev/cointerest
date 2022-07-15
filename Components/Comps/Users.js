@@ -89,6 +89,7 @@ const Users = (props,{navigation}) => {
       },[props]);
   return (
       <ScrollView style={styles.container}>
+        {(props.search == "")? <Text style={styles.centerText}>Top 5 weekly Earners </Text>:<></>}
           {users}
       </ScrollView>
     
@@ -103,5 +104,13 @@ const styles = StyleSheet.create({
         //backgroundColor: 'lightblue',
         flex: 1,
         marginTop:30,
+       
+       
     },
+    centerText:{
+        color:"white",
+        alignSelf:"center",
+        fontSize:20,
+        fontWeight:"bold",
+    }
 });
