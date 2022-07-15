@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView,Image } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView,BackHandler,Alert  } from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -29,20 +29,32 @@ const HomePage = ({ route, navigation }) => {
       console.log(e);
     }
   };
+  const backAction = () => {
+    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel"
+      },
+      { text: "YES", onPress: () => BackHandler.exitApp() }
+    ]);
+    return true;
+  };
 
   useEffect(() => {
       AsyncStorage.getItem('loggedInUserEmail').then((token) => {
         //setUserEmail(token)
         console.log("use effect ",token)
         setUser(token)
-        
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+        return () => backHandler.remove()
       })
       if(user != undefined){
       setIsLoading(false);
       console.log("error");
       }
-     
-  
+      
+      
   }, [isFocused,user]);
 
   if(isLoading){
