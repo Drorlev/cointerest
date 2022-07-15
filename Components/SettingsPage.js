@@ -96,7 +96,8 @@ const SettingsPage = ({ route, navigation }) => {
     console.log("in");
 
     //navigation.navigate('UserPage')
-    navigation.popToTop();
+    navigation.navigate('Start')
+    //navigation.popToTop();
   };
 
   const clearAsyncStorage = async () => {
