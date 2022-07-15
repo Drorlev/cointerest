@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
 import React,{useEffect,useState} from 'react';
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -48,13 +48,24 @@ const BuySellPage = ({route,navigation}) => {
     //navigation.navigate('Market')
     
   }
-
+  const checkOP = () =>{
+    Alert.alert("Hold on!", "Are you sure you want " + transDetails.op, [
+      {
+        text: "Cancel",
+        onPress: () => {Alert.alert("Status!","Action Canceled")
+          return
+        },
+        style: "cancel"
+      },
+      { text: "YES", onPress: () => PostAction()}
+    ]);
+  }
   //Post Function
   const PostAction = () => {
     let realAmount = (transDetails.op == "Buy") ? amount: (amount * (-1));
     //console.log("-------------BuySellPage Trans OPERATION " + transDetails.op);
     //console.log("-------------BuySellPage REAL amount " + realAmount);
-    
+
     let action={
       Coin_name:transDetails.coinName,
       Email:email,
@@ -81,7 +92,7 @@ const BuySellPage = ({route,navigation}) => {
       .then(
         (result) => {
           console.log("fetch POST= ", result);
-          (flag) ? alert("Action succeeded") : alert(result.Message)
+          (flag) ? Alert.alert("Status!","Action succeeded") : Alert.alert("Status!",result.Message)
         },
         (error) => {
           console.log("err post=", error);
@@ -127,7 +138,7 @@ const BuySellPage = ({route,navigation}) => {
                             />
       </View>
       
-      <TouchableOpacity style={styles.button} details={transDetails} onPress={PostAction}>
+      <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
         <Text style={styles.btnText}>{transDetails.op}</Text>
       </TouchableOpacity>
       </View>
