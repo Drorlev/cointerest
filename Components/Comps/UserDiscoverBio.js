@@ -22,7 +22,7 @@ const UserDiscoverBio = (props) => {
 
 
     const follow = () =>{
-      (following == "Follow") ?  postFollowState() :alert(following) //deleteFollowState();;
+      (following == "Follow") ?  postFollowState() : deleteFollowState();
     }
 
     const deleteFollowState = () => {

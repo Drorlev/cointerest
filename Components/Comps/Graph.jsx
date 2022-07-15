@@ -223,9 +223,6 @@ const Graph = (props) => {
         <TouchableOpacity value={7} style={styles.button} onPress={selectPrevDate_7}>
           <Text style={styles.btnText}>7D</Text>
         </TouchableOpacity>
-        <TouchableOpacity value={30} style={styles.button} onPress={selectPrevDate_30}>
-          <Text style={styles.btnText}>30D</Text>
-        </TouchableOpacity>
         <TouchableOpacity value={1} style={styles.button} onPress={selectPrevDate_1}>
           <Text style={styles.btnText}>24H</Text>
         </TouchableOpacity>

@@ -8,27 +8,34 @@ const CoinCardBuySell = (props) => {
 
   let image = { uri: props.img };
   return (
-    <View>
+    <View >
       <View style={styles.header}>
-        <Text
-          style={{
-            color: "#A7A7A7",
-            fontWeight: "bold",
-            fontSize: 20,
-            marginBottom: "2%",
-          }}
-        >
-          {props.name}
-        </Text>
-        <View style={styles.profileIcon}>
-          <Image source={image} style={styles.image} />
-        </View>
-        <View style={styles.welcome}>
-          {/* <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
-            {props.action}
-          </Text> */}
-          <Text style={styles.text}>{"$" + props.value}</Text>
-          <Text style={props.precentage}>{props.change + "%"}</Text>
+        <View style={styles.row}>
+          <View style={styles.leftCol}>
+            <Text
+              style={{
+                color: "#A7A7A7",
+                fontWeight: "bold",
+                fontSize: 20,
+                marginBottom: "2%",
+                alignSelf:"center"
+              }}
+            >
+              {props.name}
+            </Text>
+            <View style={styles.welcome}>
+              {/* <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
+                {props.action}
+              </Text> */}
+              <Text style={styles.text}>{"$" + props.value}</Text>
+              <Text style={props.precentage}>{props.change + "%"}</Text>
+            </View>
+          </View>
+          <View style={styles.rightCol}>
+            
+              <Image source={image} style={styles.image} />
+            
+          </View>
         </View>
       </View>
       <Underline />
@@ -40,8 +47,10 @@ export default CoinCardBuySell;
 
 const styles = StyleSheet.create({
   image: {
-    width: "100%",
+    width: "55%",
     height: "100%",
+   
+    borderRadius: 80,
   },
   text: {
     color: "white",
@@ -62,12 +71,52 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   profileIcon: {
-    width: "15%",
-    height: "40%",
+    width: "50%",
+    height: "70%",
     borderRadius: 90,
     backgroundColor: "black",
     marginBottom: "2%",
     // borderColor: "white",
     // borderWidth: 1,
   },
+  container: {
+    //backgroundColor: '#504CF1',
+    flex: 0.2,
+    alignSelf:'center',
+    width:"90%",
+    borderRadius:10,
+    //height:150
+  },
+  rightCol:{
+    //backgroundColor:"blue",
+    width:"40%",
+    height:"100%",
+    
+    alignItems:"center"
+  },
+  leftCol:{
+    width:"60%",
+    height:"100%",
+    //backgroundColor:"green",
+  },
+  row:{
+    flex:0.6,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    //alignContent:'center',
+    alignItems:'center',
+    paddingTop:5
+},
+roundButton1: {
+  width: "60%",
+  height: "100%",
+  //justifyContent: 'center',
+  //alignItems: 'center',
+  borderRadius: 100,
+  //backgroundColor: 'black',
+  alignSelf:"center",
+  borderColor:'white',
+  borderWidth: 1.5,
+  
+},
 });

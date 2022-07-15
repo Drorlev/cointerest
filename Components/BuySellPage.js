@@ -112,30 +112,30 @@ const BuySellPage = ({route,navigation}) => {
       <View style={styles.body}>
         {console.log("in BuySell")}
      
-      <View>
-        <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
-      </View>
-      <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
+        <View style={styles.x1}>
+          <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
+        </View>
+        <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
 
-      <Text style={styles.smallHeader}>Amount</Text>
-      <View style={styles.search}>
-        <TextInput  style={styles.input}
-                            placeholder="Coin amount "   
-                            placeholderTextColor="#1A1A1A" 
-                            onChangeText={setAmount}
-                            keyboardType={"number-pad"}
-                            />
-      </View>
+        <Text style={styles.smallHeader}>Amount</Text>
+        <View style={styles.search}>
+          <TextInput  style={styles.input}
+                              placeholder="Coin amount "   
+                              placeholderTextColor="#1A1A1A" 
+                              onChangeText={setAmount}
+                              keyboardType={"number-pad"}
+                              />
+        </View>
 
-      <Text style={styles.title}>{PostPrice}$</Text>
+        <Text style={styles.title}>{PostPrice}$</Text>
 
-      <View style={styles.search}>
-        <TextInput  style={styles.input}
-                            placeholder="Comment"   
-                            placeholderTextColor="#1A1A1A" 
-                            onChangeText={setComment}
-                            
-                            />
+        <View style={styles.search}>
+          <TextInput  style={styles.input}
+                              placeholder="Comment"   
+                              placeholderTextColor="#1A1A1A" 
+                              onChangeText={setComment}
+                              
+                              />
       </View>
       
       <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
@@ -241,6 +241,10 @@ red: {
   color: '#ff0000',
   fontWeight: "bold",
   fontSize: 14,
+},
+x1:{
+ // backgroundColor: "yellow",
+  flex:0.4
 }
 
 
