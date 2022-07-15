@@ -2,7 +2,10 @@ import { StyleSheet, Text, View , ScrollView, Image} from 'react-native';
 import React,{useEffect,useState} from 'react';
 import FeedElement from './FeedElement';
 
-const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions"; 
+
+
+
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email="; 
 let count=0;
 const Feed = (props) => {
   const [transaction,setTransaction]=useState();
@@ -11,9 +14,10 @@ const Feed = (props) => {
   let flag;
   //fetch get based on props email
   const getTransactions=()=>{
+    //alert(apiUrl + props.email)
     console.log("Transactions", props.email)
     console.log("bEFROE rENDER ",apiUrl + props.email)
-    fetch(apiUrl , {
+    fetch(apiUrl + props.email, {
         method: 'GET',
         headers: new Headers({
           'Content-Type': 'application/json; charset=UTF-8',
@@ -38,9 +42,12 @@ const Feed = (props) => {
             console.log("fetch Transactions= ", result);
 
             if(result != undefined){
-           
-            let transactionsList =result.map(trn => 
-              <FeedElement key={count++}  t_date={trn.T_date} trns_profile_img={trn.User_pic} trns_user_name={trn.Username} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} usr_Comment={trn.Comment} />
+              var sorted_tweets = result.sort((a,b) => {
+                return new Date(a.T_date).getTime() - 
+                    new Date(b.T_date).getTime()
+              }).reverse();
+              let transactionsList =sorted_tweets.map(trn => 
+                <FeedElement key={count++}  t_date={trn.T_date} trns_profile_img={trn.User_pic} trns_user_name={trn.Username} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} usr_Comment={trn.Comment} />
             );
             
             setTransaction(transactionsList)
@@ -52,11 +59,7 @@ const Feed = (props) => {
   }
 
   useEffect(() => {
-    //setUserEmail(props.email)
-    //();
-    //console.log("Assets ", props.email)
       getTransactions();
-    
   }, [props]);
 
   return (
