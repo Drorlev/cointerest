@@ -235,9 +235,9 @@ const Graph = (props) => {
       </View>
       {(props.name == "Bitcoin")?<>
        <Text style={styles.predict}>Prediction {pred} for 23:00</Text> 
-        {(pred  - props.price) >= 0 ? <Text style={styles.predictUP}>{((pred /props.price) - 1).toFixed(3)  }% </Text>
+        {(pred  - props.price) >= 0 ? <Text style={styles.predictUP}>{((pred /props.price) - 1).toFixed(3)*100  }% </Text>
         :
-        <Text style={styles.predictDown}>-{(1-(pred /props.price)).toFixed(3)}% </Text>
+        <Text style={styles.predictDown}>-{(1-(pred /props.price)).toFixed(3)*100}% </Text>
         }
        </>:<></>}
     </View>
