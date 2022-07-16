@@ -54,7 +54,6 @@ const Balance = (props) => {
       <View style={styles.balance}>
       <Text style={styles.headerTxt}>Wallet Worth</Text>
         {balance}
-        
       </View>
     </View>
   );
