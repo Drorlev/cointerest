@@ -12,8 +12,12 @@ const CoinCardBuySell = (props) => {
       <View style={styles.header}>
         <View style={styles.row}>
           <View style={styles.leftCol}>
-            <Text
-              style={{
+            
+            <View style={styles.welcome}>
+              {/* <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
+                {props.action}
+              </Text> */}
+              <Text style={{
                 color: "#A7A7A7",
                 fontWeight: "bold",
                 fontSize: 20,
@@ -23,12 +27,9 @@ const CoinCardBuySell = (props) => {
             >
               {props.name}
             </Text>
-            <View style={styles.welcome}>
-              {/* <Text style={{ color: "#A7A7A7", fontWeight: "bold", fontSize: 20 }}>
-                {props.action}
-              </Text> */}
               <Text style={styles.text}>{"$" + props.value}</Text>
               <Text style={props.precentage}>{props.change + "%"}</Text>
+              <Text style={styles.text2}>Volume {props.vol}</Text>
             </View>
           </View>
           <View style={styles.rightCol}>
@@ -56,6 +57,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 25,
+  },
+  text2: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 15,
   },
   welcome: {
     justifyContent: "center",
