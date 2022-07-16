@@ -115,6 +115,5 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginLeft:"20%",
         top: "35%",
-    
       }
 });

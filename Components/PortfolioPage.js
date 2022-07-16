@@ -100,9 +100,10 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     fontSize:30,
     fontWeight:'bold',
+    marginTop:"10%"
   },
   body:{
     flex:1,
-    marginTop:40,
+    marginTop:"10%",
   }
 });

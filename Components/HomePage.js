@@ -54,7 +54,7 @@ const HomePage = ({ route, navigation }) => {
     <SafeAreaView style={styles.container}>
       <WelcomeHeader email={user} />
       <View style={{ left: 20}}>
-        <Text style={styles.text}>Your Protfolio</Text>
+        <Text style={styles.text}>Balance</Text>
       </View>
       <View style={{ height:120}}>
       <Balance email={user} balance={14000} />
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 25,
+    marginBottom:"5%"
   },
   welcome: {
     justifyContent: "flex-start",

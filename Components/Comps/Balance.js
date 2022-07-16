@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     flex: 0.2,
     width: '95%',
     alignSelf: "center",
-    marginTop: 10,
     //marginBottom: 30,
   },
   balance: {
