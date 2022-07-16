@@ -29,7 +29,7 @@ const UserBlock = (props) => {
         
         <View style={styles.col1}>
             <Text style={styles.userName}  >{user.Username} </Text>
-            <Text style={styles.balance}>{user.Bio}</Text>
+            <Text style={styles.balance}>{(props.searchWord == "")? "Last 7 Days: "+user.Balance.Weekly_change_percent+"%" : user.Bio}</Text>
         </View>
         <View style={styles.col2}>
             <View>

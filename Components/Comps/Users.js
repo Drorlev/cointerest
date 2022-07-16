@@ -71,7 +71,7 @@ const Users = (props,{navigation}) => {
                 
                 let usersList =result.map(user => 
                    // <UserBlock send2papa={getDataFromChild} key={user.Username} user={user}/>
-                   <UserBlock key={user.Username} user={user}/>
+                   <UserBlock key={user.Username} user={user} searchWord={searchName}/>
                 );
                 
                 setUsers(usersList)
@@ -84,7 +84,7 @@ const Users = (props,{navigation}) => {
 
     
     useEffect(() => {
-        ( searchName != "" )?getUsers(): setUsers(<></>); 
+        getUsers(); 
         console.log(searchName)
       },[props]);
   return (

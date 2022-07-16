@@ -36,8 +36,8 @@ const Balance = (props) => {
         (result) => {
           console.log("fetch Balance = ", result);
           
-          setBalance(<><Text style={styles.blnTxt}>{"$" + Number.parseFloat(result).toFixed(3).replace(/[.,]000$/, "")}</Text><View style={styles.blnTxt}>
-            <Text style={(props.change >= 0) ? styles.green : styles.red}>{Number.parseFloat(props.change).toFixed(2).replace(/[.,]00$/, "")+"%"}</Text>
+          setBalance(<><Text style={styles.blnTxt}>{"$" + Number.parseFloat(result.Net_worth).toFixed(3).replace(/[.,]000$/, "")}</Text><View style={styles.blnTxt}>
+            <Text style={(result.Weekly_change_percent >= 0) ? styles.green : styles.red}>Last 24 hours {Number.parseFloat(result.Weekly_change_percent).toFixed(2).replace(/[.,]00$/, "")+"%"}</Text>
             </View></>) 
           },
         (error) => {
