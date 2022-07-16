@@ -24,7 +24,7 @@ const Coins = () => {
             .then(
               (result) => {
                 console.log("fetch Coins= ", result);
-                let ing =result.map(rec =>
+                let ing =result?.map(rec =>
                    console.log(rec)
                 )
                 //console.log(ing);

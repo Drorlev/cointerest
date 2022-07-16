@@ -44,7 +44,7 @@ const Transactions = (props) => {
               <Transaction key={count++}  t_date={trn.T_date} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} />
             );
             */
-            let transactionsList =result.map(trn => 
+            let transactionsList =result?.map(trn => 
               <FeedElement key={count++}  t_date={trn.T_date} trns_profile_img={trn.User_pic} trns_user_name={trn.Username} coin_amount={trn.Coin_amount} coin_pic={trn.Coin_pic} dollar_amount={trn.Dollar_amount} usr_Comment={trn.Comment} timeAgo={trn?.TimeAgo}/>
             );
             

@@ -41,7 +41,7 @@ const Users = (props,{navigation}) => {
     const [users,setUsers]=useState(<></>);
     //will be the fetch get users
 
-    let searchName=props.search;
+    let searchName=(props.search == undefined)? "" : props.search;
 
     /*
     const getDataFromChild=(data)=>{

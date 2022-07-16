@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "column",
     flex: 0.4,
-    top: "6%",
+    top: "10%",
     alignItems: "center",
   },
   profileIcon: {
