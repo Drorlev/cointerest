@@ -54,7 +54,7 @@ const FeedElement = (props) => {
                     <View style={styles.imageCol}>
                         <Image source={imageCoin} style={styles.img}/>
                     </View>
-                    <View style={styles.spaceCol}>
+                    <View style={styles.spaceCol2}>
                     
                     </View>
                    
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
     OpCol:{
        // flexDirection:"column",
        // backgroundColor:"lightgreen",
-        width:"20%",
+        width:"25%",
     },
     amountCol:{
         //flexDirection:"column",
         // backgroundColor:"yellow",
-        width:"20%",
+        width:"25%",
     },
     profile_imageCol:{
         width:"10%",
@@ -214,8 +214,11 @@ const styles = StyleSheet.create({
         width:"100%",
       },
       spaceCol:{
-          width:"25%"
+          width:"30%"
       },
+      spaceCol2:{
+        width:"5%"
+    },
       commentTxt:{
         textAlign:'center',
         color:'white',

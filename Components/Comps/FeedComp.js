@@ -5,7 +5,7 @@ import FeedElement from './FeedElement';
 
 
 
-const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email="; 
+const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?input_email="; 
 let count=0;
 const Feed = (props) => {
   const [transaction,setTransaction]=useState();
@@ -14,9 +14,6 @@ const Feed = (props) => {
   let flag;
   //fetch get based on props email
   const getTransactions=()=>{
-    //alert(apiUrl + props.email)
-    console.log("Transactions", props.email)
-    console.log("bEFROE rENDER ",apiUrl + props.email)
     fetch(apiUrl + props.email, {
         method: 'GET',
         headers: new Headers({
@@ -65,7 +62,7 @@ const Feed = (props) => {
   return (
     <View style={styles.container}>
        
-        <ScrollView style={styles.history}>
+        <ScrollView style={styles.history}  fadingEdgeLength={50} >
           {transaction}
         </ScrollView>
     </View>
@@ -76,26 +73,18 @@ export default Feed;
 
 const styles = StyleSheet.create({
     container: {
-        //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
         backgroundColor: '#1A1A1A',
-        flex: 0.94,
+        flex: 1,
         width:"90%",
         alignSelf: 'center',
-        marginBottom:"20%",
+        marginBottom:"10%",
+        marginTop:"3%"
     },
     history: {
-        //flexDirection:'row',
-        //paddingTop:30,
-        //backgroundColor: '#1A1A1A',
-        //backgroundColor: 'lightblue',
         flex: 1,
         width:"100%",
-        //color:'#fff'
         alignSelf: 'center',
         borderRadius:10,
-       // justifyContent: 'center',
     },
     headerTxt:{
         color:'#fff',

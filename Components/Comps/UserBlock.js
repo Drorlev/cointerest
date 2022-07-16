@@ -29,7 +29,10 @@ const UserBlock = (props) => {
         
         <View style={styles.col1}>
             <Text style={styles.userName}  >{user.Username} </Text>
-            <Text style={styles.balance}>{(props.searchWord == "")? "Last 7 Days: "+user.Balance.Weekly_change_percent+"%" : user.Bio}</Text>
+            {(props.searchWord == "")?<Text style={(user.Balance.Weekly_change_percent >= 0) ? styles.green : styles.red}>{(props.searchWord == "")? user.Balance.Weekly_change_percent+"%" : user.Bio}</Text>
+            :
+            <Text style={styles.balance}>{user.Bio}</Text>
+            }
         </View>
         <View style={styles.col2}>
             <View>
@@ -94,5 +97,24 @@ const styles = StyleSheet.create({
     col2:{
         flexDirection:'column',
         width:'20%',
-    }
+    },
+    green: {
+        color: '#00ff00',
+        fontWeight: "bold",
+        fontSize:25,
+        alignSelf: "flex-start",
+        textAlign: "center",
+        marginLeft:"20%",
+        top: "35%",
+      },
+      red: {
+        color: '#ff0000',
+        fontWeight: "bold",
+        fontSize:25,
+        alignSelf: "flex-start",
+        textAlign: "center",
+        marginLeft:"20%",
+        top: "35%",
+    
+      }
 });

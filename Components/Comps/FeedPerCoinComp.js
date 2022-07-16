@@ -63,7 +63,7 @@ const FeedPerCoin = (props) => {
   return (
     <View style={styles.container}>
        
-        <ScrollView style={styles.history}>
+        <ScrollView style={styles.history} fadingEdgeLength={50}>
           {transaction}
         </ScrollView>
     </View>

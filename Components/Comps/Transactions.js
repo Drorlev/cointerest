@@ -67,7 +67,7 @@ const Transactions = (props) => {
   return (
     <View style={styles.container}>
        <Text style={styles.headerTxt}>Transactions History</Text>
-        <ScrollView style={styles.history}>
+        <ScrollView style={styles.history} fadingEdgeLength={50}>
           {transaction}
         </ScrollView>
     </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         //paddingTop:30,
         //backgroundColor: '#1A1A1A',
         backgroundColor: '#1A1A1A',
-        flex: 0.4,
+        flex: 0.5,
         width:"90%",
         alignSelf: 'center',
         marginBottom:"20%",

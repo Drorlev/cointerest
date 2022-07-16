@@ -60,7 +60,6 @@ const HomePage = ({ route, navigation }) => {
       <Balance email={user} balance={14000} />
       </View>
       <HeadlineInHomePageWithChevron text={"Following"}/>
-      {/* <FollowingComp email={user}/> */}
       <Feed email={user}/>
     </SafeAreaView>
   );

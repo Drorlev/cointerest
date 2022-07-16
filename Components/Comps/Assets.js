@@ -69,7 +69,7 @@ const Assets = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerTxt}>Assets Collection</Text>
-      <ScrollView horizontal={true} style={styles.assets}>
+      <ScrollView horizontal={true} style={styles.assets} fadingEdgeLength={50}>
         {assets}
       </ScrollView>
     </View>

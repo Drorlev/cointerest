@@ -167,9 +167,7 @@ const MarketCoinsComp = (props) => {
   }, [props]);
   return (
     
-      <ScrollView style={styles.history}
-      // contentContainerStyle={{overflow:"scroll", flexGrow:1}}
-      >
+      <ScrollView style={styles.history} fadingEdgeLength={50}>
         <View style={styles.test}>{coin}</View>
         
       </ScrollView>

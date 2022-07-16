@@ -88,7 +88,7 @@ const Users = (props,{navigation}) => {
         console.log(searchName)
       },[props]);
   return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} fadingEdgeLength={50}>
         {(props.search == "")? <Text style={styles.centerText}>Top 5 weekly Earners </Text>:<></>}
           {users}
       </ScrollView>

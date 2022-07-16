@@ -94,8 +94,6 @@ const UserDiscoverBio = (props) => {
   }
 
 
-
-
     const getUser = () => {
         console.log()
         fetch(apiUrl + props.email + "&n=1", {
@@ -120,7 +118,7 @@ const UserDiscoverBio = (props) => {
                       <>
                         <View style={styles.leftCol}>
                           <Text style={styles.txt}>{result.Bio}{'\n'}</Text>
-                            <TouchableOpacity style={styles.followBtn} onPress={follow}>
+                            <TouchableOpacity style={(following == "Follow") ? styles.followBtn : styles.unfollowBtn} onPress={follow}>
                               <Text style={styles.txtFollow}>{following}</Text>
                             </TouchableOpacity>
                         </View>
@@ -217,14 +215,27 @@ const styles = StyleSheet.create({
       borderRadius:20,
       marginTop:"3%",
       marginLeft:"10%",
+      width:"35%",
+      height:"30%",
+      //alignContent:"center",
+      textAlign:"center"
+    },
+    unfollowBtn:{
+      flexDirection:"row",
+      backgroundColor:"#504CF1",
+      borderRadius:20,
+      marginTop:"3%",
+      marginLeft:"10%",
       width:"50%",
-      height:"30%"
+      height:"30%",
+      //alignContent:"center",
+      textAlign:"center"
     },
     txtFollow:{
       fontSize:20,
       color:'white',
-      //alignSelf:'flex-end',
-      marginLeft:"20%",
+      //alignSelf:"center",
+      marginLeft:"10%",
       //alignContent:"center",
       //textAlign:"center"
       //marginTop:50
