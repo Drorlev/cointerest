@@ -113,7 +113,7 @@ const BuySellPage = ({route,navigation}) => {
         {console.log("in BuySell")}
      
         <View style={styles.x1}>
-          <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red}/>
+          <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red} vol={transDetails.vol}/>
         </View>
         <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
 
