@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     txt:{
         textAlign:'center',
         color:'white',
-        fontSize:17,
+        fontSize:14,
         
     },
     txtAgo:{
