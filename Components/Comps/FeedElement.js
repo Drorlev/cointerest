@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import pic from '../../assets/BTC.png'
 
 const reformatDate = (dateStr) =>{
 
@@ -28,6 +27,9 @@ const FeedElement = (props) => {
             </View>
             <View style={styles.name_col}>
                     <Text style={styles.userTxt}>{props.trns_user_name}</Text>
+            </View>
+            <View style={styles.ago_col}>
+                    <Text style={styles.txtAgo}>{props?.timeAgo}</Text>
             </View>
         </View>
         <View style={styles.row}>
@@ -93,6 +95,11 @@ const styles = StyleSheet.create({
         width:"40%",
        // backgroundColor:"green"
     },
+    ago_col:{
+        // flexDirection:'column',
+         width:"60%",
+        // backgroundColor:"green"
+     },
     col1:{
         flex:1,
         width:"80%",
@@ -156,6 +163,7 @@ const styles = StyleSheet.create({
         textAlign:'center',
         color:'#C0C0C0',
         fontSize:17, 
+        paddingTop:"5%",
     },
     userTxt:{
         //textAlign:'center',
@@ -166,7 +174,11 @@ const styles = StyleSheet.create({
         marginLeft:"10%"
         
     },
-    
+    timeAgo:{
+        fontSize:20,
+        textAlign:"center",
+        color:"lightgrey"
+    },
     img: {
         //backgroundColor:"blue",
         //marginTop:2,
