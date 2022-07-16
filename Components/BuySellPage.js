@@ -14,7 +14,7 @@ let transDetails = 0;
 const apiUrl="http://194.90.158.74/bgroup53/test2/tar4/api/assets/?user_comment=";
 //Buy Sell Page
 const BuySellPage = ({route,navigation}) => {
-
+  
   const [amount, setAmount] = useState(0);
   const [comment, setComment] = useState(0);
   const isFocused = useIsFocused();
@@ -52,7 +52,7 @@ const BuySellPage = ({route,navigation}) => {
     Alert.alert("Hold on!", "Are you sure you want " + transDetails.op, [
       {
         text: "Cancel",
-        onPress: () => {Alert.alert("Status!","Action Canceled")
+        onPress: () => {Alert.alert("Status","Action Canceled")
           return
         },
         style: "cancel"
@@ -108,41 +108,44 @@ const BuySellPage = ({route,navigation}) => {
 
   return (
     <View style={styles.container}>
-    <View style={styles.container2}>
-      <View style={styles.body}>
-        {console.log("in BuySell")}
-     
-        <View style={styles.x1}>
-          <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red} vol={transDetails.vol}/>
+      <View style={styles.container2}>
+        <View style={styles.body}>
+          <View style={styles.x1}>
+            <CoinCardBuySell name={transDetails.coinName} amount={transDetails.amount} img={transDetails.coinImg} value={transDetails.coinPrice} action={transDetails.op} change={transDetails.change} precentage={(transDetails.change >= 0) ? styles.green : styles.red} vol={transDetails.vol}/>
+          </View >
+
+          <View style={styles.x2}>
+            <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
+          </View>
+          <View style={styles.x3}>
+          <Text style={styles.smallHeader}>Amount</Text>
+          <View style={styles.search}>
+            <TextInput  style={styles.input}
+                                placeholder="Coin amount "   
+                                placeholderTextColor="#1A1A1A" 
+                                onChangeText={setAmount}
+                                keyboardType={"number-pad"}
+                                />
+          </View>
+
+          <Text style={styles.title}>{PostPrice}$</Text>
+
+          <View style={styles.search}>
+            <TextInput  style={styles.input}
+                                placeholder="Comment"   
+                                placeholderTextColor="#1A1A1A" 
+                                onChangeText={setComment}
+                                
+                                />
+          </View>
+        
+          <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
+            <Text style={styles.btnText}>{transDetails.op}</Text>
+          </TouchableOpacity>
+          </View>
+          
         </View>
-        <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
-
-        <Text style={styles.smallHeader}>Amount</Text>
-        <View style={styles.search}>
-          <TextInput  style={styles.input}
-                              placeholder="Coin amount "   
-                              placeholderTextColor="#1A1A1A" 
-                              onChangeText={setAmount}
-                              keyboardType={"number-pad"}
-                              />
-        </View>
-
-        <Text style={styles.title}>{PostPrice}$</Text>
-
-        <View style={styles.search}>
-          <TextInput  style={styles.input}
-                              placeholder="Comment"   
-                              placeholderTextColor="#1A1A1A" 
-                              onChangeText={setComment}
-                              
-                              />
       </View>
-      
-      <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
-        <Text style={styles.btnText}>{transDetails.op}</Text>
-      </TouchableOpacity>
-      </View>
-    </View>
   </View>
   )
 }
@@ -193,6 +196,7 @@ const styles = StyleSheet.create({
   body:{
     flex:1,
     marginTop:40,
+   
   },
   button:{
     backgroundColor:"#6136DA",
@@ -243,8 +247,17 @@ red: {
   fontSize: 14,
 },
 x1:{
- // backgroundColor: "yellow",
-  flex:0.4
+  //backgroundColor: "yellow",
+  flex:0.18
+},
+x2:{
+  // backgroundColor: "yellow",
+   flex:0.3,
+  
+},
+x3:{
+  // backgroundColor: "yellow",
+   flex:0.52
 }
 
 

@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Pressable, Alert, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
+import FeedElement from './FeedElement';
 import {
   LineChart,
   BarChart,
@@ -9,8 +10,13 @@ import {
   StackedBarChart,
 } from "react-native-chart-kit";
 
+
+
 const apiUrl = "http://194.90.158.74/bgroup53/test2/tar4/api/Coins/?coin_name="
 const predUrl ="http://194.90.158.74/bgroup53/test2/tar4/api/Predictions/?coin_name=Bitcoin" 
+const apiUrlTrans = "http://194.90.158.74/bgroup53/test2/tar4/api/transactions/?email=" 
+
+
 const cutDate = (date) =>{
   let date1="";
   cnt=0;
@@ -52,11 +58,12 @@ const preferDate = (days) => {
 }
 
 
+
 let labels = [];
 let dataS = [];
 
-
 const Graph = (props) => {
+  
   let now = preferDate(0);
   const [selectedDate, setSelectedDate] = useState(preferDate(7));
   const [intervals, setIntervals] = useState("D");
@@ -80,13 +87,7 @@ const Graph = (props) => {
     setIntervals("D")
   }
 
-  const selectPrevDate_30 = () => {
 
-    let day = preferDate(30)
-    setSelectedDate(day)
-    setIntervals("D")
-
-  }
 
 
   const getCoinsPricePerPeriod = () => {
@@ -215,10 +216,11 @@ const Graph = (props) => {
 
   useEffect(() => {
     getCoinsPricePerPeriod()
+    
   }, [selectedDate, props.name]);
 
   return (
-    <View>
+    <View >
       <View style={styles.filterDate}>
         <TouchableOpacity value={7} style={styles.button} onPress={selectPrevDate_7}>
           <Text style={styles.btnText}>7D</Text>
@@ -227,6 +229,7 @@ const Graph = (props) => {
           <Text style={styles.btnText}>24H</Text>
         </TouchableOpacity>
       </View>
+      
       <View style={styles.graph}>
         {graph}
       </View>
@@ -252,7 +255,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#6136DA",
     justifyContent: "center",
     borderRadius: 5,
-    width: 55
+    width: 55,
+    marginLeft:"1%"
+    //alignItems:"center",
+    //alignContent:"center"
+
+  },
+  button2: {
+    backgroundColor: "#6136DA",
+    justifyContent: "center",
+    borderRadius: 5,
+    width: 90
     //alignItems:"center",
     //alignContent:"center"
 
@@ -280,5 +293,6 @@ const styles = StyleSheet.create({
     fontSize:15,
     color:"red",
     textAlign:"center"
-  }
+  },
+
 });

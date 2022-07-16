@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   headerTxt: {
     color: "#fff",
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: "6%",
     marginBottom: 10,
     fontSize: 20,
   },

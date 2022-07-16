@@ -36,7 +36,9 @@ const Balance = (props) => {
         (result) => {
           console.log("fetch Balance = ", result);
           
-          setBalance(<Text style={styles.blnTxt}>{"$" + result}</Text>) 
+          setBalance(<><Text style={styles.blnTxt}>{"$" + result}</Text><View style={styles.blnTxt}>
+            <Text style={(props.change >= 0) ? styles.green : styles.red}>{Number.parseFloat(props.change).toFixed(2).replace(/[.,]00$/, "")+"%"}</Text>
+            </View></>) 
           },
         (error) => {
           console.log("err post=", error);
@@ -51,7 +53,8 @@ const Balance = (props) => {
     <View style={styles.container}>
       <View style={styles.balance}>
       <Text style={styles.headerTxt}>Wallet Worth</Text>
-      {balance}
+        {balance}
+        
       </View>
     </View>
   );
@@ -100,6 +103,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
 
   },
+  green: {
+    color: '#00ff00',
+    fontWeight: "bold",
+    fontSize: 14,
+    alignSelf: "center",
+    textAlign: "center",
+    top: "35%",
+  },
+  red: {
+    color: '#ff0000',
+    fontWeight: "bold",
+    fontSize: 14,
+    alignSelf: "center",
+    textAlign: "center",
+    top: "35%",
+
+  }
 });
 
 export default Balance;

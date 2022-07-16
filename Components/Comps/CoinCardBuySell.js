@@ -8,7 +8,7 @@ const CoinCardBuySell = (props) => {
 
   let image = { uri: props.img };
   return (
-    <View >
+    <View style={styles.con}>
       <View style={styles.header}>
         <View style={styles.row}>
           <View style={styles.leftCol}>
@@ -33,13 +33,11 @@ const CoinCardBuySell = (props) => {
             </View>
           </View>
           <View style={styles.rightCol}>
-            
               <Image source={image} style={styles.image} />
-            
           </View>
         </View>
       </View>
-      <Underline />
+      <Underline/>
     </View>
   );
 };
@@ -48,10 +46,14 @@ export default CoinCardBuySell;
 
 const styles = StyleSheet.create({
   image: {
-    width: "55%",
+    width: "60%",
     height: "100%",
    
     borderRadius: 80,
+  },
+  con:{
+   
+    flex:1
   },
   text: {
     color: "white",
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 0.7,
   },
   header: {
-    height: 150,
+   flex:1,
     marginTop: "2%",
     alignItems: "center",
     flexDirection: "column",
@@ -106,12 +108,13 @@ const styles = StyleSheet.create({
     //backgroundColor:"green",
   },
   row:{
-    flex:0.6,
+    flex:0.95,
     flexDirection:'row',
     justifyContent:'space-between',
     //alignContent:'center',
     alignItems:'center',
-    paddingTop:5
+    paddingTop:"5%",
+    
 },
 roundButton1: {
   width: "60%",
