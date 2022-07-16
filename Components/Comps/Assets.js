@@ -47,7 +47,7 @@ const Assets = (props) => {
               <Asset
                 key={asset.Coin_name}
                 img={asset.Coin_info.Coin_picture}
-                amount={asset.Amount}
+                amount={Number.parseFloat(asset.Amount).toFixed(3).replace(/[.,]000$/, "")}
               />
             ));
 

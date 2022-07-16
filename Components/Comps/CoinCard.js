@@ -44,8 +44,8 @@ const CoinCard = (props) => {
         <Text style={styles.coinName}></Text>
       </View>
       <View style={styles.Precent}>
-      <Text style={styles.coinName}>{props.value} $</Text>
-        <Text style={(props.change >= 0) ? styles.green : styles.red}>{props.change+"%"}</Text>
+        <Text style={styles.coinName}>{Number.parseFloat(props.value).toFixed(3).replace(/[.,]000$/, "")} $</Text>
+        <Text style={(props.change >= 0) ? styles.green : styles.red}>{Number.parseFloat(props.change).toFixed(3).replace(/[.,]000$/, "")+"%"}</Text>
       </View>
 
     </TouchableOpacity>
