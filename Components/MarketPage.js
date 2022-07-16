@@ -96,7 +96,7 @@ const MarketPage = () => {
               </View>
               <View style={styles.search}>
               <TextInput  style={styles.input}
-                          placeholder="search a Coin"   
+                          placeholder="Search a Coin"   
                           placeholderTextColor="#1A1A1A" 
                           onChangeText={setSearch}
                           />

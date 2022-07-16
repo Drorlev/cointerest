@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Modal, Pressable } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Modal, Pressable, } from 'react-native'
 import React,{useEffect,useState} from 'react';
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import CoinCardBuySell from './Comps/CoinCardBuySell';
 import Graph from './Comps/Graph';
+import FeedPerCoin from './Comps/FeedPerCoinComp';
 
 
 let email="";
@@ -118,7 +119,7 @@ const BuySellPage = ({route,navigation}) => {
             <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
           </View>
           <View style={styles.x3}>
-            <TouchableOpacity style={styles.button} details={transDetails} onPress={() => setModalVisible(!modalVisible)}>
+            <TouchableOpacity style={styles.button2} details={transDetails} onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.btnText}>Transactions</Text>
             </TouchableOpacity>
             <Modal
@@ -126,18 +127,18 @@ const BuySellPage = ({route,navigation}) => {
               transparent={true}
               visible={modalVisible}
               onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
+                Alert.alert("closed.");
                 setModalVisible(!modalVisible);
               }}
             >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
+                <FeedPerCoin coinName={transDetails.coinName}/>
                 <Pressable
                   style={[styles.button3, styles.buttonClose]}
                   onPress={() => setModalVisible(!modalVisible)}
                 >
-                  <Text style={styles.textStyle}>Hide Modal</Text>
+                  <Text style={styles.textStyle}>Close</Text>
                 </Pressable>
               </View>
             </View>
@@ -152,7 +153,7 @@ const BuySellPage = ({route,navigation}) => {
                                   />
             </View>
 
-            <Text style={styles.title}>{PostPrice}$</Text>
+            <Text style={styles.title}>{Number.parseFloat(PostPrice).toFixed(3).replace(/[.,]000$/, "")}$</Text>
 
             <View style={styles.search}>
               <TextInput  style={styles.input}
@@ -179,7 +180,7 @@ export default BuySellPage
 const styles = StyleSheet.create({
   smallHeader:{
     color:"white",
-    fontSize:30,
+    fontSize:20,
     fontWeight:"bold",
     textAlign:"center",
     marginTop:"5%"
@@ -233,6 +234,21 @@ const styles = StyleSheet.create({
     borderRadius:10,
     //alignItems:"center",
     //alignContent:"center"
+    //#2196F3
+    
+  },
+  button2:{
+    backgroundColor:"gray",
+    width:"50%",
+    height:"7%",
+    alignSelf:"center",
+    textAlign:"center",
+    justifyContent:"center",
+    marginTop:20,
+    borderRadius:10,
+    //alignItems:"center",
+    //alignContent:"center"
+    //#2196F3
     
   },
   input:{
@@ -285,16 +301,17 @@ x3:{
 },
 centeredView: {
   flex: 1,
-  
+  width:"100%",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: 22
+  marginTop: 22,
+  backgroundColor:'#1A1A1A'
 },
 modalView: {
   margin: 20,
-  width:"80%",
-  flex:1,
-  backgroundColor: "white",
+  width:"100%",
+  flex:0.8,
+ 
   borderRadius: 20,
   padding: 35,
   alignItems: "center",
@@ -316,7 +333,7 @@ buttonOpen: {
   backgroundColor: "#F194FF",
 },
 buttonClose: {
-  backgroundColor: "#2196F3",
+  backgroundColor: "#6136DA",
 },
 textStyle: {
   color: "white",
