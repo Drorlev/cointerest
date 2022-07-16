@@ -133,6 +133,7 @@ const BuySellPage = ({route,navigation}) => {
             >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
+                <Text style={styles.smallHeader}>{transDetails.coinName}'s Transactions</Text>
                 <FeedPerCoin coinName={transDetails.coinName}/>
                 <Pressable
                   style={[styles.button3, styles.buttonClose]}
