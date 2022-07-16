@@ -180,7 +180,7 @@ export default MarketCoinsComp;
 const styles = StyleSheet.create({
   test:{
     flex:1,
-    paddingBottom:"80%",
+    paddingBottom:"5%",
   },
     container: {
      flex:1,
