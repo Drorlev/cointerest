@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Modal, Pressable } from 'react-native'
 import React,{useEffect,useState} from 'react';
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,7 +14,7 @@ let transDetails = 0;
 const apiUrl="http://194.90.158.74/bgroup53/test2/tar4/api/assets/?user_comment=";
 //Buy Sell Page
 const BuySellPage = ({route,navigation}) => {
-  
+  const [modalVisible, setModalVisible] = useState(false);
   const [amount, setAmount] = useState(0);
   const [comment, setComment] = useState(0);
   const isFocused = useIsFocused();
@@ -118,30 +118,54 @@ const BuySellPage = ({route,navigation}) => {
             <Graph name={transDetails.coinName} price={transDetails.coinPrice}/>
           </View>
           <View style={styles.x3}>
-          <Text style={styles.smallHeader}>Amount</Text>
-          <View style={styles.search}>
-            <TextInput  style={styles.input}
-                                placeholder="Coin amount "   
-                                placeholderTextColor="#1A1A1A" 
-                                onChangeText={setAmount}
-                                keyboardType={"number-pad"}
-                                />
-          </View>
+            <TouchableOpacity style={styles.button} details={transDetails} onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.btnText}>Transactions</Text>
+            </TouchableOpacity>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+              }}
+            >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>Hello World!</Text>
+                <Pressable
+                  style={[styles.button3, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>Hide Modal</Text>
+                </Pressable>
+              </View>
+            </View>
+          </Modal>
+            <Text style={styles.smallHeader}>Amount</Text>
+            <View style={styles.search}>
+              <TextInput  style={styles.input}
+                                  placeholder="Coin amount "   
+                                  placeholderTextColor="#1A1A1A" 
+                                  onChangeText={setAmount}
+                                  keyboardType={"number-pad"}
+                                  />
+            </View>
 
-          <Text style={styles.title}>{PostPrice}$</Text>
+            <Text style={styles.title}>{PostPrice}$</Text>
 
-          <View style={styles.search}>
-            <TextInput  style={styles.input}
-                                placeholder="Comment"   
-                                placeholderTextColor="#1A1A1A" 
-                                onChangeText={setComment}
-                                
-                                />
-          </View>
-        
-          <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
-            <Text style={styles.btnText}>{transDetails.op}</Text>
-          </TouchableOpacity>
+            <View style={styles.search}>
+              <TextInput  style={styles.input}
+                                  placeholder="Comment"   
+                                  placeholderTextColor="#1A1A1A" 
+                                  onChangeText={setComment}
+                                  
+                                  />
+            </View>
+          
+            <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>
+              <Text style={styles.btnText}>{transDetails.op}</Text>
+            </TouchableOpacity>
           </View>
           
         </View>
@@ -258,6 +282,50 @@ x2:{
 x3:{
   // backgroundColor: "yellow",
    flex:0.52
+},
+centeredView: {
+  flex: 1,
+  
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: 22
+},
+modalView: {
+  margin: 20,
+  width:"80%",
+  flex:1,
+  backgroundColor: "white",
+  borderRadius: 20,
+  padding: 35,
+  alignItems: "center",
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 2
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 5
+},
+button3: {
+  borderRadius: 20,
+  padding: 10,
+  elevation: 2
+},
+buttonOpen: {
+  backgroundColor: "#F194FF",
+},
+buttonClose: {
+  backgroundColor: "#2196F3",
+},
+textStyle: {
+  color: "white",
+  fontWeight: "bold",
+  textAlign: "center"
+},
+modalText: {
+  marginBottom: 15,
+  textAlign: "center"
 }
 
 
