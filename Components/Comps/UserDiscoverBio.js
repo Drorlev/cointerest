@@ -160,7 +160,7 @@ export default UserDiscoverBio;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:"green",
+        //backgroundColor:"green",
         //backgroundColor: '#504CF1',
         flex: 0.2,
         alignSelf:'center',
