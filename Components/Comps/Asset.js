@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
          marginTop:4,
          textAlign:'center',
          color:'white',
-         fontSize:20
+         fontSize:17
      },
      
     img: {

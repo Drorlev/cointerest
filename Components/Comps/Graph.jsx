@@ -234,7 +234,7 @@ const Graph = (props) => {
         {graph}
       </View>
       {(props.name == "Bitcoin")?<>
-       <Text style={styles.predict}>Prediction {pred} for 23:00</Text> 
+       <Text style={styles.predict}>Prediction for 23:00 - ${pred}</Text> 
         {(pred  - props.price) >= 0 ? <Text style={styles.predictUP}>{Number.parseFloat(((pred /props.price) - 1)*100).toFixed(3).replace(/[.,]000$/, "")  }% </Text>
         :
         <Text style={styles.predictDown}>-{Number.parseFloat((1-(pred /props.price))*100).toFixed(3).replace(/[.,]000$/, "")}% </Text>
@@ -282,7 +282,9 @@ const styles = StyleSheet.create({
   predict:{
     fontSize:15,
     color:"white",
-    textAlign:"center"
+    textAlign:"center",
+    fontWeight: "bold",
+
   },
   predictUP:{
     fontSize:15,

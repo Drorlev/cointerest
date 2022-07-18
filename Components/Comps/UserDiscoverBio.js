@@ -160,11 +160,13 @@ export default UserDiscoverBio;
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor:"green",
         //backgroundColor: '#504CF1',
         flex: 0.2,
         alignSelf:'center',
         width:"90%",
         borderRadius:10,
+        marginBottom:"2%"
         //height:150
     },
     roundButton1: {
@@ -177,7 +179,10 @@ const styles = StyleSheet.create({
         alignSelf:"flex-end",
         borderColor:'white',
         borderWidth: 1.5,
-        marginRight:10,
+        //marginRight:10,
+        marginRight:"5%",
+        //marginBottom:"10%",
+        marginTop:"-2%"
     },
     userName:{
         fontSize:25,
@@ -213,7 +218,7 @@ const styles = StyleSheet.create({
       flexDirection:"row",
       backgroundColor:"#504CF1",
       borderRadius:20,
-      marginTop:"3%",
+      //marginTop:"3%",
       marginLeft:"10%",
       width:"35%",
       height:"30%",
@@ -224,7 +229,7 @@ const styles = StyleSheet.create({
       flexDirection:"row",
       backgroundColor:"#504CF1",
       borderRadius:20,
-      marginTop:"3%",
+      //marginTop:"3%",
       marginLeft:"10%",
       width:"50%",
       height:"30%",

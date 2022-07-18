@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Modal, Pressable, } from 'react-native'
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,} from 'react';
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
@@ -17,7 +17,7 @@ const apiUrl="http://194.90.158.74/bgroup53/test2/tar4/api/assets/?user_comment=
 const BuySellPage = ({route,navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [comment, setComment] = useState(0);
+  const [comment, setComment] = useState("");
   const isFocused = useIsFocused();
   const [userEmail,setUserEmail]=useState();
 
@@ -94,6 +94,8 @@ const BuySellPage = ({route,navigation}) => {
         (result) => {
           console.log("fetch POST= ", result);
           (flag) ? Alert.alert("Status!","Action succeeded") : Alert.alert("Status!",result.Message)
+          setAmount("");
+          setComment("");
         },
         (error) => {
           console.log("err post=", error);
@@ -146,23 +148,13 @@ const BuySellPage = ({route,navigation}) => {
           </Modal>
             <Text style={styles.smallHeader}>Amount</Text>
             <View style={styles.search}>
-              <TextInput  style={styles.input}
-                                  placeholder="Coin amount "   
-                                  placeholderTextColor="#1A1A1A" 
-                                  onChangeText={setAmount}
-                                  keyboardType={"number-pad"}
-                                  />
+              <TextInput  style={styles.input} value={amount} placeholder="Coin amount" placeholderTextColor="#1A1A1A"  onChangeText={setAmount}  keyboardType={"number-pad"}/>
             </View>
 
             <Text style={styles.title}>{Number.parseFloat(PostPrice).toFixed(3).replace(/[.,]000$/, "")}$</Text>
 
             <View style={styles.search}>
-              <TextInput  style={styles.input}
-                                  placeholder="Comment"   
-                                  placeholderTextColor="#1A1A1A" 
-                                  onChangeText={setComment}
-                                  
-                                  />
+              <TextInput  style={styles.input} value={comment} placeholder="Comment" placeholderTextColor="#1A1A1A"  onChangeText={setComment}/>
             </View>
           
             <TouchableOpacity style={styles.button} details={transDetails} onPress={checkOP}>

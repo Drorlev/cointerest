@@ -29,7 +29,7 @@ const CoinCardBuySell = (props) => {
             </Text>
               <Text style={styles.text}>{"$" + props.value}</Text>
               <Text style={props.precentage}>{props.change + "%"}</Text>
-              <Text style={styles.text2}>Volume {props.vol}</Text>
+              <Text style={styles.text2}>24H Volume {props.vol}</Text>
             </View>
           </View>
           <View style={styles.rightCol}>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   text2: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 13,
   },
   welcome: {
     justifyContent: "center",

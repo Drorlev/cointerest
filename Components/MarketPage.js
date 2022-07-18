@@ -50,32 +50,16 @@ const MarketPage = () => {
   console.log("-----------rendered" + count++);
 
   useEffect(() => {
-    //getUserEmail().then(console.log("after get user EMAIL"));
-    //(userEmail == undefined) ? setIsLoading(true) : setIsLoading(false)
-    //getUserEmail().then(setUserEmail).then(setUpComps())
-   // AsyncStorage.getItem('accessToken').then((token) => {
       AsyncStorage.getItem('loggedInUserEmail').then((token) => {
         //setUserEmail(token)
         console.log("use effect ",token)
         email=token
         setUserEmail(token)
-       
-       /* setAction({
-          op: op_,
-          txt: search_,
-        })
-        */
         
       })
       if(userEmail != undefined){
-        console.log("userEmalil is Ok")
-       
-        //setSearch(getDataFromSon)
         setUpComps()
-        //setIsLoading(false);
       }
-     
-  
   }, [isFocused, isEnabled ,search]);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -96,6 +80,7 @@ const MarketPage = () => {
               </View>
               <View style={styles.search}>
               <TextInput  style={styles.input}
+                          value={search}
                           placeholder="Search a Coin"   
                           placeholderTextColor="#1A1A1A" 
                           onChangeText={setSearch}
