@@ -2,9 +2,9 @@
   "expo": {
     "name": "cointerest",
     "slug": "cointerest",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "orientation": "portrait",
-    "icon": "./assets/cointerest.png",
+    "icon": "./assets/Cointerest_11.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +22,7 @@
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/cointerest.png",
+        "foregroundImage": "./assets/Cointerest_11.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.cointerest.first"

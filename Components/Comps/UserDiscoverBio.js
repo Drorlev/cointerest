@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         width:"90%",
         borderRadius:10,
-        marginBottom:"2%"
+        marginBottom:"5%"
         //height:150
     },
     roundButton1: {
@@ -198,11 +198,12 @@ const styles = StyleSheet.create({
         paddingTop:5
     },
     txt:{
-        fontSize:20,
+        fontSize:16,
         color:'#fff',
         //alignSelf:'flex-end',
         marginLeft:20,
-        marginTop:"5%"
+        marginTop:"5%",
+        fontWeight:"bold"
     },
     rightCol:{
       //backgroundColor:"blue",
@@ -244,5 +245,8 @@ const styles = StyleSheet.create({
       //alignContent:"center",
       //textAlign:"center"
       //marginTop:50
+    },
+    txtview:{
+      flex:0.6
     }
 });
